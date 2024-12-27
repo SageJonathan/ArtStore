@@ -23,7 +23,7 @@ export default function GalleryLive() {
   useEffect(() => {
     const paintingImages = [
         //1 & 14 formatting erros cause axis 
-    //   "/art1.png",
+      "/art1.png",
       "/art2.png",
       "/art3.png",
       "/art4.png",
@@ -36,7 +36,7 @@ export default function GalleryLive() {
       "/art11.png",
       "/art12.png",
       "/art13.png",
-    //   "/art14.png",
+      "/art14.png",
     ];
     setPaintings(paintingImages);
   }, []);

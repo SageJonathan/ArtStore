@@ -33,6 +33,7 @@ export function GalleryToggle({ isGrid }: GalleryToggleProps) {
         <span className="text-center">
           Toggle {currentMode ? "Gallery" : "Grid"} Mode
         </span>
+        {/* add white eye in addtiton to black + center in line with text  */}
         <Image src={eye} alt="Toggle Display" width={24} height={24} />
       </button>
     </div>
