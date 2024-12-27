@@ -19,6 +19,7 @@ model ArtPiece {
   description String?
   price       Float
   imageUrl    String? 
+  // add back img url
   inStock     Boolean  @default(true) 
   buyerName   String?  
   buyerEmail  String?  @unique 
