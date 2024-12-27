@@ -25,3 +25,5 @@ model ArtPiece {
    buyerAddress String? 
   
 }
+
+// Seed all paintings with correct url
