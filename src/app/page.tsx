@@ -1,6 +1,8 @@
 
 import { cookies } from "next/headers"; 
 import { GalleryToggle } from "@/components/gallery/gallery-toggle"; 
+import GalleryLive from '@/components/gallery/gallery-live';
+import GalleryGrid from '@/components/gallery/gallery-grid';
 
 export default async function HomePage() {
   const cookieStore = cookies();
@@ -10,15 +12,14 @@ export default async function HomePage() {
 
   return (
     <div>
-      <h1>Welcome to the Homepage</h1>
       <GalleryToggle isGrid={isGrid} />
       {isGrid ? (
           <div>
-            <h1>I AM GRID</h1>
+            <GalleryGrid/>
           </div>
         ) : (
           <div>
-            <h1>I AM GALLERY</h1>
+            <GalleryLive/>
           </div>
         )}
       </div>

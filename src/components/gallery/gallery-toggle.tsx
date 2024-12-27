@@ -23,7 +23,7 @@ export function GalleryToggle({ isGrid }: GalleryToggleProps) {
     const newMode = !currentMode;
     setCurrentMode(newMode); 
   };
-
+// Todo: edit color and defautl disaply
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <button
