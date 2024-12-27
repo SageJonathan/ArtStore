@@ -25,5 +25,5 @@ model ArtPiece {
    buyerAddress String? 
   
 }
-
+// Update schema w/ paintint type and dates
 // Seed all paintings with correct url
