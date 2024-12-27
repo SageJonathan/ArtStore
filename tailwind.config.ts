@@ -9,8 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        slate: '#e7e5e4',
+      },
+      fontFamily: {
+        merriweather: ['var(--font-merriweather)', 'serif'], 
+        playfair: ['var(--font-playfair)', 'serif'],         
       },
     },
   },

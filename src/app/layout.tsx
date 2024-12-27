@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import Head from "next/head";
 import localFont from "next/font/local";
 import "./globals.css";
+import Nav from "@/components/nav";
 
 //Bulk
 const merriweather = localFont({
   src: "./assets/fonts/merriweather-regular.woff",
-  // variable: "--font-geist-sans",
+  variable: "--font-merriweather",
   weight: "100 900",
 });
 //Headers
 const playfair = localFont({
   src: "./assets/fonts/playfair-display-latin-400.woff",
-  // variable: "--font-geist-mono",
+  variable: "--font-playfair",
   weight: "100 900",
 });
 
@@ -29,11 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en">
         <Head>
-        <link rel="icon" type="image/png" href=".assets/icons/logo.png" />
+        <link rel="icon" type="image/png" href="./assets/icons/logo.png" />
       </Head>
       <body
         className={`${merriweather} ${playfair} antialiased`}
       >
+        <Nav />
         {children}
       </body>
     </html>
