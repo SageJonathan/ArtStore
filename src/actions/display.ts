@@ -8,7 +8,4 @@ export async function displayHomeWithCookies(isGrid: boolean) {
     maxAge: 60 * 60 * 24 * 7, // Cookie will expire in 1 week
     path: "/",
   });
-
-  // Delete after dev
-  console.log("Display Mode Sent to Server: ", isGrid ? "Grid" : "Gallery");
 }

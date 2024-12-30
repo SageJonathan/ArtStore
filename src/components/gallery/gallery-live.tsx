@@ -64,7 +64,7 @@ export default function GalleryLive() {
       {/* Painting Gallery */}
       <div
         ref={galleryRef}
-        className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hidden w-full"
+        className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hidden w-full touch-pan-x"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // Internet Explorer 10+
@@ -73,7 +73,8 @@ export default function GalleryLive() {
         {paintings.map((painting, index) => (
           <div
             key={index}
-            className="min-w-[100%] md:min-w-[50%] lg:min-w-[33.33%] h-full flex-shrink-0 snap-center p-2 flex justify-center"
+            className="min-w-[100%] w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] h-full flex-shrink-0 snap-center p-2 flex justify-center"
+
           >
             <div
               className={`w-full ${

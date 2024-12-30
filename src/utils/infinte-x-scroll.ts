@@ -1,5 +1,3 @@
-// TODO: Mobile scroll bug
-
 import { RefObject, useEffect } from "react";
 
 export const useHorizontalScroll = (
@@ -10,9 +8,9 @@ export const useHorizontalScroll = (
   const handleScroll = (direction: "left" | "right") => {
     if (galleryRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = galleryRef.current;
-      const scrollAmount = clientWidth * scrollSpeed
+      const scrollAmount = clientWidth * scrollSpeed;
 
-      if (direction === "right") {
+      if (direction === "left") {
         galleryRef.current.scrollTo({
           left: scrollLeft + scrollAmount,
           behavior: "smooth",
@@ -46,7 +44,7 @@ export const useHorizontalScroll = (
 
   const handleWheel = (event: WheelEvent) => {
     if (galleryRef.current) {
-      const direction = event.deltaY > 0 ? "left" : "right";
+      const direction = event.deltaY > 0 ? "right" : "left"; 
       handleScroll(direction);
       event.preventDefault();
     }
