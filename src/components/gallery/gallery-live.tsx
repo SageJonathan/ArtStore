@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useHorizontalScroll } from "@/utils/infinte-x-scroll";
 
 export default function GalleryLive() {
-  const [paintings, setPaintings] = useState<any[]>([]); 
+  const [paintings, setPaintings] = useState<any[]>([]);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   // Dummy data -- later needs to come from DB
@@ -100,84 +100,170 @@ export default function GalleryLive() {
 
   useHorizontalScroll(galleryRef, paintings.length, 0.5);
 
-  // Logic to apply custom CSS to vertical clones
-  useEffect(() => {
-    const applyCloningStyles = () => {
-      const currentGallery = galleryRef.current;
+//   // Logic to apply custom CSS to vertical clones
+//   useEffect(() => {
+//     const applyCloningStyles = () => {
+//       const currentGallery = galleryRef.current;
 
-      if (currentGallery) {
-        const items = currentGallery.children;
-        Array.from(items).forEach((item) => {
-          const element = item as HTMLElement;
-          const img = element.querySelector("img");
-          if (img) {
-            if (
-              img &&
-              (img.src.includes("/art1.png") || img.src.includes("/art14.png"))
-            ) {
-              img.classList.add("w-[80%]", "h-[75%]", "object-contain");
-            } else {
-              img.classList.add("object-cover");
-            }
-          }
-        });
-      }
-    };
-    applyCloningStyles();
-  }, [paintings]);
-  
+//       if (currentGallery) {
+//         const items = currentGallery.children;
+//         Array.from(items).forEach((item) => {
+//           const element = item as HTMLElement;
+//           const img = element.querySelector("img");
+//           if (img) {
+//             if (
+//               img &&
+//               (img.src.includes("/art1.png") || img.src.includes("/art14.png"))
+//             ) {
+//               img.classList.add("w-[80%]", "h-[75%]", "object-contain");
+//             } else {
+//               img.classList.add("object-cover");
+//             }
+//           }
+//         });
+//       }
+//     };
+//     applyCloningStyles();
+//   }, [paintings]);
+
+//   return (
+//     <div
+//       className="w-full h-[calc(100vh-68px)] bg-cover bg-center flex pb-20 overflow-hidden"
+//       style={{ backgroundImage: `url('/gallery.png')` }}
+//     >
+//       {/* Painting Gallery */}
+//       <div
+//         ref={galleryRef}
+//         className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hidden w-full touch-pan-x"
+//         style={{
+//           scrollbarWidth: "none", // Firefox
+//           msOverflowStyle: "none", // Internet Explorer 10+
+//         }}
+//       >
+//         {paintings.map((painting, index) => (
+//           <div
+//             key={index}
+//             className="min-w-[100%] sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
+//           >
+//             <div
+//               className={`w-full ${
+//                 painting.src === "/art1.png" || painting.src === "/art14.png"
+//                   ? "h-96"
+//                   : "h-50 md: h-80"
+//               } overflow-hidden flex justify-center items-center `}
+//             >
+//               <img
+//                 src={painting.src}
+//                 alt={`Painting ${index + 1}`}
+//                 className={`w-full h-full object-contain mt-1 ${
+//                   painting.src === "/art1.png" || painting.src === "/art14.png"
+//                     ? "w-[80%] h-[75%]"
+//                     : "object-cover"
+//                 }`}
+//               />
+//             </div>
+
+//             <div className="mt-5 text-left pb-40">
+//               <div className="bg-white shadow-lg p-2 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg">
+//                 <h3 className="text-sm font-semibold mb-1 pb-1 pl-1 pr-2 pr-20 font-merriweather">
+//                   {painting.title}
+//                 </h3>
+//                 <p className="text-xs font-medium text-gray-800 pl-1 font-merriweather">
+//                   {painting.dimensions}
+//                 </p>
+//               </div>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// useEffect(() => {
+//   const applyCloningStyles = () => {
+//     const currentGallery = galleryRef.current;
+
+//     if (currentGallery) {
+//       const items = currentGallery.children;
+//       Array.from(items).forEach((item) => {
+//         const element = item as HTMLElement;
+//         const img = element.querySelector("img");
+//         if (img) {
+//           if (
+//             img &&
+//             (img.src.includes("/art1.png") || img.src.includes("/art14.png"))
+//           ) {
+//             img.classList.add("w-[80%]", "h-[75%]", "object-contain");
+//           } else {
+//             img.classList.add("object-cover");
+//           }
+//         }
+//       });
+//     }
+//   };
+//   applyCloningStyles();
+// }, [paintings]);
+
 return (
-  <div
-     className="w-full h-[calc(100vh-68px)] bg-cover bg-center flex pb-20 overflow-hidden"
-  style={{ backgroundImage: `url('/gallery.png')`,
-  }}
->
-  {/* Painting Gallery */}
-  <div
-    ref={galleryRef}
-    className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hidden w-full touch-pan-x"
-    style={{
-      scrollbarWidth: "none", // Firefox
-      msOverflowStyle: "none", // Internet Explorer 10+
-    }}
-  >
-    {paintings.map((painting, index) => (
+<div
+      className="w-full h-[calc(100vh-68px)] bg-cover bg-center flex pb-20 overflow-hidden"
+      style={{ backgroundImage: `url('/gallery.png')` }}
+    >
+      {/* Painting Gallery */}
       <div
-        key={index}
-        className="min-w-[100%] sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
+        ref={galleryRef}
+        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hidden w-full touch-pan-x"
+        style={{
+          scrollbarWidth: "none", // Firefox
+          msOverflowStyle: "none", // Internet Explorer 10+
+        }}
       >
-        <div
-          className={`w-full ${
-            painting.src === "/art1.png" || painting.src === "/art14.png"
-              ? "h-96"
-              : "h-80"
-          } overflow-hidden flex justify-center items-center `}
-        >
-          <img
-            src={painting.src}
-            alt={`Painting ${index + 1}`}
-            className={`w-full h-full object-contain mt-1 ${
-              painting.src === "/art1.png" || painting.src === "/art14.png"
-                ? "w-[80%] h-[75%]"
-                : "object-cover"
-            }`}
-          />
-        </div>
-        {/* Painting Info Section Below Image */}
-        <div className="mt-5 text-left pb-40">
-          <div className="bg-white shadow-lg p-2 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg">
-            <h3 className="text-sm font-semibold mb-1 pb-1 pl-1 pr-2 pr-20 font-merriweather">
-              {painting.title}
-            </h3>
-            <p className="text-xs font-medium text-gray-800 pl-1 font-merriweather">
-              {painting.dimensions}
-            </p>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
+        {paintings.map((painting, index) => (
+          <div
+            key={index}
+            className="w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
+          >
+            <div
+              className={`w-full p-1 overflow-hidden flex justify-center items-center h-96 `}
+            >
+              <img
+                src={painting.src}
+                alt={`Painting ${index + 1}`}
+                className={`w-full h-full mt-1 object-contain `}
+              />
+            </div>
 
+            <div className="mt-5 text-left pb-40">
+              <div className="bg-white shadow-lg p-2 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg">
+                <h3 className="text-sm font-semibold mb-1 pb-1 pl-1 pr-2 pr-20 font-merriweather">
+                  {painting.title}
+                </h3>
+                <p className="text-xs font-medium text-gray-800 pl-1 font-merriweather">
+                  {painting.dimensions}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
 );
-}
+};
+
+
+
+
