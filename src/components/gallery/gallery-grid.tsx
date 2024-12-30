@@ -1,4 +1,4 @@
-//TODO: Update ternary to use db logic property
+//TODO: Update ternary to use db logic property && 60 on mobile for vert imamgs
 
 "use client";
 
@@ -49,7 +49,7 @@ export default function GalleryGrid() {
                 className={`object-contain h-full ${
                   //Update logic for db 
                   painting === "/art1.png" || painting === "/art14.png"
-                    ? "w-40"
+                    ? "w-40" //60 on mobile
                     : "w-full"
                 }`}
               />

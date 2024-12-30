@@ -30,7 +30,7 @@ export default function GalleryLive() {
     setPaintings(paintingImages);
   }, []);
 
-  const { handleScroll } = useHorizontalScroll(galleryRef, paintings.length,0.5);
+  useHorizontalScroll(galleryRef, paintings.length,0.5);
 
   //Logic to apply custom CSS to vertical paintings
   useEffect(() => {
@@ -61,27 +61,14 @@ export default function GalleryLive() {
       className="relative w-full h-[calc(100vh-68px)] bg-cover bg-center"
       style={{ backgroundImage: `url('/gallery.png')` }}
     >
-      {/* Scroll Buttons */}
-      <button
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2 z-10 hover:bg-gray-700"
-        onClick={() => handleScroll("left")}
-        aria-label="Scroll Left"
-      >
-        {"<"}
-      </button>
-      <button
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white rounded-full p-2 z-10 hover:bg-gray-700"
-        onClick={() => handleScroll("right")}
-        aria-label="Scroll Right"
-      >
-        {">"}
-      </button>
-
       {/* Painting Gallery */}
-      {/* Add mobile styling */}
       <div
         ref={galleryRef}
-        className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-none w-full"
+        className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hidden w-full"
+        style={{
+          scrollbarWidth: "none", // Firefox
+          msOverflowStyle: "none", // Internet Explorer 10+
+        }}
       >
         {paintings.map((painting, index) => (
           <div
@@ -90,6 +77,7 @@ export default function GalleryLive() {
           >
             <div
               className={`w-full ${
+                //Update logic for db
                 painting === "/art1.png" || painting === "/art14.png"
                   ? "h-96" 
                   : "h-80"
