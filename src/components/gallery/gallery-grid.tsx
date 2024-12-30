@@ -10,7 +10,6 @@ export default function GalleryGrid() {
   // Dummy data -- later needs to come from DB
   useEffect(() => {
     const paintingImages = [
-      "/art1.png",
       "/art2.png",
       "/art3.png",
       "/art4.png",
@@ -24,6 +23,7 @@ export default function GalleryGrid() {
       "/art12.png",
       "/art13.png",
       "/art14.png",
+      "/art1.png",
     ];
     setPaintings(paintingImages);
   }, []);
