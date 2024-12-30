@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState, useEffect, useRef } from "react";
 import { useHorizontalScroll } from "@/utils/infinte-x-scroll";
@@ -7,10 +7,9 @@ export default function GalleryLive() {
   const [paintings, setPaintings] = useState<string[]>([]);
   const galleryRef = useRef<HTMLDivElement>(null);
 
-// Dummy data-- later needs to come from db
+  // Dummy data -- later needs to come from DB
   useEffect(() => {
     const paintingImages = [
-        //1 & 14 formatting erros cause axis 
       "/art1.png",
       "/art2.png",
       "/art3.png",
@@ -29,10 +28,34 @@ export default function GalleryLive() {
     setPaintings(paintingImages);
   }, []);
 
-  const { handleScroll } = useHorizontalScroll(galleryRef,paintings.length, 0.3);
+  const { handleScroll } = useHorizontalScroll(galleryRef, paintings.length, 0.3);
+
+  //Logic to apply custom CSS to vertical paintings
+  useEffect(() => {
+    const applyCloningStyles = () => {
+      const currentGallery = galleryRef.current;
+
+      if (currentGallery) {
+        const items = currentGallery.children;
+        Array.from(items).forEach((item) => {
+          const element = item as HTMLElement;
+          const img = element.querySelector("img");
+          if (img) {
+            if (img && (img.src.includes("/art1.png") || img.src.includes("/art14.png"))) {
+              img.classList.add("w-[80%]", "h-[80%]", "object-contain");
+            } else {
+              img.classList.add("object-cover");
+            }
+          }
+        });
+      }
+    };
+    applyCloningStyles();
+
+  }, [paintings]); 
 
   return (
-  <div
+    <div
       className="relative w-full h-[calc(100vh-68px)] bg-cover bg-center"
       style={{ backgroundImage: `url('/gallery.png')` }}
     >
@@ -60,13 +83,23 @@ export default function GalleryLive() {
         {paintings.map((painting, index) => (
           <div
             key={index}
-            className="min-w-[100%] md:min-w-[50%] lg:min-w-[33.33%] h-full flex-shrink-0 snap-center p-2"
+            className="min-w-[100%] md:min-w-[50%] lg:min-w-[33.33%] h-full flex-shrink-0 snap-center p-2 flex justify-center"
           >
-            <div className="w-full h-80 overflow-hidden">
+            <div
+              className={`w-full ${
+                painting === "/art1.png" || painting === "/art14.png"
+                  ? "h-96" 
+                  : "h-80"
+              } overflow-hidden flex justify-center items-center`}
+            >
               <img
                 src={painting}
                 alt={`Painting ${index + 1}`}
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-contain ${
+                  painting === "/art1.png" || painting === "/art14.png"
+                    ? "w-[80%] h-[80%]" 
+                    : "object-cover"
+                }`}
               />
             </div>
           </div>
@@ -76,5 +109,3 @@ export default function GalleryLive() {
     </div>
   );
 }
-
-
