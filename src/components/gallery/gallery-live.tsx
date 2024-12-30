@@ -128,8 +128,8 @@ export default function GalleryLive() {
   
 return (
   <div
-  className="w-full min-h-screen bg-cover bg-center flex pb-20"
-  style={{ backgroundImage: `url('/gallery.png')`
+     className="w-full h-[calc(100vh-68px)] bg-cover bg-center flex pb-20 overflow-hidden"
+  style={{ backgroundImage: `url('/gallery.png')`,
   }}
 >
   {/* Painting Gallery */}
