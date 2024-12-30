@@ -1,3 +1,5 @@
+// TODO: Mobile scroll bug/ Mobile styles/ DB fetching/ Add Modlal / Add white banner/ map data in banner
+
 "use client"
 
 import { useState, useEffect, useRef } from "react";
@@ -28,7 +30,7 @@ export default function GalleryLive() {
     setPaintings(paintingImages);
   }, []);
 
-  const { handleScroll } = useHorizontalScroll(galleryRef, paintings.length, 0.3);
+  const { handleScroll } = useHorizontalScroll(galleryRef, paintings.length,0.5);
 
   //Logic to apply custom CSS to vertical paintings
   useEffect(() => {
@@ -76,6 +78,7 @@ export default function GalleryLive() {
       </button>
 
       {/* Painting Gallery */}
+      {/* Add mobile styling */}
       <div
         ref={galleryRef}
         className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-none w-full"

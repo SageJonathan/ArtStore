@@ -17,7 +17,9 @@ model ArtPiece {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
+  // Add sizing
   price       Float
+  // Add boolean check for horintal or vertical
   imageUrl    String? 
   // add back img url
   inStock     Boolean  @default(true) 
