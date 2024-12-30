@@ -52,6 +52,27 @@ export default function GalleryLive() {
     }
   };
 
+  const handleWheel = (event: WheelEvent) => {
+    if (galleryRef.current) {
+      const direction = event.deltaY > 0 ? "left" : "right";
+      handleScroll(direction);
+      event.preventDefault(); 
+    }
+  };
+
+  useEffect(() => {
+    const currentGallery = galleryRef.current;
+    if (currentGallery) {
+      currentGallery.addEventListener("wheel", handleWheel);
+    }
+
+    return () => {
+      if (currentGallery) {
+        currentGallery.removeEventListener("wheel", handleWheel);
+      }
+    };
+  }, []);
+
   return (
     <div
       className="relative w-full h-[calc(100vh-68px)] bg-cover bg-center"
