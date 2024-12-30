@@ -1,4 +1,4 @@
-//TODO: Update ternary to use db logic property && 60 on mobile for vert imamgs
+//TODO: Update ternary to use db logic property
 
 "use client";
 
@@ -37,7 +37,6 @@ export default function GalleryGrid() {
       <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0">
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
-          {/* Horizontal Images */}
           {paintings.map((painting, index) => (
             <div
               key={index}
@@ -49,7 +48,7 @@ export default function GalleryGrid() {
                 className={`object-contain h-full ${
                   //Update logic for db 
                   painting === "/art1.png" || painting === "/art14.png"
-                    ? "w-40" //60 on mobile
+                    ? " sm:w-60 md:w-40"
                     : "w-full"
                 }`}
               />

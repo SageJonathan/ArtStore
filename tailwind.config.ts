@@ -15,6 +15,12 @@ export default {
         merriweather: ['var(--font-merriweather)', 'serif'], 
         playfair: ['var(--font-playfair)', 'serif'],         
       },
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+      },
     },
   },
   plugins: [
