@@ -1,5 +1,8 @@
 "use client";
 
+//TODO: Update ternary to use db logic property
+// Update props to server servce and db
+
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useHorizontalScroll } from "@/utils/infinte-x-scroll";
