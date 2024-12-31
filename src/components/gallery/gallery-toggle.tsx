@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import eye from "@/app/assets/icons/eye.png";
+import eyeBlack from "@/app/assets/icons/eyeBlack.png";
+import eyeWhite from "@/app/assets/icons/eyeWhite.png";
 import * as actions from "@/actions";
 interface GalleryToggleProps {
   isGrid: boolean;
@@ -10,6 +11,7 @@ interface GalleryToggleProps {
 
 export function GalleryToggle({ isGrid }: GalleryToggleProps) {
   const [currentMode, setCurrentMode] = useState(isGrid);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const saveDisplayMode = async () => {
@@ -23,9 +25,11 @@ export function GalleryToggle({ isGrid }: GalleryToggleProps) {
     const newMode = !currentMode;
     setCurrentMode(newMode); 
   };
-// Todo: edit color and defautl disaply
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50 shadow-md hover:shadow-lg transition-shadow duration-300"
+    onMouseEnter={() => setIsHovered(true)} 
+    onMouseLeave={() => setIsHovered(false)} 
+    >
       <button
         onClick={toggleDisplayMode}
         className="flex items-center justify-center text-white px-4 py-2 rounded-lg hover:bg-slate focus:outline-none hover:text-black space-x-2"
@@ -33,8 +37,7 @@ export function GalleryToggle({ isGrid }: GalleryToggleProps) {
         <span className="text-center">
           Toggle {currentMode ? "Gallery" : "Grid"} Mode
         </span>
-        {/* add white eye in addtiton to black + center in line with text  */}
-        <Image src={eye} alt="Toggle Display" width={24} height={24} />
+        <Image src={isHovered ? eyeBlack : eyeWhite}  alt="Toggle Display" width={24} height={24} />
       </button>
     </div>
   );
