@@ -18,6 +18,7 @@ model ArtPiece {
   title       String
   description String?
   // Add sizing
+  // Add medium
   price       Float
   // Add boolean check for horintal or vertical
   imageUrl    String? 
