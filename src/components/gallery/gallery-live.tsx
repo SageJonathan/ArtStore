@@ -128,13 +128,15 @@ return (
             className="w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
           >
             <div
-              className={`w-full p-1 overflow-hidden h-96 flex flex relative `}
+            // Update to boolean db check
+              className={`w-full p-1 overflow-hidden h-96 flex flex relative ${painting.src === 'art1.png' || painting.src === 'art14.png' ? 'mr-2 ml-2' : ''}`}
             >
               <Image
                 src={painting.src}
                 alt={`Painting ${index + 1}`}
                 className={`w-full h-full mt-1 object-contain `}
-                layout="fill"
+                width={800} 
+                height={600} 
               />
             </div>
             <div className="mt-5 text-left pb-40">
