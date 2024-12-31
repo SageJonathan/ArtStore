@@ -1,10 +1,19 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { useHorizontalScroll } from "@/utils/infinte-x-scroll";
 
+interface Painting {
+  src: string;
+  title: string;
+  dimensions: string;
+  price: string;
+}
+
+
 export default function GalleryLive() {
-  const [paintings, setPaintings] = useState<any[]>([]);
+  const [paintings, setPaintings] = useState<Painting[]>([]);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   // Dummy data -- later needs to come from DB
@@ -119,15 +128,15 @@ return (
             className="w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
           >
             <div
-              className={`w-full p-1 overflow-hidden h-96 flex flex `}
+              className={`w-full p-1 overflow-hidden h-96 flex flex relative `}
             >
-              <img
+              <Image
                 src={painting.src}
                 alt={`Painting ${index + 1}`}
                 className={`w-full h-full mt-1 object-contain `}
+                layout="fill"
               />
             </div>
-
             <div className="mt-5 text-left pb-40">
               <div className="bg-white shadow-lg p-2 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg">
                 <h3 className="text-sm font-semibold mb-1 pb-1 pl-1 pr-2 pr-20 font-merriweather">

@@ -3,6 +3,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from 'next/image';
 
 export default function GalleryGrid() {
   const [paintings, setPaintings] = useState<string[]>([]);
@@ -29,33 +30,34 @@ export default function GalleryGrid() {
   }, []);
 
   return (
-    <div
-      className="w-full min-h-screen bg-center"
-      style={{ backgroundImage: `url('/grid.jpg')` }}
-    >
-      {/* Gallery Container */}
-      <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0">
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
-          {paintings.map((painting, index) => (
-            <div
-              key={index}
-              className="w-full h-80 overflow-hidden flex justify-center items-center"
-            >
-              <img
-                src={painting}
-                alt={`Painting ${index + 1}`}
-                className={`object-contain h-full ${
-                  //Update logic for db 
-                  painting === "/art1.png" || painting === "/art14.png"
-                    ? " sm:w-60 md:w-40"
-                    : "w-full"
-                }`}
-              />
-            </div>
-          ))}
+<div
+  className="w-full min-h-screen bg-center"
+  style={{ backgroundImage: `url('/grid.jpg')` }}
+>
+  {/* Gallery Container */}
+  <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0">
+    {/* Gallery Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
+      {paintings.map((painting, index) => (
+        <div
+          key={index}
+          className="w-full h-80 overflow-hidden flex justify-center items-center"
+        >
+          <Image
+            src={painting}
+            alt={`Painting ${index + 1}`}
+            width={painting === "/art1.png" || painting === "/art14.png" ? 240 : 500}
+            height={320} // Provide a consistent height
+            className={`object-contain ${
+              painting === "/art1.png" || painting === "/art14.png"
+                ? "sm:w-60 md:w-40"
+                : "w-full"
+            }`}
+          />
         </div>
-      </div>
+      ))}
     </div>
+  </div>
+</div>
   );
 }
