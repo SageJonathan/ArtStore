@@ -21,11 +21,11 @@ export default function AboutPage() {
 
         <div className="flex flex-col lg:w-1/2">
           <div>
-            <h2 className="text-2xl md:text-3xl lg:text-2xl font-semibold text-gray-800 mb-3">
+            <h2 className="text-2xl md:text-3xl lg:text-2xl  font-playfair font-semibold text-gray-800 mb-3">
               Biography
             </h2>
             <div></div>
-            <p className="text-gray-700 text-lg leading-relaxed">
+            <p className="text-gray-700 text-lg leading-relaxed font-merriweather">
               Hailing from Sainte-Sabine (Bellechasse), Louise grew up in
               Estrie, where her love for nature deeply inspired her art.
               <span className="hidden lg:block">
@@ -37,10 +37,10 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-8">
-            <h2 className="text-2xl md:text-3xl lg:text-2xl font-semibold text-gray-800 mb-3">
+            <h2 className="text-2xl md:text-3xl lg:text-2xl font-playfair  font-semibold text-gray-800 mb-3">
               About
             </h2>
-            <p className="text-gray-700 text-lg leading-relaxed">
+            <p className="text-gray-700 text-lg leading-relaxed font-merriweather">
               Her paintings evoke joy, nostalgia, and a serene sweetness, with
               each brushstroke revealing a romantic, heartfelt style.
               <span className="hidden lg:block">
@@ -58,17 +58,17 @@ export default function AboutPage() {
       <div className="mt-12 flex flex-col lg:flex-row gap-8">
         <div className="flex flex-col lg:w-1/2 space-y-12">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 md:text-3xl lg:text-2xl">
+            <h2 className="text-2xl font-playfair font-semibold text-gray-800 md:text-3xl lg:text-2xl  ">
               Tutelage
             </h2>
             <div className="text-gray-700 space-y-3 mt-4">
-              <p>
+              <p className="font-merriweather">
                 <span className="font-semibold">1998 to 2009:</span> Painting
                 course, studio workshop, and on-site painting
                 <br />
                 Professor Michel Duguay, Montreal (Quebec)
               </p>
-              <p>
+              <p className="font-merriweather">
                 <span className="font-semibold">1993:</span> Painting course,
                 studio workshop
                 <br />
@@ -77,10 +77,10 @@ export default function AboutPage() {
             </div>
           </div>
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 md:text-3xl lg:text-2xl">
+            <h2 className="text-2xl font-semibold text-gray-800 md:text-3xl lg:text-2xl font-playfair ">
               Membership
             </h2>
-            <div className="text-gray-700 space-y-3 mt-4">
+            <div className="text-gray-700 space-y-3 mt-4 font-merriweather">
               <p>
                 <span className="font-semibold">
                   Member of A.P.A.S. (Associated Painters of Sherbrooke):
@@ -122,12 +122,12 @@ export default function AboutPage() {
       </div>
 
       {/* Lower section */}
-      <div className="flex justify-center items-center md:mt-8">
+      <div className="flex justify-center items-center md:mt-8 bg-gray-100">
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center md:text-4xl lg:text-5xl">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center md:text-4xl lg:text-4xl font-playfair ">
             Exhibitions
           </h2>
-          <ul className="text-gray-700 list-disc pl-6 space-y-3">
+          <ul className="text-gray-700 list-disc pl-6 space-y-3 font-merriweather">
             <li>
               Member of A.P.A.S. (Associated Painters of Sherbrooke) 1998-2009
             </li>
