@@ -8,12 +8,11 @@ export default function AboutPage() {
     >
       {/* Top Section */}
       <div className="flex flex-col md:flex-row gap-8">
-        {/* Artist Image */}
         <div className="flex-grow md:w-1/2">
           <Image
             src="/Frame2.png"
             alt="Artist"
-            className="object-cover h-full w-full shadow-xl"
+            className="object-cover h-full w-full shadow-2xl"
             width={500}
             height={700}
             layout="intrinsic"
@@ -22,30 +21,31 @@ export default function AboutPage() {
 
         <div className="flex flex-col md:w-1/2">
           <div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-3">
               Biography
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              Native of Sainte-Sabine (Bellechasse), Louise established herself
-              in Estrie from her childhood.
-              <br />
-              Sensitive to the beauty of nature, this artist has a deep desire
-              to share with you the emotions she feels through her art.
+              Hailing from Sainte-Sabine (Bellechasse), Louise grew up in
+              Estrie, where her love for nature deeply inspired her art.
+              <span className="hidden lg:block">
+                <br />
+              </span>
+              Through her work, she invites you to experience the emotions she
+              passionately expresses on canvas.
             </p>
           </div>
 
           <div className="mt-8">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">About</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-3">About</h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              Joy, nostalgia, and sweetness emerge when contemplating her
-              paintings. Her unique brushstroke reveals a romantic style that
-              touches the heart.
-              <br />
-              <br />
-              The subjects she paints gently capture our emotions, inviting
-              lightness and allowing room for dreams and imagination. Her works
-              exude a joyful tranquility where the subtle harmony of light and
-              color delights the senses.
+              Her paintings evoke joy, nostalgia, and a serene sweetness, with
+              each brushstroke revealing a romantic, heartfelt style.
+              <span className="hidden lg:block">
+                <br />
+              </span>
+              The subjects she captures invite emotion, lightness, and
+              imagination, offering a tranquil harmony of light and color that
+              delights the senses.
             </p>
           </div>
         </div>
