@@ -15,7 +15,6 @@ interface Painting {
   price: string;
 }
 
-
 export default function GalleryLive() {
   const [paintings, setPaintings] = useState<Painting[]>([]);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -111,9 +110,9 @@ export default function GalleryLive() {
     setPaintings(paintingData);
   }, []);
 
-  useHorizontalScroll(galleryRef, paintings.length, 0.5);
-return (
-<div
+  useHorizontalScroll(galleryRef);
+  return (
+    <div
       className="w-full h-[calc(100vh-70px)] bg-cover bg-center flex pb-20 overflow-hidden"
       style={{ backgroundImage: `url('/gallery.png')` }}
     >
@@ -129,18 +128,21 @@ return (
         {paintings.map((painting, index) => (
           <div
             key={index}
-            className="w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
+            className="painting-item w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
           >
             <div
-            // Update to boolean db check
-              className={`w-full p-1 overflow-hidden h-96 flex flex relative ${painting.src === 'art1.png' || painting.src === 'art14.png' ? 'mr-2 ml-2' : ''}`}
+              className={`w-full p-1 overflow-hidden h-96 flex relative ${
+                painting.src === "art1.png" || painting.src === "art14.png"
+                  ? "mr-2 ml-2"
+                  : ""
+              }`}
             >
               <Image
                 src={painting.src}
                 alt={`Painting ${index + 1}`}
                 className={`w-full h-full mt-1 object-contain `}
-                width={800} 
-                height={600} 
+                width={800}
+                height={600}
               />
             </div>
             <div className="mt-5 text-left pb-40">
@@ -157,9 +159,5 @@ return (
         ))}
       </div>
     </div>
-);
-};
-
-
-
-
+  );
+}

@@ -1,72 +1,33 @@
-import { RefObject, useCallback, useEffect } from "react";
+import { RefObject, useEffect } from "react";
 
 export const useHorizontalScroll = (
-  galleryRef: RefObject<HTMLDivElement | null>,
-  itemCount: number,
-  scrollSpeed: number = 0.5
+  galleryRef: RefObject<HTMLDivElement | null>
 ) => {
-  const handleScroll = useCallback(
-    (direction: "left" | "right") => {
-      if (galleryRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = galleryRef.current;
-        const scrollAmount = clientWidth * scrollSpeed;
+  const handleScroll = (direction: "left" | "right") => {
+    if (galleryRef.current) {
+      const { scrollLeft, clientWidth } = galleryRef.current;
 
-        if (direction === "left") {
-          galleryRef.current.scrollTo({
-            left: scrollLeft + scrollAmount,
-            behavior: "smooth",
-          });
+      const firstItem = galleryRef.current.querySelector(".painting-item");
+      const itemWidth = firstItem ? firstItem.clientWidth : 0;
+      const scrollAmount = itemWidth > 0 ? itemWidth : clientWidth / 3;
 
-          if (scrollLeft + clientWidth >= scrollWidth - clientWidth) {
-            setTimeout(() => {
-              galleryRef.current?.scrollTo({
-                left: 0,
-                behavior: "auto",
-              });
-            }, 300);
-          }
-        } else {
-          galleryRef.current.scrollTo({
-            left: scrollLeft - scrollAmount,
-            behavior: "smooth",
-          });
+      galleryRef.current.scrollBy({
+        left: direction === "right" ? scrollAmount : -scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
-          if (scrollLeft <= 0) {
-            setTimeout(() => {
-              galleryRef.current?.scrollTo({
-                left: scrollWidth - clientWidth,
-                behavior: "auto",
-              });
-            }, 300);
-          }
-        }
-      }
-    },
-    [galleryRef, scrollSpeed]
-  );
-
-  const handleWheel = useCallback(
-    (event: WheelEvent) => {
-      if (galleryRef.current) {
-        const direction = event.deltaY > 0 ? "right" : "left";
-        handleScroll(direction);
-        event.preventDefault();
-      }
-    },
-    [galleryRef, handleScroll]
-  );
+  const handleWheel = (event: WheelEvent) => {
+    if (galleryRef.current) {
+      const direction = event.deltaY > 0 ? "left" : "right";
+      handleScroll(direction);
+      event.preventDefault();
+    }
+  };
 
   useEffect(() => {
     const currentGallery = galleryRef.current;
-
-    if (currentGallery) {
-      const items = currentGallery.children;
-      for (let i = 0; i < itemCount; i++) {
-        const clone = items[i].cloneNode(true) as HTMLElement;
-        currentGallery.appendChild(clone);
-      }
-    }
-
     if (currentGallery) {
       currentGallery.addEventListener("wheel", handleWheel);
     }
@@ -76,7 +37,7 @@ export const useHorizontalScroll = (
         currentGallery.removeEventListener("wheel", handleWheel);
       }
     };
-  }, [galleryRef, itemCount, handleWheel]);
+  }, [galleryRef]);
 
   return { handleScroll };
 };
