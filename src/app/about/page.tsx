@@ -1,6 +1,6 @@
 "use client";
 
-import { useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
 import exhibitionData from "@/data/exhibitions.json";
 
@@ -9,8 +9,12 @@ export default function AboutPage() {
 
   const handleToggle = () => setShowMore(!showMore);
 
-  const exhibitionsWithDates = exhibitionData.filter(item => /(\d{4})/.test(item)); 
-  const exhibitionsWithoutDates = exhibitionData.filter(item => !/(\d{4})/.test(item)); 
+  const exhibitionsWithDates = exhibitionData.filter((item) =>
+    /(\d{4})/.test(item)
+  );
+  const exhibitionsWithoutDates = exhibitionData.filter(
+    (item) => !/(\d{4})/.test(item)
+  );
 
   return (
     <div
@@ -139,15 +143,14 @@ export default function AboutPage() {
             Exhibitions & Symposiums
           </h2>
           <ul className="text-gray-700 list-disc pl-6 space-y-3 font-merriweather">
-        {exhibitionsWithDates.map((exhibition, index) => (
-          <li key={index}>{exhibition}</li>
-        ))}
-        {(showMore && 
-          exhibitionsWithoutDates.map((exhibition, index) => (
-            <li key={index}>{exhibition}</li>
-          ))
-        )}
-      </ul>
+            {exhibitionsWithDates.map((exhibition, index) => (
+              <li key={index}>{exhibition}</li>
+            ))}
+            {showMore &&
+              exhibitionsWithoutDates.map((exhibition, index) => (
+                <li key={index}>{exhibition}</li>
+              ))}
+          </ul>
           <button className="text-blue-500 mt-4" onClick={handleToggle}>
             {showMore ? "Show Less" : "Show More"}
           </button>
