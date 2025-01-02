@@ -6,6 +6,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useHorizontalScroll } from "@/utils/infinte-x-scroll";
+import Tag from "@/components/gallery/gallery-tag";
 
 interface Painting {
   src: string;

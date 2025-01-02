@@ -19,7 +19,6 @@ export default function AboutPage() {
   return (
     <div
       className="p-6 max-w-7xl mx-auto w-screen"
-      style={{ backgroundImage: `url('/grid.png')` }}
     >
       {/* Top Section */}
       <div className="flex flex-col lg:flex-row gap-8">

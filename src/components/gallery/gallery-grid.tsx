@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import Image from 'next/image';
+import Tag from "@/components/gallery/gallery-tag";
 
 
 interface Painting {
@@ -110,11 +111,13 @@ export default function GalleryGrid() {
 
   return (
 <div
-  className="w-full min-h-screen bg-center pt-10"
-  style={{ backgroundImage: `url('/grid.jpg')` }}
+  className="w-full min-h-screen bg-center pt-10 bg-gray-100"
 >
+  <div className="">
+    <Tag/>
+  </div>
   {/* Gallery Container */}
-  <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0">
+  <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0 mt-10">
     {/* Gallery Grid */}
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
       {paintings.map((painting, index) => (
