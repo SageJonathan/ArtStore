@@ -1,6 +1,17 @@
+"use client";
+
+import { useState} from "react";
 import Image from "next/image";
+import exhibitionData from "@/data/exhibitions.json";
 
 export default function AboutPage() {
+  const [showMore, setShowMore] = useState(false);
+
+  const handleToggle = () => setShowMore(!showMore);
+
+  const exhibitionsWithDates = exhibitionData.filter(item => /(\d{4})/.test(item)); 
+  const exhibitionsWithoutDates = exhibitionData.filter(item => !/(\d{4})/.test(item)); 
+
   return (
     <div
       className="p-6 max-w-7xl mx-auto w-screen"
@@ -124,25 +135,22 @@ export default function AboutPage() {
       {/* Lower section */}
       <div className="flex justify-center items-center md:mt-8 bg-gray-100">
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center md:text-4xl lg:text-4xl font-playfair ">
-            Exhibitions
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center md:text-4xl lg:text-4xl font-playfair">
+            Exhibitions & Symposiums
           </h2>
           <ul className="text-gray-700 list-disc pl-6 space-y-3 font-merriweather">
-            <li>
-              Member of A.P.A.S. (Associated Painters of Sherbrooke) 1998-2009
-            </li>
-            <li>
-              Member of Coatic&apos;Art: (Artist of the Ball of Coaticook)
-              2007-2009
-            </li>
-            <li>
-              Member of the House of Arts of the Culture of Brompton 2005-2006
-            </li>
-            <li>
-              Member of the C.A.C. (Cultural Action Committee) Inc. Magog-Orford
-              2000-2006
-            </li>
-          </ul>
+        {exhibitionsWithDates.map((exhibition, index) => (
+          <li key={index}>{exhibition}</li>
+        ))}
+        {(showMore && 
+          exhibitionsWithoutDates.map((exhibition, index) => (
+            <li key={index}>{exhibition}</li>
+          ))
+        )}
+      </ul>
+          <button className="text-blue-500 mt-4" onClick={handleToggle}>
+            {showMore ? "Show Less" : "Show More"}
+          </button>
         </div>
       </div>
     </div>
