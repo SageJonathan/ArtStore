@@ -1,13 +1,13 @@
 export default function GalleryTag() {
   return (
-    <div className="flex flex-col items-center p-5 text-gray-600">
+    <div className="flex flex-col  items-center p-5 text-gray-600">
       <div>
         <h2 className="font-playfair font-semibold text-5xl text-center shadow-gray-1000">
           Louise Guay
         </h2>
       </div>
       <div className="mt-8">
-        <p className="font-merriweather text-lg leading-loose shadow-gray-1000">
+        <p className="font-merriweather text:lg md:text-xl leading:relaxed md:leading-loose shadow-gray-1000">
           Welcome to my gallery,
           <br />
           where the essence of country romance, the beauty of nature, and the

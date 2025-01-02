@@ -116,15 +116,18 @@ export default function GalleryLive() {
       className="w-full h-[calc(100vh-70px)] bg-cover bg-center flex pb-20 overflow-hidden"
       style={{ backgroundImage: `url('/gallery.png')` }}
     >
-      {/* Painting Gallery */}
       <div
         ref={galleryRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hidden w-full touch-pan-x"
+        // removes snap-mandatory
+        className="flex overflow-x-auto snap-x scrollbar-hidden w-full touch-pan-x"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // Internet Explorer 10+
         }}
       >
+        <div className="w-full h-full flex-shrink-0 mt-10 md:mt-20">
+          <Tag /> 
+      </div>
         {paintings.map((painting, index) => (
           <div
             key={index}
