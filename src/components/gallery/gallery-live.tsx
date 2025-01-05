@@ -5,7 +5,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useHorizontalScroll } from "@/utils/infinte-x-scroll";
+import { useHorizontalScroll } from "@/utils/x-scroll";
 import Tag from "@/components/gallery/gallery-tag";
 
 interface Painting {
@@ -118,8 +118,7 @@ export default function GalleryLive() {
     >
       <div
         ref={galleryRef}
-        // removes snap-mandatory
-        className="flex overflow-x-auto snap-x scrollbar-hidden w-full touch-pan-x"
+        className="flex overflow-x-auto scrollbar-hidden w-full touch-pan-x"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // Internet Explorer 10+
