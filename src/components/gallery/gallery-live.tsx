@@ -118,7 +118,7 @@ export default function GalleryLive() {
     >
       <div
         ref={galleryRef}
-        className="flex overflow-x-auto scrollbar-hidden w-full touch-pan-x"
+        className="flex overflow-x-auto scrollbar-hidden w-full touch-pan-x snap-x lg:snap-none"
         style={{
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // Internet Explorer 10+
