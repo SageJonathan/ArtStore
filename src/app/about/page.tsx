@@ -40,7 +40,7 @@ export default function AboutPage() {
             </h2>
             <div></div>
             <p className="text-gray-700 text-lg leading-relaxed font-merriweather">
-              Hailing from Sainte-Sabine (Bellechasse), Louise grew up in
+              Hailing from Sainte-Sabine (Bellechasse, QC), Louise grew up in
               Estrie, where her love for nature deeply inspired her art.
               <span className="hidden lg:block">
                 <br />
