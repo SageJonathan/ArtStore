@@ -36,9 +36,9 @@ return (
             <p>Size: 1024 x 768</p>
         </div>
         <div className="">
-            <p>Tax: $10.00</p>
-            <p>Shipping Cost: $5.00</p>
-            <p>Total Cost: $115.00</p>
+            <p>Tax: $10.00 CAD</p>
+          <p>Shipping Cost: $5.00 CAD</p>
+            <p>Total Cost: $115.00 CAD</p>
         </div>
         {/* Use this data for api call for above */}
         <div className="">
