@@ -17,8 +17,9 @@ model ArtPiece {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
-  // Add sizing
-  // Add medium
+  // Add sizing (for customer & shipping)
+  //Add weight (for shipping)
+  // Add medium of creation (oil, etc)
   price       Float
   // Add boolean check for horintal or vertical
   imageUrl    String? 
@@ -26,7 +27,8 @@ model ArtPiece {
   inStock     Boolean  @default(true) 
   buyerName   String?  
   buyerEmail  String?  @unique 
-   buyerAddress String? 
+  // buyer mobile String? 
+  buyerAddress String? 
   
 }
 
