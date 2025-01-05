@@ -9,7 +9,7 @@ export default async function HomePage() {
   const displayMode = (await cookieStore).get("displayMode")?.value || "gallery"; 
 
   const isGrid = displayMode === "grid"; 
-
+  
   return (
     <div>
       <GalleryToggle isGrid={isGrid} />

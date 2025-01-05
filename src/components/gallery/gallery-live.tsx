@@ -2,6 +2,7 @@
 
 //TODO: Update ternary to use db logic property
 // Update props to server servce and db
+// Endsure pictures load on initial load
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -111,6 +112,12 @@ export default function GalleryLive() {
   }, []);
 
   useHorizontalScroll(galleryRef);
+
+//  Update for proper loading screen
+  // if (paintings.length === 0) {
+  //   return <div>Loading gallery...</div>;
+  // }
+
   return (
     <div
       className="w-full h-[calc(100vh-70px)] bg-cover bg-center flex pb-20 overflow-hidden"
