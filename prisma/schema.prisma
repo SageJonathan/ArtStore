@@ -21,6 +21,7 @@ model ArtPiece {
   price           Float
   isVertical      Boolean
   size            String
+  //update weight to float? lbs
   weight          String
   inStock         Boolean @default(true)
   imageUrlFront   String
