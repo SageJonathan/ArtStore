@@ -9,10 +9,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        slate: '#e7e5e4',
+      },
+      fontFamily: {
+        merriweather: ['var(--font-merriweather)', 'serif'], 
+        playfair: ['var(--font-playfair)', 'serif'],         
+      },
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide'),
+  ],
 } satisfies Config;
