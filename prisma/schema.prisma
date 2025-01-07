@@ -27,7 +27,7 @@ model ArtPiece {
   inStock     Boolean  @default(true) 
   buyerName   String?  
   buyerEmail  String?  @unique 
-  // buyer mobile String? 
+  // buer mobile numner
   buyerAddress String? 
   
 }
