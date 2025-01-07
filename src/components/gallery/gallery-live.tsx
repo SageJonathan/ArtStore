@@ -1,9 +1,9 @@
-// "use client";
+"use client";
+
 // Endsure pictures load on initial load
-import { displayArt} from '@/app/db/queries/art';
-// import {useRef } from "react";
+import {useRef } from "react";
 import Image from "next/image";
-// import { useHorizontalScroll } from "@/utils/x-scroll";
+import { useHorizontalScroll } from "@/utils/x-scroll";
 import Tag from "@/components/gallery/gallery-tag";
 
 interface Painting {
@@ -13,11 +13,13 @@ interface Painting {
   isVertical: boolean
   inStock: boolean
 }
+interface GalleryGridProps {
+  paintings: Painting[]; 
+}
 
-export default async function GalleryLive({imageUrlFront,title,size,isVertical,inStock}:Painting)  {
-  const paintings= await displayArt ();
-  // const galleryRef = useRef<HTMLDivElement>(null);
-  // useHorizontalScroll(galleryRef);
+export default function GalleryLive({ paintings }: GalleryGridProps) {
+  const galleryRef = useRef<HTMLDivElement>(null);
+  useHorizontalScroll(galleryRef);
   
   if (!paintings){
     return
@@ -30,7 +32,7 @@ export default async function GalleryLive({imageUrlFront,title,size,isVertical,i
       style={{ backgroundImage: `url('/gallery.png')` }}
     >
       <div
-        // ref={galleryRef}
+        ref={galleryRef}
         className="flex overflow-x-auto scrollbar-hidden w-full touch-pan-x snap-x lg:snap-none"
         style={{
           scrollbarWidth: "none", // Firefox

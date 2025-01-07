@@ -1,4 +1,3 @@
-import { displayArt} from '@/app/db/queries/art';
 import Image from 'next/image';
 import Tag from "@/components/gallery/gallery-tag";
 
@@ -9,11 +8,11 @@ interface Painting {
   isVertical: boolean
   inStock: boolean
 }
+interface GalleryGridProps {
+  paintings: Painting[]; 
+}
 
-export default async function GalleryGrid({imageUrlFront,title,size,isVertical,inStock}:Painting) {
-
-
-  const paintings= await displayArt ();
+export default function GalleryGrid({ paintings }: GalleryGridProps)  {
   
   if (!paintings){
     return
