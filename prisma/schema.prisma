@@ -21,7 +21,6 @@ model ArtPiece {
   price           Float
   isVertical      Boolean
   size            String
-  //update weight to float? lbs
   weight          String
   inStock         Boolean @default(true)
   imageUrlFront   String
@@ -41,6 +40,3 @@ model ClientData {
   recurringClient  Boolean @default(false)
   artPieces        ArtPiece[] 
 }
-
-// Update schema w/ paintint type and dates
-// Seed all paintings with correct url

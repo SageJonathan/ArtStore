@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-//size includes cadres
+//size includes frames
+// weight in lbs
 async function main() {
   const artPiecesData = [
     {
@@ -37,7 +38,7 @@ async function main() {
       price: 275,
       isVertical: false,
       size: '14 x 18"',
-      weight: '',
+      weight: '3.6',
       inStock: true,
       imageUrlFront: '/art3.png',
       imageUrlBack: '/artback3.png',
@@ -128,7 +129,7 @@ async function main() {
       price: 425,
       isVertical: false,
       size: '22.5 x 26.5"',
-      weight: '',
+      weight: '5.2',
       inStock: true,
       imageUrlFront: '/art10.png',
       imageUrlBack: '/artback10.png',
@@ -198,9 +199,12 @@ async function main() {
 }
 
 main()
+.then(async () => {
+  await prisma.$disconnect()
+})
   .catch((e) => {
     console.error(e);
-    process.exit(1);
+    // process.exit(1);
   })
   .finally(async () => {
     await prisma.$disconnect();
