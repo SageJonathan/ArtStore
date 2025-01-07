@@ -1,6 +1,3 @@
-//TODO: Update ternary to use db logic property
-// Update props to server servce and db
-
 
 import { displayArt} from '@/app/db/queries/art';
 import Image from 'next/image';
@@ -34,7 +31,8 @@ export default async function GalleryGrid({imageUrlFront,title,size,isVertical,i
   {/* Gallery Container */}
   <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0 mt-10">
     {/* Gallery Grid */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
+
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
       {paintings.map((painting, index) => (
         <div
           key={index}
@@ -43,10 +41,12 @@ export default async function GalleryGrid({imageUrlFront,title,size,isVertical,i
           <Image
             src={painting.imageUrlFront}
             alt={`Painting ${index + 1}`}
-            width={painting.isVertical ? 240 : 500}
+            width={painting.isVertical? 240 : 500}
             height={320} 
             className={`object-contain ${
-              painting.isVertical ? "sm:w-60 md:w-40": "w-full"
+              painting.imageUrlFront === "/art1.png" || painting.imageUrlFront === "/art14.png"
+                ? "sm:w-60 md:w-40"
+                : "w-full"
             }`}
           />
              <div className="mt-5 text-left pb-20 md:pb-40">
@@ -66,3 +66,6 @@ export default async function GalleryGrid({imageUrlFront,title,size,isVertical,i
 </div>
   );
 }
+
+
+
