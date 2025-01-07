@@ -14,20 +14,30 @@ datasource db {
 }
 
 model ArtPiece {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  // Add sizing
-  // Add medium
-  price       Float
-  // Add boolean check for horintal or vertical
-  imageUrl    String? 
-  // add back img url
-  inStock     Boolean  @default(true) 
-  buyerName   String?  
-  buyerEmail  String?  @unique 
-   buyerAddress String? 
-  
+  id              Int     @id @default(autoincrement())
+  title           String
+  description     String
+  medium          String
+  price           Float
+  isVertical      Boolean
+  size            String
+  weight          String
+  inStock         Boolean @default(true)
+  imageUrlFront   String
+  imageUrlBack    String
+  clientId        Int?
 }
+
+model ClientData {
+  id               Int     @id @default(autoincrement())
+  firstName        String
+  lastName         String
+  email            String  @unique
+  mobileNumber     String
+  shippingAddress  String
+  paymentAddress   String
+  recurringClient  Boolean @default(false)
+}
+
 // Update schema w/ paintint type and dates
 // Seed all paintings with correct url
