@@ -5,7 +5,7 @@ export const useHorizontalScroll = (
 ) => {
   const handleScroll = (direction: "left" | "right") => {
     if (galleryRef.current) {
-      const { scrollLeft, clientWidth } = galleryRef.current;
+      const { clientWidth } = galleryRef.current;
 
       const firstItem = galleryRef.current.querySelector(".painting-item");
       const itemWidth = firstItem ? firstItem.clientWidth : 0;
