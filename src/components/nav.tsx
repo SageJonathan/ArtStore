@@ -4,9 +4,11 @@ export default function Nav() {
   return (
     <div className="flex flex-row justify-between items-end bg-slate p-4">
       <div>
+        <Link href="/">
         <h1 className="text-black text-3xl font-bold ml-3 font-playfair">
           Louise Guay
         </h1>
+        </Link>
       </div>
 
       {/* Navigation Section */}
