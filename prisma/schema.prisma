@@ -26,6 +26,7 @@ model ArtPiece {
   imageUrlFront   String
   imageUrlBack    String
   clientId        Int?
+  client          ClientData? @relation(fields: [clientId], references: [id])
 }
 
 model ClientData {
@@ -37,6 +38,7 @@ model ClientData {
   shippingAddress  String
   paymentAddress   String
   recurringClient  Boolean @default(false)
+  artPieces        ArtPiece[] 
 }
 
 // Update schema w/ paintint type and dates
