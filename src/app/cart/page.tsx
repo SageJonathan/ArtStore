@@ -3,7 +3,7 @@
 
 // Get Tax through API && Display
 // Get shipping through API && Display
-"use client"
+"use client";
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -11,9 +11,8 @@ import Image from "next/image";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
-
 export default function CartPage() {
-  const [activeImage, setActiveImage] = useState<'front' | 'back'>('front'); 
+  const [activeImage, setActiveImage] = useState<"front" | "back">("front");
 
   const searchParams = useSearchParams();
   const title = searchParams.get("title");
@@ -21,9 +20,9 @@ export default function CartPage() {
   const description = searchParams.get("description");
   const medium = searchParams.get("medium");
   const price = searchParams.get("price");
-  const isVertical = searchParams.get("isVertical") === "true"; 
+  const isVertical = searchParams.get("isVertical") === "true";
   const weight = searchParams.get("weight");
-  const inStock = searchParams.get("inStock") === "true"; 
+  const inStock = searchParams.get("inStock") === "true";
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
   const clientId = searchParams.get("clientId");
@@ -32,24 +31,22 @@ export default function CartPage() {
   const height = isVertical ? 350 : 800;
 
   const toggleImage = () => {
-    setActiveImage(activeImage === 'front' ? 'back' : 'front');
+    setActiveImage(activeImage === "front" ? "back" : "front");
   };
 
-  // Toggle img for middle
   return (
-    //Checkout-container
     <div className="flex flex-col m-10">
       <div className="md:flex md:flex-row">
-        {/* Left Side: Two smaller images in a column */}
         <div className="relative flex flex-row w-full md:w-1/2 lg:w-3/4 justify-center">
           <div className="absolute top-0 left-0">
             <div className="">
-              <Image src={imageUrlFront || "/errorImg.png"} 
-              alt="front side" 
-              width={45} 
-              height={45}
-              onClick={toggleImage}
-               />
+              <Image
+                src={imageUrlFront || "/errorImg.png"}
+                alt="front side"
+                width={45}
+                height={45}
+                onClick={toggleImage}
+              />
             </div>
             <div className="pt-5">
               <Image
@@ -61,14 +58,19 @@ export default function CartPage() {
               />
             </div>
           </div>
-          {/* Middle: Large image */}
           <div className="ml-12 lg:ml-0 ">
-            <Image src={activeImage === 'front' ? imageUrlFront || "/errorImg.png" : imageUrlBack || "/errorImg.png"} alt="Main Img" width={width} height={height} />
+            <Image
+              src={
+                activeImage === "front"
+                  ? imageUrlFront || "/errorImg.png"
+                  : imageUrlBack || "/errorImg.png"
+              }
+              alt="Main Img"
+              width={width}
+              height={height}
+            />
           </div>
         </div>
-
-        {/* Right Side: Image details, tax, shipping, and payment */}
-        {/* Dynamic data. need to drill in paintings && 2 seprate api calls && add total */}
         <div className="flex flex-col justify-center border pl-2 w-full md:w-1/2 lg:w-1/4">
           <div className="">
             <div className="leading-relaxed">
@@ -138,25 +140,24 @@ export default function CartPage() {
       {/* Description below */}
       <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between">
         <div>
-        <p>{medium}</p>
-            <p>{description}</p>
+          <p>{medium}</p>
+          <p>{description}</p>
         </div>
         <div>
-  <p>
-    <strong>Comes with a Certificate of Authenticity</strong>
-  </p>
-  <p>
-    <strong>The dimensions listed are inclusive of the frame</strong>
-  </p>
-  <br />
-  <p>
-    <strong>Shipping is handled exclusively through FedEx</strong>
-  </p>
-  <p>
-    <strong>Available for shipping within Canada and the USA</strong>
-  </p>
-</div>
-
+          <p>
+            <strong>Comes with a Certificate of Authenticity</strong>
+          </p>
+          <p>
+            <strong>The dimensions listed are inclusive of the frame</strong>
+          </p>
+          <br />
+          <p>
+            <strong>Shipping is handled exclusively through FedEx</strong>
+          </p>
+          <p>
+            <strong>Available for shipping within Canada and the USA</strong>
+          </p>
+        </div>
       </div>
     </div>
   );
