@@ -1,26 +1,28 @@
-
-"use client"
-import { useState } from 'react';
-import Image from 'next/image';
-import ArtDetails from "@/components/modal";  // Correct import for ArtDetails
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import ArtDetails from "@/components/modal/modal";
 import Tag from "@/components/gallery/gallery-tag";
 
 interface Painting {
   imageUrlFront: string;
+  imageUrlBack: String;
   title: string;
   size: string;
   isVertical: boolean;
   inStock: boolean;
+  description: String;
 }
 
 interface GalleryGridProps {
-  paintings: Painting[]; 
+  paintings: Painting[];
 }
 
-
-export default function GalleryGrid({ paintings }: GalleryGridProps)  {
+export default function GalleryGrid({ paintings }: GalleryGridProps) {
   const [modalOpen, setmodalOpen] = useState(false);
-  const [selectedPainting, setSelectedPainting] = useState<Painting | null>(null);
+  const [selectedPainting, setSelectedPainting] = useState<Painting | null>(
+    null
+  );
 
   // Modal logic
   const openModal = (painting: Painting) => {
@@ -31,7 +33,7 @@ export default function GalleryGrid({ paintings }: GalleryGridProps)  {
   };
 
   const onRequestClose = () => setmodalOpen(false);
-  
+
   if (!paintings) {
     return <div>Loading gallery...</div>;
   }
@@ -46,14 +48,16 @@ export default function GalleryGrid({ paintings }: GalleryGridProps)  {
             <div
               key={index}
               className="w-full h-full overflow-hidden flex flex-col justify-center items-center"
-              onClick={() => openModal(painting)} 
+              onClick={() => openModal(painting)}
             >
               <Image
                 src={painting.imageUrlFront}
                 alt={`Painting ${index + 1}`}
                 width={painting.isVertical ? 240 : 500}
-                height={320} 
-                className={`object-contain ${painting.isVertical ? "sm:w-60 md:w-40" : "w-full"}`}
+                height={320}
+                className={`object-contain ${
+                  painting.isVertical ? "sm:w-60 md:w-40" : "w-full"
+                }`}
                 priority
               />
               <div className="mt-5 text-left pb-20 md:pb-40">
@@ -81,13 +85,13 @@ export default function GalleryGrid({ paintings }: GalleryGridProps)  {
 
       {/* Modal */}
       {modalOpen && selectedPainting && (
-  <ArtDetails
-  key={selectedPainting?.title} 
-    isOpen={modalOpen}
-    onRequestClose={onRequestClose}
-    painting={selectedPainting}
-  />
-)}
+        <ArtDetails
+          key={selectedPainting?.title}
+          isOpen={modalOpen}
+          onRequestClose={onRequestClose}
+          painting={selectedPainting}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 'use client'
 
 import Modal from 'react-modal';
+import './modal.css'; 
+
 
 interface Painting {
     imageUrlFront: string
@@ -18,19 +20,20 @@ interface ModalProps {
 
   Modal.setAppElement('#__next');
 
-function ArtDetails({ isOpen, onRequestClose, painting }: ModalProps) {
+
+export default function ArtDetails({ isOpen, onRequestClose, painting }: ModalProps) {
     return (
       <Modal
         isOpen={isOpen}
         onRequestClose={onRequestClose}
         contentLabel="Inventory Item Delete Confirmation"
-        className=""
-        overlayClassName=""
+        className="modal-container"
+        overlayClassName="modal-overlay"
       >
          
-        <div className="">
-          <button className="" onClick={onRequestClose}>Return</button>
-          <button className="" onClick={() => {
+        <div>
+          <button className="absolute left-5 bottom-1" onClick={onRequestClose}>Return</button>
+          <button className="absolute right-5 bottom-1" onClick={() => {
             confirm();
             onRequestClose();
           }}>Buy Now</button>
@@ -38,5 +41,5 @@ function ArtDetails({ isOpen, onRequestClose, painting }: ModalProps) {
       </Modal>
     );
   }
+
   
-  export default ArtDetails;

@@ -19,7 +19,7 @@ export type ArtWithData = ArtPiece & {
 
 export type DisplayArtData = Pick<
   ArtWithData,
-  'imageUrlFront' | 'title' | 'size' | 'isVertical' | 'inStock'
+  'imageUrlFront' | 'title' | 'size' | 'isVertical' | 'inStock' |'description'|'imageUrlBack'
 >;
 
 export function displayArt(): Promise<DisplayArtData[]> {
@@ -30,6 +30,8 @@ export function displayArt(): Promise<DisplayArtData[]> {
       size: true,
       isVertical: true,
       inStock: true,
+      imageUrlBack: true,
+      description: true
     },
   });
 }

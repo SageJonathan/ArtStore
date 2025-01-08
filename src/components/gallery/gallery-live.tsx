@@ -1,18 +1,20 @@
 "use client";
 
 // Endsure pictures load on initial load
-import { useRef,useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { useHorizontalScroll } from "@/utils/x-scroll";
-import ArtDetails from "@/components/modal"; 
+import ArtDetails from "@/components/modal/modal";
 import Tag from "@/components/gallery/gallery-tag";
 
 interface Painting {
   imageUrlFront: string;
+  imageUrlBack: String;
   title: string;
   size: string;
   isVertical: boolean;
   inStock: boolean;
+  description: String;
 }
 interface GalleryGridProps {
   paintings: Painting[];
@@ -20,7 +22,9 @@ interface GalleryGridProps {
 
 export default function GalleryLive({ paintings }: GalleryGridProps) {
   const [modalOpen, setmodalOpen] = useState(false);
-  const [selectedPainting, setSelectedPainting] = useState<Painting | null>(null);
+  const [selectedPainting, setSelectedPainting] = useState<Painting | null>(
+    null
+  );
 
   // Modal logic
   const openModal = (painting: Painting) => {
@@ -60,7 +64,7 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
             <div
               key={index}
               className="painting-item w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
-              onClick={() => openModal(painting)} 
+              onClick={() => openModal(painting)}
             >
               <div
                 className={`w-full p-1 overflow-hidden h-96 flex relative 
@@ -80,15 +84,15 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
                     {painting.title}
                   </h3>
                   <div className="flex justify-between">
-                  <p className="text-s font-medium text-gray-800 pl-1 font-merriweather">
-                    {painting.size}
-                  </p>
-                  <p
-                    className={`text-s font-medium text-red-800 bg-red-100 pr-1 pl-1 font-merriweather 
+                    <p className="text-s font-medium text-gray-800 pl-1 font-merriweather">
+                      {painting.size}
+                    </p>
+                    <p
+                      className={`text-s font-medium text-red-800 bg-red-100 pr-1 pl-1 font-merriweather 
                 ${!painting.inStock ? "inline" : "hidden"}`}
-                  >
-                    Sold
-                  </p>
+                    >
+                      Sold
+                    </p>
                   </div>
                 </div>
               </div>
@@ -96,14 +100,14 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
           ))}
         </div>
         {/* Modal */}
-      {modalOpen && selectedPainting && (
-  <ArtDetails
-  key={selectedPainting?.title} 
-    isOpen={modalOpen}
-    onRequestClose={onRequestClose}
-    painting={selectedPainting}
-  />
-)}
+        {modalOpen && selectedPainting &&(
+          <ArtDetails
+            key={selectedPainting?.title}
+            isOpen={modalOpen}
+            onRequestClose={onRequestClose}
+            painting={selectedPainting}
+          />
+        )}
       </div>
     );
 }
