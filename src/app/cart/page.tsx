@@ -16,7 +16,18 @@ export default function CartPage() {
   const searchParams = useSearchParams();
   const title = searchParams.get("title");
   const size = searchParams.get("size");
-  
+  const description = searchParams.get("description");
+  const medium = searchParams.get("medium");
+  const price = searchParams.get("price");
+  const isVertical = searchParams.get("isVertical") === "true"; // Convert string to boolean
+  const weight = searchParams.get("weight");
+  const inStock = searchParams.get("inStock") === "true"; // Convert string to boolean
+  const imageUrlFront = searchParams.get("imageUrlFront");
+  const imageUrlBack = searchParams.get("imageUrlBack");
+  const clientId = searchParams.get("clientId");
+
+// Need to updat art3 to a erro img import
+
   // Toggle img for middle
   return (
     //Checkout-container
@@ -26,11 +37,13 @@ export default function CartPage() {
         <div className="relative flex flex-row w-full md:w-1/2 lg:w-3/4 justify-center">
           <div className="absolute top-0 left-0">
             <div className="">
-              <Image src="/art1.png" alt="front side" width={45} height={45} />
+              <Image src={imageUrlFront || "art.3png"} 
+              alt="front side" 
+              width={45} height={45} />
             </div>
             <div className="pt-5">
               <Image
-                src="/artback1.png"
+                src={imageUrlBack || "art.3png"}
                 alt="back side"
                 width={45}
                 height={45}
@@ -40,7 +53,7 @@ export default function CartPage() {
           {/* Middle: Large image */}
           {/* Result of toggle- front is default */}
           <div className="ml-12 lg:ml-0 ">
-            <Image src="/art1.png" alt="Main Img" width={350} height={350} />
+            <Image src={imageUrlFront || "art.3png"}  alt="Main Img" width={350} height={350} />
           </div>
         </div>
 
@@ -50,9 +63,9 @@ export default function CartPage() {
           <div className="">
             <div className="leading-relaxed">
               <h1 className="font-bold">Art Piece:</h1>
-              <p>Title: lorem lorem lorem{title}</p>
-              <p>Size: 45 x 44"{size}</p>
-              <p>Price: 400{}.00 CAD</p>
+              <p>Title: {title}</p>
+              <p>Size: {size}</p>
+              <p>Price: {price}.00 CAD</p>
             </div>
             {/* Use this data for api call for above */}
             <div className="my-5">
@@ -115,8 +128,8 @@ export default function CartPage() {
       {/* Description below */}
       <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between">
         <div>
-        <p>{} medium</p>
-            <p>{}description</p>
+        <p>{medium}</p>
+            <p>{description}</p>
         </div>
         <div>
   <p>

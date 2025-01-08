@@ -2,19 +2,14 @@
 
 // Endsure pictures load on initial load
 import { useRef, useState } from "react";
+import type { ArtPiece } from '@prisma/client';
 import Image from "next/image";
 import { useHorizontalScroll } from "@/utils/x-scroll";
 import ArtDetails from "@/components/modal/modal";
 import Tag from "@/components/gallery/gallery-tag";
 
-interface Painting {
-  imageUrlFront: string;
-  imageUrlBack: String;
-  title: string;
-  size: string;
-  isVertical: boolean;
-  inStock: boolean;
-  description: String;
+
+interface Painting extends ArtPiece {
 }
 interface GalleryGridProps {
   paintings: Painting[];

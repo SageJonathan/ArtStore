@@ -2,14 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import Modal from "react-modal";
+import type { ArtPiece } from '@prisma/client';
 import "./modal.css";
 
-interface Painting {
-  imageUrlFront: string;
-  title: string;
-  size: string;
-  isVertical: boolean;
-  inStock: boolean;
+
+interface Painting extends ArtPiece {
 }
 interface ModalProps {
   isOpen: boolean;
@@ -40,10 +37,19 @@ export default function ArtDetails({
         <button
           className="absolute right-5 bottom-1"
           onClick={() => {
-              const queryString = new URLSearchParams({
-                title: painting.title,
-                size: painting.size,
-              }).toString();
+            const queryString = new URLSearchParams({
+              title: painting.title,
+              description: painting.description,
+              medium: painting.medium,
+              price: painting.price.toString(), 
+              isVertical: painting.isVertical.toString(), 
+              size: painting.size,
+              weight: painting.weight,
+              inStock: painting.inStock.toString(), 
+              imageUrlFront: painting.imageUrlFront,
+              imageUrlBack: painting.imageUrlBack,
+              clientId: painting.clientId?.toString() || '', 
+            }).toString();
               router.push(`/cart?${queryString}`);
               onRequestClose();
           }}

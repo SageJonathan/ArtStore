@@ -2,16 +2,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import ArtDetails from "@/components/modal/modal";
+import type { ArtPiece } from '@prisma/client';
 import Tag from "@/components/gallery/gallery-tag";
 
-interface Painting {
-  imageUrlFront: string;
-  imageUrlBack: String;
-  title: string;
-  size: string;
-  isVertical: boolean;
-  inStock: boolean;
-  description: String;
+
+interface Painting extends ArtPiece {
 }
 
 interface GalleryGridProps {
