@@ -52,9 +52,17 @@ export default function GalleryGrid({ paintings }: GalleryGridProps)  {
                 <h3 className="text-sm font-semibold mb-1 pb-1 pl-1 pr-2 pr-20 font-merriweather">
                   {painting.title}
                 </h3>
-                <p className="text-xs font-medium text-gray-800 pl-1 font-merriweather">
-                  {painting.size}
-                </p>
+                <div className="flex justify-between">
+                  <p className="text-s font-medium text-gray-800 pl-1 font-merriweather">
+                    {painting.size}
+                  </p>
+                  <p
+                    className={`text-s font-medium text-red-800 bg-red-100 pr-1 pl-1 font-merriweather 
+                ${!painting.inStock ? "inline" : "hidden"}`}
+                  >
+                    Sold
+                  </p>
+                  </div>
               </div>
             </div>
         </div>
