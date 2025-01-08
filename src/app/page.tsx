@@ -1,10 +1,11 @@
-
+import { displayArt} from '@/app/db/queries/art';
 import { cookies } from "next/headers"; 
 import { GalleryToggle } from "@/components/gallery/gallery-toggle"; 
 import GalleryLive from '@/components/gallery/gallery-live';
 import GalleryGrid from '@/components/gallery/gallery-grid';
 
 export default async function HomePage() {
+  const paintings= await displayArt ();
   const cookieStore = cookies();
   const displayMode = (await cookieStore).get("displayMode")?.value || "gallery"; 
 
@@ -15,11 +16,11 @@ export default async function HomePage() {
       <GalleryToggle isGrid={isGrid} />
       {isGrid ? (
           <div>
-            <GalleryGrid/>
+            <GalleryGrid paintings={paintings}/>
           </div>
         ) : (
           <div>
-            <GalleryLive/>
+            <GalleryLive paintings={paintings}/>
           </div>
         )}
       </div>
