@@ -27,6 +27,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
         <Head>
@@ -36,7 +37,9 @@ export default function RootLayout({
         className={`${merriweather} ${playfair} antialiased`}
       >
         <Nav />
-        {children}
+        <div id="__next">
+          {children}
+        </div>
       </body>
     </html>
   );
