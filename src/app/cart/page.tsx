@@ -1,19 +1,20 @@
 // This is checkout
 //  Do we make a cart? Do we need one?
 
-//logic below from components/actions
-//  Get painting id && Display ---> Get through browser
 // Get Tax through API && Display
 // Get shipping through API && Display
 "use client"
 
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import Image from "next/image";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
-import ErrorImg from "@/app/assets/icons/error.png"
+
 
 export default function CartPage() {
+  const [activeImage, setActiveImage] = useState<'front' | 'back'>('front'); 
+
   const searchParams = useSearchParams();
   const title = searchParams.get("title");
   const size = searchParams.get("size");
@@ -30,6 +31,9 @@ export default function CartPage() {
   const width = isVertical ? 350 : 800;
   const height = isVertical ? 350 : 800;
 
+  const toggleImage = () => {
+    setActiveImage(activeImage === 'front' ? 'back' : 'front');
+  };
 
   // Toggle img for middle
   return (
@@ -42,7 +46,9 @@ export default function CartPage() {
             <div className="">
               <Image src={imageUrlFront || "/errorImg.png"} 
               alt="front side" 
-              width={45} height={45}
+              width={45} 
+              height={45}
+              onClick={toggleImage}
                />
             </div>
             <div className="pt-5">
@@ -51,13 +57,13 @@ export default function CartPage() {
                 alt="back side"
                 width={45}
                 height={45}
+                onClick={toggleImage}
               />
             </div>
           </div>
           {/* Middle: Large image */}
-          {/* Result of toggle- front is default */}
           <div className="ml-12 lg:ml-0 ">
-            <Image src={imageUrlFront || "/errorImg.png"}  alt="Main Img" width={width} height={height} />
+            <Image src={activeImage === 'front' ? imageUrlFront || "/errorImg.png" : imageUrlBack || "/errorImg.png"} alt="Main Img" width={width} height={height} />
           </div>
         </div>
 
