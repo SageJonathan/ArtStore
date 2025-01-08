@@ -104,14 +104,13 @@ export default function CartPage() {
             </div>
           </div>
           {/* We need to get some info from payment processing to get cleint info */}
-          <div className="">
-            {/* <h1>Payment</h1> */}
+          <div className=" mb-1">
+            <h1 className="font-bold mb-1">Payment</h1>
             <form action="submit" className="flex flex-row gap-4">
               <button
                 className="flex flex-row items-center justify-center bg-blue-200 border rounded-md px-2 text-lg"
                 id="stripe-payment"
               >
-                Pay with
                 <Image
                   src={PaypalIcon}
                   alt="PaypalIcon"
@@ -124,12 +123,11 @@ export default function CartPage() {
                 className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
               >
-                Pay with
                 <Image
                   src={StripeIcon}
                   alt="Stripe Icon"
-                  width={60}
-                  height={60}
+                  width={80}
+                  height={80}
                   className="pl-2"
                 />
               </button>
@@ -140,7 +138,7 @@ export default function CartPage() {
       {/* Description below */}
       <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between">
         <div>
-          <p>{medium}</p>
+        <p>Medium: {medium}</p>
           <p>{description}</p>
         </div>
         <div>
