@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
+import ErrorImg from "@/app/assets/icons/error.png"
 
 export default function CartPage() {
   const searchParams = useSearchParams();
@@ -19,14 +20,16 @@ export default function CartPage() {
   const description = searchParams.get("description");
   const medium = searchParams.get("medium");
   const price = searchParams.get("price");
-  const isVertical = searchParams.get("isVertical") === "true"; // Convert string to boolean
+  const isVertical = searchParams.get("isVertical") === "true"; 
   const weight = searchParams.get("weight");
-  const inStock = searchParams.get("inStock") === "true"; // Convert string to boolean
+  const inStock = searchParams.get("inStock") === "true"; 
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
   const clientId = searchParams.get("clientId");
 
-// Need to updat art3 to a erro img import
+  const width = isVertical ? 350 : 800;
+  const height = isVertical ? 350 : 800;
+
 
   // Toggle img for middle
   return (
@@ -37,13 +40,14 @@ export default function CartPage() {
         <div className="relative flex flex-row w-full md:w-1/2 lg:w-3/4 justify-center">
           <div className="absolute top-0 left-0">
             <div className="">
-              <Image src={imageUrlFront || "art.3png"} 
+              <Image src={imageUrlFront || "/errorImg.png"} 
               alt="front side" 
-              width={45} height={45} />
+              width={45} height={45}
+               />
             </div>
             <div className="pt-5">
               <Image
-                src={imageUrlBack || "art.3png"}
+                src={imageUrlBack || "/errorImg.png"}
                 alt="back side"
                 width={45}
                 height={45}
@@ -53,7 +57,7 @@ export default function CartPage() {
           {/* Middle: Large image */}
           {/* Result of toggle- front is default */}
           <div className="ml-12 lg:ml-0 ">
-            <Image src={imageUrlFront || "art.3png"}  alt="Main Img" width={350} height={350} />
+            <Image src={imageUrlFront || "/errorImg.png"}  alt="Main Img" width={width} height={height} />
           </div>
         </div>
 
