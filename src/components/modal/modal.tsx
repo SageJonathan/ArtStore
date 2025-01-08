@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Modal from "react-modal";
 import "./modal.css";
 
@@ -19,7 +19,12 @@ interface ModalProps {
 
 Modal.setAppElement("#__next");
 
-export default function ArtDetails({isOpen,onRequestClose,painting,}: ModalProps) {
+export default function ArtDetails({
+  isOpen,
+  onRequestClose,
+  painting,
+}: ModalProps) {
+  const router = useRouter();
   return (
     <Modal
       isOpen={isOpen}
@@ -35,11 +40,15 @@ export default function ArtDetails({isOpen,onRequestClose,painting,}: ModalProps
         <button
           className="absolute right-5 bottom-1"
           onClick={() => {
-            confirm();
-            onRequestClose();
+              const queryString = new URLSearchParams({
+                title: painting.title,
+                size: painting.size,
+              }).toString();
+              router.push(`/cart?${queryString}`);
+              onRequestClose();
           }}
         >
-          <Link href="/cart">Buy Now</Link>
+          Buy Now
         </button>
       </div>
     </Modal>

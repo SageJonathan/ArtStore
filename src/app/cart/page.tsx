@@ -5,12 +5,18 @@
 //  Get painting id && Display ---> Get through browser
 // Get Tax through API && Display
 // Get shipping through API && Display
+"use client"
 
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
 export default function CartPage() {
+  const searchParams = useSearchParams();
+  const title = searchParams.get("title");
+  const size = searchParams.get("size");
+  
   // Toggle img for middle
   return (
     //Checkout-container
@@ -44,8 +50,8 @@ export default function CartPage() {
           <div className="">
             <div className="leading-relaxed">
               <h1 className="font-bold">Art Piece:</h1>
-              <p>Title: lorem lorem lorem{}</p>
-              <p>Size: 45 x 44"{}</p>
+              <p>Title: lorem lorem lorem{title}</p>
+              <p>Size: 45 x 44"{size}</p>
               <p>Price: 400{}.00 CAD</p>
             </div>
             {/* Use this data for api call for above */}
