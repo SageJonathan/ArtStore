@@ -14,24 +14,6 @@ datasource db {
 }
 
 model ArtPiece {
-<<<<<<< HEAD
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  // Add sizing (for customer & shipping)
-  //Add weight (for shipping)
-  // Add medium of creation (oil, etc)
-  price       Float
-  // Add boolean check for horintal or vertical
-  imageUrl    String? 
-  // add back img url
-  inStock     Boolean  @default(true) 
-  buyerName   String?  
-  buyerEmail  String?  @unique 
-  // buer mobile numner
-  buyerAddress String? 
-  
-=======
   id              Int     @id @default(autoincrement())
   title           String
   description     String
@@ -45,7 +27,6 @@ model ArtPiece {
   imageUrlBack    String
   clientId        Int?
   client          ClientData? @relation(fields: [clientId], references: [id])
->>>>>>> UI
 }
 
 model ClientData {
