@@ -42,10 +42,7 @@ export default function GalleryGrid({ paintings }: GalleryGridProps)  {
             width={painting.isVertical? 240 : 500}
             height={320} 
             className={`object-contain ${
-              painting.imageUrlFront === "/art1.png" || painting.imageUrlFront === "/art14.png"
-                ? "sm:w-60 md:w-40"
-                : "w-full"
-            }`}
+              painting.isVertical ? "sm:w-60 md:w-40": "w-full"}`}
           />
              <div className="mt-5 text-left pb-20 md:pb-40">
               <div className="bg-white shadow-lg p-2 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg">
