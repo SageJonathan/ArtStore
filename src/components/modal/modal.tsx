@@ -80,23 +80,32 @@ export default function ArtDetails({
               alt="Main Img"
               width={width}
               height={height}
-               className="object-contain"
+              className="object-contain"
             />
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between mt-2">
-          <div className=" flex flex-row gap-4 md:gap-2 md:flex-col">
-            <p> Size: {painting.size}</p>
+        <div className="flex flex-col justify-between mt-2">
+          <div className="mb-2">
             <p> Medium: {painting.medium}</p>
           </div>
           <div>
-            <h1 className="font-bold">All paintings include a certificate of authenticity <br /> signed by the artist </h1>
+            <h1 className="font-bold">
+              All paintings include a certificate of authenticity signed
+              by the artist
+            </h1>
           </div>
         </div>
-
         <button
-          className="absolute right-5 bottom-1 border bg-blue-200 rounded p-2"
+          className="absolute left-5 bottom-5 border bg-white-200 text-blue-800 rounded p-2"
+          onClick={() => {
+            onRequestClose();
+          }}
+        >
+          Return
+        </button>
+        <button
+          className="absolute right-5 bottom-5 border bg-blue-200 rounded p-2"
           onClick={() => {
             const queryString = new URLSearchParams({
               title: painting.title,
