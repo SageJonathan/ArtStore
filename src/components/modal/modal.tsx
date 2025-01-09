@@ -89,10 +89,8 @@ export default function ArtDetails({
           <div className=" flex flex-row gap-4 md:gap-2 md:flex-col">
             <p> Size: {painting.size}</p>
             <p> Medium: {painting.medium}</p>
-            <p className="pt-2 hidden md:inline">{painting.description}</p>
           </div>
           <div>
-            < p className="pt-2 block md:hidden mb-2">{painting.description}</p>
             <h1 className="font-bold">All paintings include a certificate of authenticity <br /> signed by the artist </h1>
           </div>
         </div>

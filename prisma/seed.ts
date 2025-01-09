@@ -7,6 +7,7 @@ async function main() {
   const artPiecesData = [
     {
       title: '?',
+      //remove description
       description: '?',
       medium: 'oil',
       price: 150,

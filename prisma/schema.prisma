@@ -16,6 +16,7 @@ datasource db {
 model ArtPiece {
   id              Int     @id @default(autoincrement())
   title           String
+  //remoe description
   description     String
   medium          String
   price           Float

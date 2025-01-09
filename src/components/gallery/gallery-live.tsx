@@ -23,7 +23,7 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
 
   // Modal logic
   const openModal = (painting: Painting) => {
-    if (!modalOpen) {
+    if (!modalOpen && painting.inStock) {
       setSelectedPainting(painting);
       setmodalOpen(true);
     }

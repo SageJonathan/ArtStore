@@ -17,6 +17,7 @@ export default function CartPage() {
   const searchParams = useSearchParams();
   const title = searchParams.get("title");
   const size = searchParams.get("size");
+  //Remove description
   const description = searchParams.get("description");
   const medium = searchParams.get("medium");
   const price = searchParams.get("price");
@@ -76,6 +77,7 @@ export default function CartPage() {
             <div className="leading-relaxed">
               <h1 className="font-bold">Art Piece:</h1>
               <p>Title: {title}</p>
+              <p>Medium: {medium}</p>
               <p>Size: {size}</p>
               <p>Price: {price}.00 CAD</p>
             </div>
@@ -135,28 +137,25 @@ export default function CartPage() {
           </div>
         </div>
       </div>
-      {/* Description below */}
-      <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between">
-        <div>
-        <p>Medium: {medium}</p>
-          <p>{description}</p>
-        </div>
-        <div>
-          <p>
-            <strong>Comes with a Certificate of Authenticity</strong>
-          </p>
-          <p>
-            <strong>The dimensions listed are inclusive of the frame</strong>
-          </p>
-          <br />
-          <p>
-            <strong>Shipping is handled exclusively through FedEx</strong>
-          </p>
-          <p>
-            <strong>Available for shipping within Canada and the USA</strong>
-          </p>
-        </div>
-      </div>
+      <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between flex-wrap gap-4">
+  <div className="flex flex-col gap-2">
+    <p>
+      <strong>Comes with a Certificate of Authenticity</strong>
+    </p>
+    <p>
+      <strong>The dimensions listed are inclusive of the frame</strong>
+    </p>
+  </div>
+  <div className="mt-5 md:mt-0 flex flex-col gap-2">
+    <p>
+      <strong>Available for shipping within Canada and the USA</strong>
+    </p>
+    <p>
+      <strong>Shipping is handled exclusively through FedEx</strong>
+    </p>
+  </div>
+</div>
+
     </div>
   );
 }
