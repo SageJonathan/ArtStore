@@ -1,27 +1,29 @@
-// This is checkout
-//  Do we make a cart? Do we need one?
+// // This is checkout
+// //  Do we make a cart? Do we need one?
 
-// Get Tax through API && Display
-// Get shipping through API && Display
+// // Get Tax through API && Display
+// // Get shipping through API && Display
+
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import TaxesForm from "@/components/checkout/taxesForm"
+import TaxesForm from "@/components/checkout/taxesForm";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
 export default function CartPage() {
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
-
+  const [taxRate, setTaxRate] = useState<number>(0); 
+  const [totalCost, setTotalCost] = useState<number>(0); 
+  
   const searchParams = useSearchParams();
   const title = searchParams.get("title");
   const size = searchParams.get("size");
-  //Remove description
-  const description = searchParams.get("description");
+  const description = searchParams.get("description"); // This is removed in the UI as per your comment
   const medium = searchParams.get("medium");
-  const price = searchParams.get("price");
+  const price = parseFloat(searchParams.get("price") || "0");
   const isVertical = searchParams.get("isVertical") === "true";
   const weight = searchParams.get("weight");
   const inStock = searchParams.get("inStock") === "true";
@@ -34,6 +36,17 @@ export default function CartPage() {
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
+  };
+
+  useEffect(() => {
+    const shippingCost = 20.00; 
+    const calculatedTax = price * taxRate;
+    const newTotalCost = price + calculatedTax + shippingCost;
+    setTotalCost(newTotalCost);
+  }, [price, taxRate]);
+
+  const handleTaxChange = (tax: number) => {
+    setTaxRate(tax);
   };
 
   return (
@@ -80,18 +93,17 @@ export default function CartPage() {
               <p>Title: {title}</p>
               <p>Medium: {medium}</p>
               <p>Size: {size}</p>
-              <p>Price: {price}.00 CAD</p>
+              <p>Price: {price.toFixed(2)} CAD</p>
             </div>
-                <TaxesForm />
+            <TaxesForm onTaxChange={handleTaxChange} />
             <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Estimated Cost:</h1>
-              <p>Tax: {}10.00 CAD</p>
-              <p>Shipping Cost:{} 20.00 CAD</p>
-              <p>Total Cost: {}430. 00CAD</p>
+              <p>Tax: {((price * taxRate) || 0).toFixed(2)}</p>
+              <p>Shipping Cost: 20.00</p>
+              <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
             </div>
           </div>
-          {/* We need to get some info from payment processing to get cleint info */}
-          <div className=" mb-1">
+          <div className="mb-1">
             <h1 className="font-bold mb-1">Payment</h1>
             <form action="submit" className="flex flex-row gap-4">
               <button
@@ -123,24 +135,23 @@ export default function CartPage() {
         </div>
       </div>
       <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between flex-wrap gap-4">
-  <div className="flex flex-col gap-2">
-    <p>
-      <strong>Comes with a Certificate of Authenticity</strong>
-    </p>
-    <p>
-      <strong>The dimensions listed are inclusive of the frame</strong>
-    </p>
-  </div>
-  <div className="mt-5 md:mt-0 flex flex-col gap-2">
-    <p>
-      <strong>Available for shipping within Canada and the USA</strong>
-    </p>
-    <p>
-      <strong>Shipping is handled exclusively through FedEx</strong>
-    </p>
-  </div>
-</div>
-
+        <div className="flex flex-col gap-2">
+          <p>
+            <strong>Comes with a Certificate of Authenticity</strong>
+          </p>
+          <p>
+            <strong>The dimensions listed are inclusive of the frame</strong>
+          </p>
+        </div>
+        <div className="mt-5 md:mt-0 flex flex-col gap-2">
+          <p>
+            <strong>Available for shipping within Canada and the USA</strong>
+          </p>
+          <p>
+            <strong>Shipping is handled exclusively through FedEx</strong>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
