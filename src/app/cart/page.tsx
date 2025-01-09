@@ -85,14 +85,23 @@ export default function CartPage() {
             <div className="my-5">
               <form action="submit">
                 <label htmlFor="" className="font-bold">
-                  Enter Shipping Adress:
+                  Enter Shipping Info:
                 </label>
                 <input
-                  id="shipping-address"
+                  id="country"
                   type="text"
                   name="shippingAddress"
                   //   Place holder must match API requirments
-                  placeholder="123 Main St, City, Country"
+                  placeholder="Country"
+                  className="p-2 border rounded-md flex flex-col"
+                  required
+                ></input>
+                <input
+                  id="state"
+                  type="text"
+                  name="shippingAddress"
+                  //   Place holder must match API requirments
+                  placeholder="State or Province"
                   className="p-2 border rounded-md flex flex-col"
                   required
                 ></input>
