@@ -70,7 +70,7 @@ export default function ArtDetails({
               />
             </div>
           </div>
-          <div className="">
+          <div>
             <Image
               src={
                 activeImage === "front"
