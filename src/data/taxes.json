@@ -1,0 +1,196 @@
+{
+    "Canada": {
+      "Alberta": {
+        "tax": 0.05
+      },
+      "British Columbia": {
+        "tax": 0.12
+      },
+      "Manitoba": {
+        "tax": 0.12
+      },
+      "New Brunswick": {
+        "tax": 0.15
+      },
+      "Newfoundland and Labrador": {
+        "tax": 0.15
+      },
+      "Nova Scotia": {
+        "tax": 0.15
+      },
+      "Ontario": {
+        "tax": 0.13
+      },
+      "Prince Edward Island": {
+        "tax": 0.15
+      },
+      "Quebec": {
+        "tax": 0.14975
+      },
+      "Saskatchewan": {
+        "tax": 0.11
+      },
+      "Northwest Territories": {
+        "tax": 0.05
+      },
+      "Nunavut": {
+        "tax": 0.05
+      },
+      "Yukon": {
+        "tax": 0.05
+      }
+    },
+    "USA": {
+      "Alabama": {
+        "tax": 0.04
+      },
+      "Alaska": {
+        "tax": 0.0
+      },
+      "Arizona": {
+        "tax": 0.056
+      },
+      "Arkansas": {
+        "tax": 0.065
+      },
+      "California": {
+        "tax": 0.075
+      },
+      "Colorado": {
+        "tax": 0.029
+      },
+      "Connecticut": {
+        "tax": 0.0635
+      },
+      "Delaware": {
+        "tax": 0.0
+      },
+      "Florida": {
+        "tax": 0.06
+      },
+      "Georgia": {
+        "tax": 0.04
+      },
+      "Hawaii": {
+        "tax": 0.04
+      },
+      "Idaho": {
+        "tax": 0.06
+      },
+      "Illinois": {
+        "tax": 0.0625
+      },
+      "Indiana": {
+        "tax": 0.07
+      },
+      "Iowa": {
+        "tax": 0.06
+      },
+      "Kansas": {
+        "tax": 0.065
+      },
+      "Kentucky": {
+        "tax": 0.06
+      },
+      "Louisiana": {
+        "tax": 0.04
+      },
+      "Maine": {
+        "tax": 0.055
+      },
+      "Maryland": {
+        "tax": 0.06
+      },
+      "Massachusetts": {
+        "tax": 0.0625
+      },
+      "Michigan": {
+        "tax": 0.06
+      },
+      "Minnesota": {
+        "tax": 0.06875
+      },
+      "Mississippi": {
+        "tax": 0.07
+      },
+      "Missouri": {
+        "tax": 0.04225
+      },
+      "Montana": {
+        "tax": 0.0
+      },
+      "Nebraska": {
+        "tax": 0.055
+      },
+      "Nevada": {
+        "tax": 0.0685
+      },
+      "New Hampshire": {
+        "tax": 0.0
+      },
+      "New Jersey": {
+        "tax": 0.06625
+      },
+      "New Mexico": {
+        "tax": 0.05125
+      },
+      "New York": {
+        "tax": 0.088
+      },
+      "North Carolina": {
+        "tax": 0.0475
+      },
+      "North Dakota": {
+        "tax": 0.05
+      },
+      "Ohio": {
+        "tax": 0.0575
+      },
+      "Oklahoma": {
+        "tax": 0.045
+      },
+      "Oregon": {
+        "tax": 0.0
+      },
+      "Pennsylvania": {
+        "tax": 0.06
+      },
+      "Rhode Island": {
+        "tax": 0.07
+      },
+      "South Carolina": {
+        "tax": 0.06
+      },
+      "South Dakota": {
+        "tax": 0.04
+      },
+      "Tennessee": {
+        "tax": 0.07
+      },
+      "Texas": {
+        "tax": 0.0625
+      },
+      "Utah": {
+        "tax": 0.0685
+      },
+      "Vermont": {
+        "tax": 0.06
+      },
+      "Virginia": {
+        "tax": 0.053
+      },
+      "Washington": {
+        "tax": 0.065
+      },
+      "West Virginia": {
+        "tax": 0.06
+      },
+      "Wisconsin": {
+        "tax": 0.05
+      },
+      "Wyoming": {
+        "tax": 0.04
+      }
+    }
+  }
+  

@@ -8,6 +8,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import TaxesForm from "@/components/checkout/taxesForm"
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
@@ -81,33 +82,8 @@ export default function CartPage() {
               <p>Size: {size}</p>
               <p>Price: {price}.00 CAD</p>
             </div>
-            {/* Use this data for api call for above */}
-            <div className="my-5">
-              <form action="submit">
-                <label htmlFor="" className="font-bold">
-                  Enter Shipping Info:
-                </label>
-                <input
-                  id="country"
-                  type="text"
-                  name="shippingAddress"
-                  //   Place holder must match API requirments
-                  placeholder="Country"
-                  className="p-2 border rounded-md flex flex-col"
-                  required
-                ></input>
-                <input
-                  id="state"
-                  type="text"
-                  name="shippingAddress"
-                  //   Place holder must match API requirments
-                  placeholder="State or Province"
-                  className="p-2 border rounded-md flex flex-col"
-                  required
-                ></input>
-              </form>
-            </div>
-            <div className="mb-5 leading-relaxed">
+                <TaxesForm />
+            <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Estimated Cost:</h1>
               <p>Tax: {}10.00 CAD</p>
               <p>Shipping Cost:{} 20.00 CAD</p>
