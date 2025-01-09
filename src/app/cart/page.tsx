@@ -1,7 +1,6 @@
 // // This is checkout
 // //  Do we make a cart? Do we need one?
 
-// // Get Tax through API && Display
 // // Get shipping through API && Display
 
 "use client";
@@ -39,7 +38,7 @@ export default function CartPage() {
   };
 
   useEffect(() => {
-    const shippingCost = 20.00; 
+    const shippingCost = 30.00; 
     const calculatedTax = price * taxRate;
     const newTotalCost = price + calculatedTax + shippingCost;
     setTotalCost(newTotalCost);
@@ -99,7 +98,7 @@ export default function CartPage() {
             <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Estimated Cost:</h1>
               <p>Tax: {((price * taxRate) || 0).toFixed(2)}</p>
-              <p>Shipping Cost: 20.00</p>
+              <p>Shipping Cost: 30.00</p>
               <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
             </div>
           </div>
