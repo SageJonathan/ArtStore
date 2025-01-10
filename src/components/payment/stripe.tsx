@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -30,12 +31,18 @@ const Stripe = ({ amount }: { amount: number }) => {
       .then((data) => setClientSecret(data.clientSecret));
   }, [amount,address,email]);
 
+
+  const validateEmail = (email: string) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
-    if (!stripe || !elements || !address || !email) {
-      setErrorMessage("Please provide all required information.");
+    if (!stripe || !elements || !address || !email || !validateEmail(email)) {
+      setErrorMessage("Please provide a valid email address and shipping information.");
       setLoading(false);
       return;
     }
@@ -97,13 +104,13 @@ const Stripe = ({ amount }: { amount: number }) => {
           if (event.complete) {
             const addressData = event.value.address;
             console.log("Updated Address Data:", addressData);
-            setAddress(addressData); // Store the address in state
+            setAddress(addressData); 
           }
         }}
       />
 
-      <div className="mt-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+      <div className="mt-4 mb-4 ">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 flex ">
           Email
         </label>
         <input
@@ -111,7 +118,7 @@ const Stripe = ({ amount }: { amount: number }) => {
           id="email"
           value={email || ""}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
+          className="mt-1 pl-4 block w-full h-10 rounded-md border-black-900 shadow-md sm:text-sm text-black focus:border-blue-300 focus:ring-blue-200 focus:ring-opacity-50 focus:ring-2 focus:outline-none focus:shadow-[0px_0px_12px_2px_rgba(59,130,246,0.6)]"
           required
         />
       </div>
