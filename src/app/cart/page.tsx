@@ -8,7 +8,8 @@
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import TaxesForm from "@/components/checkout/taxesForm";
+import Link from "next/link";
+import TaxesForm from "@/components/cart/taxesForm";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
@@ -117,7 +118,8 @@ export default function CartPage() {
                   className="pl-2"
                 />
               </button>
-              <button
+                <Link href="/stripe-checkout">
+                <button
                 className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
               >
@@ -129,6 +131,19 @@ export default function CartPage() {
                   className="pl-2"
                 />
               </button>
+                </Link>
+              {/* <button
+                className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
+                id="paypal-payment"
+              >
+                <Image
+                  src={StripeIcon}
+                  alt="Stripe Icon"
+                  width={80}
+                  height={80}
+                  className="pl-2"
+                />
+              </button> */}
             </form>
           </div>
         </div>
