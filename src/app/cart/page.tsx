@@ -10,7 +10,6 @@
 import { useSearchParams,useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import TaxesForm from "@/components/cart/taxesForm";
 import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
@@ -42,7 +41,7 @@ export default function CartPage() {
 
 
   useEffect(() => {
-    const shippingCost = 30.00; 
+    const shippingCost = 50.00; 
     const validPrice = price || 0; 
     const validTaxRate = taxRate || 0; 
     const calculatedTax = validPrice * validTaxRate;
@@ -107,7 +106,7 @@ export default function CartPage() {
             <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Estimated Cost:</h1>
               <p>Tax: {((price * taxRate) || 0).toFixed(2)}</p>
-              <p>Shipping Cost: 30.00</p>
+              <p>Shipping Cost: 50.00</p>
               <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
             </div>
           </div>
