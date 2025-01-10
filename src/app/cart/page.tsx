@@ -3,9 +3,11 @@
 
 // // Get shipping through API && Display
 
+//payment button can only be clciked once drop down is completed***
+
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams,useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,16 +40,22 @@ export default function CartPage() {
     setActiveImage(activeImage === "front" ? "back" : "front");
   };
 
+
   useEffect(() => {
     const shippingCost = 30.00; 
-    const calculatedTax = price * taxRate;
-    const newTotalCost = price + calculatedTax + shippingCost;
-    setTotalCost(newTotalCost);
+    const validPrice = price || 0; 
+    const validTaxRate = taxRate || 0; 
+    const calculatedTax = validPrice * validTaxRate;
+    const newTotalCost = validPrice + calculatedTax + shippingCost;
+    setTotalCost(newTotalCost > 0 ? newTotalCost : 0); 
   }, [price, taxRate]);
+  
 
   const handleTaxChange = (tax: number) => {
     setTaxRate(tax);
   };
+
+  const router = useRouter();
 
   return (
     <div className="flex flex-col m-10">
@@ -105,7 +113,8 @@ export default function CartPage() {
           </div>
           <div className="mb-1">
             <h1 className="font-bold mb-1">Payment</h1>
-            <form action="submit" className="flex flex-row gap-4">
+
+            <div className="flex flex-row gap-4">
               <button
                 className="flex flex-row items-center justify-center bg-blue-200 border rounded-md px-2 text-lg"
                 id="stripe-payment"
@@ -118,10 +127,16 @@ export default function CartPage() {
                   className="pl-2"
                 />
               </button>
-                <Link href="/stripe-checkout">
                 <button
                 className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
+                type="button"
+                onClick={() => {
+                  const queryString = new URLSearchParams({
+                    amount: totalCost.toFixed(2),
+                  }).toString();
+                  router.push(`/stripe-checkout?${queryString}`);
+                }}
               >
                 <Image
                   src={StripeIcon}
@@ -131,20 +146,7 @@ export default function CartPage() {
                   className="pl-2"
                 />
               </button>
-                </Link>
-              {/* <button
-                className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
-                id="paypal-payment"
-              >
-                <Image
-                  src={StripeIcon}
-                  alt="Stripe Icon"
-                  width={80}
-                  height={80}
-                  className="pl-2"
-                />
-              </button> */}
-            </form>
+              </div>
           </div>
         </div>
       </div>
