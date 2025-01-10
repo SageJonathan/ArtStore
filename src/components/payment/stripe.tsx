@@ -1,19 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useStripe,
   useElements,
   PaymentElement,
+  AddressElement
 } from "@stripe/react-stripe-js";
 import convertToSubcurrency from "@/utils/convertToSubcurrency";
 
 const Stripe = ({ amount }: { amount: number }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
+  const [address, setAddress] = useState<any | null>(null);
+  const [email, setEmail] = useState<string | null>(null); 
 
   useEffect(() => {
     fetch("/api/create-payment-intent", {
@@ -25,13 +28,15 @@ const Stripe = ({ amount }: { amount: number }) => {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [amount]);
+  }, [amount,address,email]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
 
-    if (!stripe || !elements) {
+    if (!stripe || !elements || !address || !email) {
+      setErrorMessage("Please provide all required information.");
+      setLoading(false);
       return;
     }
 
@@ -48,16 +53,16 @@ const Stripe = ({ amount }: { amount: number }) => {
       clientSecret,
       confirmParams: {
         return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        shipping: {
+          name: address.name,
+          address: address,
+        },
+        receipt_email: email, 
       },
     });
 
     if (error) {
-      // This point is only reached if there's an immediate error when
-      // confirming the payment. Show the error to your customer (for example, payment details incomplete)
       setErrorMessage(error.message);
-    } else {
-      // The payment UI automatically closes with a success animation.
-      // Your customer is redirected to your `return_url`.
     }
 
     setLoading(false);
@@ -80,9 +85,40 @@ const Stripe = ({ amount }: { amount: number }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-2 rounded-md">
+      <AddressElement
+        options={{
+          mode: "shipping",
+          allowedCountries: ["ca", "us"],
+          fields: {
+            phone: "always",
+          },
+        }}
+        onChange={(event) => {
+          if (event.complete) {
+            const addressData = event.value.address;
+            console.log("Updated Address Data:", addressData);
+            setAddress(addressData); // Store the address in state
+          }
+        }}
+      />
+
+      <div className="mt-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          value={email || ""}
+          onChange={(e) => setEmail(e.target.value)}
+          className="mt-1 block w-full h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black"
+          required
+        />
+      </div>
+
       {clientSecret && <PaymentElement />}
 
-      {errorMessage && <div>{errorMessage}</div>}
+      {errorMessage && <div className="mt-2 text-red-600">{errorMessage}</div>}
 
       <button
         disabled={!stripe || loading}
@@ -95,3 +131,4 @@ const Stripe = ({ amount }: { amount: number }) => {
 };
 
 export default Stripe;
+
