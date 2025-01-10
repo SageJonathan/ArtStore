@@ -20,15 +20,15 @@ export default function CartPage() {
   const searchParams = useSearchParams();
   const title = searchParams.get("title");
   const size = searchParams.get("size");
-  const description = searchParams.get("description"); // This is removed in the UI as per your comment
+  // const description = searchParams.get("description"); // This is removed in the UI as per your comment
   const medium = searchParams.get("medium");
   const price = parseFloat(searchParams.get("price") || "0");
   const isVertical = searchParams.get("isVertical") === "true";
-  const weight = searchParams.get("weight");
-  const inStock = searchParams.get("inStock") === "true";
+  // const weight = searchParams.get("weight");
+  // const inStock = searchParams.get("inStock") === "true";
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
-  const clientId = searchParams.get("clientId");
+  // const clientId = searchParams.get("clientId");
 
   const width = isVertical ? 350 : 800;
   const height = isVertical ? 350 : 800;
