@@ -39,9 +39,8 @@ export default function CartPage() {
     setActiveImage(activeImage === "front" ? "back" : "front");
   };
 
-
   useEffect(() => {
-    const shippingCost = 50.00; 
+    const shippingCost = 50; 
     const validPrice = price || 0; 
     const validTaxRate = taxRate || 0; 
     const calculatedTax = validPrice * validTaxRate;
@@ -55,6 +54,7 @@ export default function CartPage() {
   };
 
   const router = useRouter();
+
 
   return (
     <div className="flex flex-col m-10">
@@ -127,6 +127,7 @@ export default function CartPage() {
                 />
               </button>
                 <button
+                  //  disabled={Add logic } 
                 className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
                 type="button"

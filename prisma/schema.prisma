@@ -35,6 +35,7 @@ model ClientData {
   firstName        String
   lastName         String
   email            String  @unique
+  //mobile number is ? 
   mobileNumber     String
   shippingAddress  String
   paymentAddress   String
