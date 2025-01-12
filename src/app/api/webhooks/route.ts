@@ -8,6 +8,33 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 const endpointSecret = process.env.WEBHOOK_SECRET;
 
+
+
+async function handleClient(email: string, artId: string, shipping: Stripe.PaymentIntent.Shipping | null) {
+  const emailExists = await action.verifyClientData({ email });
+
+  if (emailExists) {
+    await action.updateClientData({
+      email, 
+      artPieces: artId ? [{ id: parseInt(artId) }] : [],
+    });
+  } else {
+    await action.handleClientData({
+      fullName: shipping?.name || "",
+      email, 
+      mobileNumber: shipping?.phone || null, 
+      city: shipping?.address?.city || "", 
+      country: shipping?.address?.country || "", 
+      line1: shipping?.address?.line1 || "", 
+      line2: shipping?.address?.line2 || null, 
+      postalCode: shipping?.address?.postal_code || "", 
+      stateOrProvince: shipping?.address?.state || "", 
+      artPieces: artId ? [{ id: parseInt(artId) }] : [],
+    });
+  }
+}
+
+
 // const updateArtStock = async () =>{
 //     try {
 // // update inStock to false
@@ -87,27 +114,15 @@ export async function POST(request: NextRequest) {
           `PaymentIntent for ${paymentIntent.amount} was successful.`
         );
         const shipping = paymentIntent.shipping;
-        console.log("Shipping Info:", shipping);
+        // console.log("Shipping Info:", shipping);
         const receiptEmail = paymentIntent.receipt_email;
-        console.log("Receipt Email:", receiptEmail);
-        const meta = paymentIntent.metadata;
+        // console.log("Receipt Email:", receiptEmail);
+        // const meta = paymentIntent.metadata;
         const artId = paymentIntent.metadata.artId;
-        console.log(artId);
-        console.log(meta);
+        // console.log(artId);
+        // console.log(meta);
 
-          await action.handleClientData ({
-            fullName: shipping?.name || "", // Matches 'string'
-            email: receiptEmail || "", // Matches 'string'
-            mobileNumber: shipping?.phone || null, // Should be 'string | null'
-            city: shipping?.address?.city || "", // Matches 'string'
-            country: shipping?.address?.country || "", // Matches 'string'
-            line1: shipping?.address?.line1 || "", // Matches 'string'
-            line2: shipping?.address?.line2 || null, // Nullable: Matches 'string | null'
-            postalCode: shipping?.address?.postal_code || "", // Matches 'string'
-            stateOrProvince: shipping?.address?.state || "", // Matches 'string'
-            artPieces: artId ? [{ id: parseInt(artId) }] : [], // Matches '{ id: number }[]' and is optional
-          });
-       
+        await handleClient(receiptEmail || "", artId, shipping);
 
         break;
       }
