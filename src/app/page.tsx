@@ -1,11 +1,11 @@
-import { displayArt} from '@/app/db/queries/art';
+import * as actions from '@/actions';
 import { cookies } from "next/headers"; 
 import { GalleryToggle } from "@/components/gallery/gallery-toggle"; 
 import GalleryLive from '@/components/gallery/gallery-live';
 import GalleryGrid from '@/components/gallery/gallery-grid';
 
 export default async function HomePage() {
-  const paintings= await displayArt ();
+  const paintings =  await actions.paintingsData();
   const cookieStore = cookies();
   const displayMode = (await cookieStore).get("displayMode")?.value || "gallery"; 
 

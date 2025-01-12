@@ -7,6 +7,16 @@ const endpointSecret = process.env.WEBHOOK_SECRET ;
 
 
 
+// const createClientData = async () => {
+//     try {
+// // Fill up scehma 
+// // add art ID to cleint array 
+//     }
+//     catch {
+
+//     }
+// }
+
 // const updateArtStock = async () =>{
 //     try {
 // // update inStock to false
@@ -17,15 +27,6 @@ const endpointSecret = process.env.WEBHOOK_SECRET ;
 //     }
 // }
 
-// const createClientData = async () => {
-//     try {
-// // Fill up scehma 
-// // add art ID to cleint array 
-//     }
-//     catch {
-
-//     }
-// }
 
 // const emailConfirmation = async () =>{
 // try {
