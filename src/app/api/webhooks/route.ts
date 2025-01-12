@@ -88,7 +88,16 @@ export async function POST(request: NextRequest) {
       case 'payment_intent.succeeded': {
         const paymentIntent = event.data.object;
         console.log(`PaymentIntent for ${paymentIntent.amount} was successful.`);
+        const shipping = paymentIntent.shipping;
+        console.log('Shipping Info:', shipping);
+        const receiptEmail = paymentIntent.receipt_email;
+        console.log('Receipt Email:', receiptEmail);
+
         break;
+      }
+      case 'checkout.session.completed':{
+        const completeCheckout = event.data.object;
+        console.log(completeCheckout.shipping_address_collection)
       }
       case 'payment_method.attached': {
         const paymentMethod = event.data.object;
