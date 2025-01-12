@@ -15,4 +15,17 @@ export async function displayArt(): Promise<ArtWithData[]> {
   });
 }
 
-// function for update art after purchase 
+// export async function updateArtInventory(id: string) {
+//   return db.artPiece.update({
+//     where: {
+//       id: id,  // id from api endpoint
+//     },
+//     data: {
+//       inStock: false,
+//       clientId: clientId, // id from db
+//     },
+//   });
+// }
+
+
+

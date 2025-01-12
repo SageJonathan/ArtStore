@@ -2,7 +2,6 @@
 CREATE TABLE "ArtPiece" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
     "price" REAL NOT NULL,
     "isVertical" BOOLEAN NOT NULL,
@@ -18,13 +17,15 @@ CREATE TABLE "ArtPiece" (
 -- CreateTable
 CREATE TABLE "ClientData" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "firstName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
+    "fullName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "mobileNumber" TEXT NOT NULL,
-    "shippingAddress" TEXT NOT NULL,
-    "paymentAddress" TEXT NOT NULL,
-    "recurringClient" BOOLEAN NOT NULL DEFAULT false
+    "mobileNumber" TEXT,
+    "city" TEXT NOT NULL,
+    "country" TEXT NOT NULL,
+    "line1" TEXT NOT NULL,
+    "line2" TEXT,
+    "postalCode" TEXT NOT NULL,
+    "stateOrProvince" TEXT NOT NULL
 );
 
 -- CreateIndex
