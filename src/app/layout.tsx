@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "@/components/nav";
@@ -30,9 +29,7 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-        <Head>
-        <link rel="icon" href="favicon.ico" />
-      </Head>
+        <link rel="icon" href="/favicon.ico" />
       <body
         className={`${merriweather} ${playfair} antialiased`}
       >
