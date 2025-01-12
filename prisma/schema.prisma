@@ -41,4 +41,5 @@ model ClientData {
   paymentAddress   String
   recurringClient  Boolean @default(false)
   artPieces        ArtPiece[] 
+  // add array of payment methods
 }

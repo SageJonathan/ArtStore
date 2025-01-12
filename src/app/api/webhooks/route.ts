@@ -1,4 +1,4 @@
-// import { db } from "@/app/db";
+import * as actions from "@/actions";
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from "stripe";
 
@@ -87,6 +87,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
     }
 
+
+    // extract shipping info >> Client data
+    // extract art ID >> art data
+    // relay info to functions >> relay to api endpoint OR server/queries 
+    // ** With the art data ID we can find the weight and dimensions for the shipping api
     // Handle the event based on its type
     switch (event.type) {
       case 'payment_intent.succeeded': {
@@ -109,6 +114,7 @@ export async function POST(request: NextRequest) {
       case 'payment_method.attached': {
         const paymentMethod = event.data.object;
         console.log(`PaymentMethod ${paymentMethod.id} was attached.`);
+        // add payment method to cleint id array 
         break;
       }
       default:
