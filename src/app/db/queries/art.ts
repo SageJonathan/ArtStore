@@ -15,3 +15,4 @@ export async function displayArt(): Promise<ArtWithData[]> {
   });
 }
 
+// function for update art after purchase 

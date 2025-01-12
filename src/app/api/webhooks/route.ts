@@ -5,7 +5,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: "2024-12-18.acacia"});
 const endpointSecret = process.env.WEBHOOK_SECRET ;
 
-
+// Create db logic in db/queries THEN import to server action THEN import action to here and invoke them in aysnc fucntions 
 
 // const createClientData = async () => {
 //     try {
@@ -27,7 +27,7 @@ const endpointSecret = process.env.WEBHOOK_SECRET ;
 //     }
 // }
 
-
+// This might be able to me hanfdles directly by stripe******
 // const emailConfirmation = async () =>{
 // try {
 // //  With above info : 
@@ -38,6 +38,9 @@ const endpointSecret = process.env.WEBHOOK_SECRET ;
 // }
 // }
 
+
+
+/// Write api logic in endpoints, here we relay the info tho them
 // const getShippingInfo = async () => {
 //     try {
 //  // API  CALL to Shippo for tag & tracking number
