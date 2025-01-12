@@ -1,45 +1,92 @@
-// import type { ArtPiece, ClientData } from '@prisma/client';
-// import { db } from '../../db';
+import { db } from "../../db";
 
-// // Define the type for the data being passed
-// export type ClientInputData = {
-//   fullName: string;
-//   email: string;
-//   mobileNumber: string;
-//   shippingAddress: string;
-//   artPieces?: { id: number }[];  // Expecting an array of art piece IDs
-// };
 
-// export async function createClient(clientData: ClientInputData) {
+export type newClientData = {
+    fullName: string;
+    email: string;
+    mobileNumber: string | null;
+    city: string;
+    country: string;
+    line1: string;
+    line2: string | null;
+    postalCode: string;
+    stateOrProvince: string;
+    artPieces?: { id: number }[]; 
+}
+
+export async function createClient(clientData: newClientData): Promise<newClientData> {
+    const {
+        fullName,
+        email,
+        mobileNumber,
+        city,
+        country,
+        line1,
+        line2,
+        postalCode,
+        stateOrProvince,
+        artPieces,
+      } = clientData;
+    
+  return db.clientData.create({
+    data: {
+        fullName,
+        email,
+        mobileNumber,
+        city,
+        country,
+        line1,
+        line2,
+        postalCode,
+        stateOrProvince,
+        artPieces: {
+          connect: artPieces?.map((art) => ({ id: art.id })) || [],
+        },
+      },
+      include: {
+        artPieces: true,
+      },
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function for updateing current client purchase array
+
+// export async function updateClientArtPieces(
+//   clientId: number,
+//   newArtPieces: { id: number }[]
+// ) {
 //   try {
-//     const newClient = await db.clientData.create({
+//     const updatedClient = await db.clientData.update({
+//       where: { id: clientId },
 //       data: {
-//         firstName: clientData.firstName,
-//         lastName: clientData.lastName,
-//         email: clientData.email,
-//         mobileNumber: clientData.mobileNumber,
-//         shippingAddress: clientData.shippingAddress,
-//         // Link existing art pieces by ID
 //         artPieces: {
-//           connect: clientData.artPieces?.map((art) => ({
+//           connect: newArtPieces.map((art) => ({
 //             id: art.id,
-//           })) || [],
+//           })),
 //         },
-//
 //       },
 //       include: {
-//         artPieces: true, // Include related art pieces
-//        
+//         artPieces: true,
 //       },
 //     });
 
-//     console.log('Client created successfully:', newClient);
-//     return newClient; // Return the created client including the related data
+//     console.log("Client art pieces updated successfully:", updatedClient);
+//     return updatedClient;
 //   } catch (error) {
-//     console.error('Error creating client:', error);
-//     throw error; // Rethrow error if any issue
+//     console.error("Error updating client art pieces:", error);
+//     throw error;
 //   }
 // }
-
-
-// // function for updateing current client purchase array 
