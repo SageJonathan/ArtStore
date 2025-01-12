@@ -13,6 +13,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 export default function StripeCheckout() {
     const searchParams = useSearchParams();
     const amount = parseFloat(searchParams.get("amount") || "0");
+    const id = parseInt(searchParams.get('id') || '0', 10);
   // Add LINK to error page if cannont define amount
 
   
@@ -35,7 +36,7 @@ export default function StripeCheckout() {
           
         }}
       >
-        <CheckoutPage amount={amount} />
+        <CheckoutPage amount={amount} id={id}/>
       </Elements>
     </main>
   );

@@ -108,6 +108,7 @@ export default function ArtDetails({
           className="absolute right-5 bottom-5 border bg-blue-200 rounded p-2"
           onClick={() => {
             const queryString = new URLSearchParams({
+              id: painting.id.toString(),
               title: painting.title,
               description: painting.description,
               medium: painting.medium,

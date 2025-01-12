@@ -92,7 +92,10 @@ export async function POST(request: NextRequest) {
         console.log('Shipping Info:', shipping);
         const receiptEmail = paymentIntent.receipt_email;
         console.log('Receipt Email:', receiptEmail);
-
+        const meta = paymentIntent.metadata;
+        const artId = paymentIntent.metadata.artId;
+        console.log(artId);
+        console.log(meta);
         break;
       }
       case 'checkout.session.completed':{

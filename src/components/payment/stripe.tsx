@@ -10,7 +10,12 @@ import {
 } from "@stripe/react-stripe-js";
 import convertToSubcurrency from "@/utils/convertToSubcurrency";
 
-const Stripe = ({ amount }: { amount: number }) => {
+interface StripeProps {
+  amount: number;
+  id: number; 
+}
+
+const Stripe = ({ amount,id }: StripeProps) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string | undefined>();
@@ -25,11 +30,14 @@ const Stripe = ({ amount }: { amount: number }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount: convertToSubcurrency(amount) }),
+      body: JSON.stringify({ 
+        amount: convertToSubcurrency(amount),
+        id: id,
+      }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [amount,address,email]);
+  }, [amount,address,email, id]);
 
 
   const validateEmail = (email: string) => {
@@ -59,7 +67,8 @@ const Stripe = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        // Update to prod url
+        return_url: `http://www.localhost:3000/payment-success?amount=${amount}&id=${id}`,
         shipping: {
           name: address.name,
           address: address,

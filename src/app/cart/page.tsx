@@ -20,6 +20,7 @@ export default function CartPage() {
   const [totalCost, setTotalCost] = useState<number>(0); 
   
   const searchParams = useSearchParams();
+  const id = searchParams.get('id');
   const title = searchParams.get("title");
   const size = searchParams.get("size");
   // const description = searchParams.get("description"); // This is removed in the UI as per your comment
@@ -134,6 +135,7 @@ export default function CartPage() {
                 onClick={() => {
                   const queryString = new URLSearchParams({
                     amount: totalCost.toFixed(2),
+                    id: id || '',
                   }).toString();
                   router.push(`/stripe-checkout?${queryString}`);
                 }}
