@@ -1,15 +1,13 @@
 import * as actions from '@/actions';
-import { cookies } from "next/headers"; 
 import { GalleryToggle } from "@/components/gallery/gallery-toggle"; 
 import GalleryLive from '@/components/gallery/gallery-live';
 import GalleryGrid from '@/components/gallery/gallery-grid';
 
 export default async function HomePage() {
   const paintings =  await actions.paintingsData();
-  const cookieStore = cookies();
-  const displayMode = (await cookieStore).get("displayMode")?.value || "gallery"; 
+  const displayMode = await actions.displayHomeWithCookies();
+  const isGrid = displayMode === "grid";
 
-  const isGrid = displayMode === "grid"; 
   
   return (
     <div>
