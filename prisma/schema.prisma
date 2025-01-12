@@ -21,6 +21,7 @@ model ArtPiece {
   medium          String
   price           Float
   isVertical      Boolean
+  // add height to size dimensions
   size            String
   weight          String
   inStock         Boolean @default(true)
@@ -38,7 +39,9 @@ model ClientData {
   //mobile number is ? 
   mobileNumber     String
   shippingAddress  String
+  //remove payment adress
   paymentAddress   String
+  //remove boolean-- same logic is already in array 
   recurringClient  Boolean @default(false)
   artPieces        ArtPiece[] 
   // add array of payment methods
