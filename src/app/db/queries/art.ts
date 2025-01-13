@@ -56,4 +56,7 @@ export async function updateInventory(artSold: ArtSold) {
   });
 }
 
+// export async function getArtShippingData(){
+
+// }
 

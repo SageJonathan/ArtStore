@@ -10,3 +10,7 @@ export async function paintingsData (){
 export async function paintingsUpdate(data:ArtSold) {
     return await updateInventory(data);
 }
+
+// export async function getPaintingShippingData(){
+
+// }

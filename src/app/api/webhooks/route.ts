@@ -1,5 +1,6 @@
 import * as action from "@/actions";
 import { NextRequest, NextResponse } from "next/server";
+import { Webhook$inboundSchema } from "shippo";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -40,6 +41,7 @@ async function handleArt(email:string, artId:string) {
   });
 }
 
+//Handle Pruchase Confirmation
 async function emailOrderConfirmation (email: string, name:string){
   await action.sendOrderConfirmation ({
     email:email,
@@ -47,30 +49,10 @@ async function emailOrderConfirmation (email: string, name:string){
   });
 }
 
-// const emailConfirmation = async () =>{
-// try {
-// //  With above info :
-// // 1) Email confirmation to Jess & Me & Client
-// }
-// catch {
+// async function callShippoApi (){
+//   -> Get data from Webhook
+//   -> Call Api endpoint 
 
-// }
-// }
-
-// const getShippingInfo = async () => {
-//     try {
-//  // API  CALL to Shippo for tag & tracking number
-//  // Api in seperate endpoint
-
-//     }
-//     catch {
-
-//     }
-// }
-
-// const shippingConfirmation = async () => {
-//    // API CALL:  Tag emailed to Jess & Tracking number email to client
-//    // Api in seperate endpoint
 // }
 
 export const config = {
@@ -123,6 +105,8 @@ export async function POST(request: NextRequest) {
         await handleClient(receiptEmail || "", artId, shipping);
         await handleArt (receiptEmail ||"", artId);
         await emailOrderConfirmation (receiptEmail || "", name || "");
+        // await callShippoApi ();
+      
 
         break;
       }
