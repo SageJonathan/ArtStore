@@ -48,6 +48,9 @@ async function emailOrderConfirmation (email: string, name:string){
     name: name,
   });
 }
+async function callShippoApi(){
+  await action.createAddress()
+}
 
 // async function callShippoApi (){
 //   -> Get data from Webhook
@@ -105,6 +108,7 @@ export async function POST(request: NextRequest) {
         await handleClient(receiptEmail || "", artId, shipping);
         await handleArt (receiptEmail ||"", artId);
         await emailOrderConfirmation (receiptEmail || "", name || "");
+        await callShippoApi()
         // await callShippoApi ();
       
 
