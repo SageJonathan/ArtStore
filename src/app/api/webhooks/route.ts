@@ -1,4 +1,3 @@
-// import { db } from "@/app/db";
 import * as action from "@/actions";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -8,8 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 const endpointSecret = process.env.WEBHOOK_SECRET;
 
-
-
+// Handle Client Database
 async function handleClient(email: string, artId: string, shipping: Stripe.PaymentIntent.Shipping | null) {
   const emailExists = await action.verifyClientData({ email });
 
@@ -34,16 +32,14 @@ async function handleClient(email: string, artId: string, shipping: Stripe.Payme
   }
 }
 
+// Handle Art Database
+async function handleArt(email:string, artId:string) {
+  await action.paintingsUpdate({
+    email: email,
+    artPieceId: parseInt(artId, 10),
+  });
+}
 
-// const updateArtStock = async () =>{
-//     try {
-// // update inStock to false
-// // Add client ID
-//     }
-//     catch {
-
-//     }
-// }
 
 // const emailConfirmation = async () =>{
 // try {
@@ -114,15 +110,11 @@ export async function POST(request: NextRequest) {
           `PaymentIntent for ${paymentIntent.amount} was successful.`
         );
         const shipping = paymentIntent.shipping;
-        // console.log("Shipping Info:", shipping);
         const receiptEmail = paymentIntent.receipt_email;
-        // console.log("Receipt Email:", receiptEmail);
-        // const meta = paymentIntent.metadata;
         const artId = paymentIntent.metadata.artId;
-        // console.log(artId);
-        // console.log(meta);
-
+    
         await handleClient(receiptEmail || "", artId, shipping);
+        await handleArt (receiptEmail ||"", artId)
 
         break;
       }

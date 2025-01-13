@@ -70,7 +70,6 @@ export async function createClient(clientData: newClientData): Promise<newClient
   });
 }
 
-
 export async function updateClient (clientData: existingClientData): Promise<newClientData> {
     const {
         email,
