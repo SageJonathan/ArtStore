@@ -19,7 +19,7 @@ async function handleClient(email: string, artId: string, shipping: Stripe.Payme
   } else {
     await action.handleClientData({
       fullName: shipping?.name || "",
-      email, 
+      email: email,
       mobileNumber: shipping?.phone || null, 
       city: shipping?.address?.city || "", 
       country: shipping?.address?.country || "", 
@@ -40,6 +40,12 @@ async function handleArt(email:string, artId:string) {
   });
 }
 
+async function emailOrderConfirmation (email: string, name:string){
+  await action.sendOrderConfirmation ({
+    email:email,
+    name: name,
+  });
+}
 
 // const emailConfirmation = async () =>{
 // try {
@@ -112,9 +118,11 @@ export async function POST(request: NextRequest) {
         const shipping = paymentIntent.shipping;
         const receiptEmail = paymentIntent.receipt_email;
         const artId = paymentIntent.metadata.artId;
+        const name = paymentIntent.shipping?.name
     
         await handleClient(receiptEmail || "", artId, shipping);
-        await handleArt (receiptEmail ||"", artId)
+        await handleArt (receiptEmail ||"", artId);
+        await emailOrderConfirmation (receiptEmail || "", name || "");
 
         break;
       }
