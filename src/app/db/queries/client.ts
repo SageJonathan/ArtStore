@@ -5,16 +5,7 @@ export type clientEmail = {
 }
 
 export type newClientData = {
-  fullName: string;
-  email: string;
-  mobileNumber: string | null;
-  city: string;
-  country: string;
-  line1: string;
-  line2: string | null;
-  postalCode: string;
-  stateOrProvince: string;
-  artPieces?: { id: number }[];
+
 };
 
 export type existingClientData = {

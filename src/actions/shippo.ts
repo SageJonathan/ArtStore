@@ -1,5 +1,5 @@
 'use server'
-
+import * as action from '@/actions';
 import {Shippo,AddressCreateRequest, ParcelCreateRequest, WeightUnitEnum, DistanceUnitEnum,ServiceLevelUPSEnum,LabelFileTypeEnum} from 'shippo'; 
 
 
@@ -13,14 +13,13 @@ interface CustomerAdress {
     line2: string | undefined;
     postalCode: string;
     stateOrProvince: string;
-    artPieces?: { id: number }[];
-    
+    artId?: number;
 }
 
 const apiKeyHeader = process.env.SHIPPO_API_TOKEN;
 const shippo = new Shippo({apiKeyHeader});
 
-export async function createLabel(cutomeradress: CustomerAdress) {
+export async function createLabel(cutomeradress:CustomerAdress) {
     const {
         fullName,
         email,
@@ -31,8 +30,21 @@ export async function createLabel(cutomeradress: CustomerAdress) {
         line2,
         postalCode,
         stateOrProvince,
-        artPieces,
+        artId,
       } = cutomeradress;
+
+     const artPiece = await action.getPaintingShippingData({ 
+        artPieceId: artId!, 
+        email: email 
+      })
+            // Prevent TS errors from returnd object 
+      if (!artPiece) {
+        console.error('Art piece not found or invalid for the given client.');
+        return;  
+      }
+    
+      const {weight, size } = artPiece;
+    
 
     const addressFrom: AddressCreateRequest = {
         name: "Louise Guay",
@@ -61,7 +73,7 @@ export async function createLabel(cutomeradress: CustomerAdress) {
         width: "5",
         height: "5",
         distanceUnit: DistanceUnitEnum.In,
-        weight: "2",
+        weight: weight,
         massUnit: WeightUnitEnum.Lb
     };
 

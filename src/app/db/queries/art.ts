@@ -19,7 +19,6 @@ export async function displayArt(): Promise<ArtWithData[]> {
   });
 }
 
-
 export async function updateInventory(artSold: ArtSold) {
   const { artPieceId, email } = artSold;
 
@@ -56,7 +55,16 @@ export async function updateInventory(artSold: ArtSold) {
   });
 }
 
-// export async function getArtShippingData(){
+export async function getArtShippingData(artSold: ArtSold) {
+  const { artPieceId, email } = artSold;
+// Include some verification 
+  const [artPiece, client] = await Promise.all([
+    db.artPiece.findUnique({ where: { id: artPieceId } }),
+    db.clientData.findUnique({ where: { email }, include: { artPieces: true } })
+  ]);
+  return artPiece && client?.artPieces.some((art) => art.id === artPieceId) ? artPiece : null;
+}
 
-// }
+
+
 

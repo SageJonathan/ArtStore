@@ -60,7 +60,7 @@ async function callShippoApi(email: string, artId: string, shipping: Stripe.Paym
     line2: shipping?.address?.line2 || undefined, 
     postalCode: shipping?.address?.postal_code || "", 
     stateOrProvince: shipping?.address?.state || "", 
-    artPieces: artId ? [{ id: parseInt(artId) }] : [],
+    artId: parseInt(artId,10),
   })
 }
 
@@ -100,7 +100,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Handle the event based on its type
     switch (event.type) {
       case "payment_intent.succeeded": {
         const paymentIntent = event.data.object;
@@ -127,6 +126,7 @@ export async function POST(request: NextRequest) {
       case "payment_method.attached": {
         const paymentMethod = event.data.object;
         console.log(`PaymentMethod ${paymentMethod.id} was attached.`);
+      //add to db for refund?
         break;
       }
       default:
