@@ -40,20 +40,30 @@ async function handleArt(email:string, artId:string) {
   });
 }
 
-//Handle Pruchase Confirmation
+//Handle Order Confirmation Email
 async function emailOrderConfirmation (email: string, name:string){
   await action.sendOrderConfirmation ({
     email:email,
     name: name,
   });
 }
-async function callShippoApi(){
-  await action.createLabel()
+
+// Hande Shipping Label & Tracking Number
+async function callShippoApi(email: string, artId: string, shipping: Stripe.PaymentIntent.Shipping | null){
+  await action.createLabel({
+    fullName: shipping?.name || "",
+    email: email,
+    mobileNumber: shipping?.phone || undefined, 
+    city: shipping?.address?.city || "", 
+    country: shipping?.address?.country || "", 
+    line1: shipping?.address?.line1 || "", 
+    line2: shipping?.address?.line2 || undefined, 
+    postalCode: shipping?.address?.postal_code || "", 
+    stateOrProvince: shipping?.address?.state || "", 
+    artPieces: artId ? [{ id: parseInt(artId) }] : [],
+  })
 }
 
-// async function callShippoApi (){
-//   -> Get data from Webhook
-// }
 
 export const config = {
   matcher: "/api/webhooks",
@@ -105,7 +115,7 @@ export async function POST(request: NextRequest) {
         await handleClient(receiptEmail || "", artId, shipping);
         await handleArt (receiptEmail ||"", artId);
         await emailOrderConfirmation (receiptEmail || "", name || "");
-        await callShippoApi()
+        await callShippoApi(receiptEmail || "", artId, shipping)
       
 
         break;

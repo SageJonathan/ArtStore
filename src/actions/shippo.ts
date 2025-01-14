@@ -3,40 +3,59 @@
 import {Shippo,AddressCreateRequest, ParcelCreateRequest, WeightUnitEnum, DistanceUnitEnum,ServiceLevelUPSEnum,LabelFileTypeEnum} from 'shippo'; 
 
 
-// On success, Call server actions to email label & tracking 
+interface CustomerAdress {
+    fullName: string;
+    email: string;
+    mobileNumber: string | undefined;
+    city: string;
+    country: string;
+    line1: string;
+    line2: string | undefined;
+    postalCode: string;
+    stateOrProvince: string;
+    artPieces?: { id: number }[];
+    
+}
 
 const apiKeyHeader = process.env.SHIPPO_API_TOKEN;
 const shippo = new Shippo({apiKeyHeader});
 
-export async function createLabel() {
+export async function createLabel(cutomeradress: CustomerAdress) {
+    const {
+        fullName,
+        email,
+        mobileNumber,
+        city,
+        country,
+        line1,
+        line2,
+        postalCode,
+        stateOrProvince,
+        artPieces,
+      } = cutomeradress;
+
     const addressFrom: AddressCreateRequest = {
         name: "Louise Guay",
-        company: "Louise Guay",
-        street1: "123 Sample St", // Add valid address
+        street1: "72 Gerin-lajoie",
         city: "Coaticook",
         state: "QC",
         zip: "J1A 1R4",
         country: "CA",
-        phone: "+ 888 888 8888", // Add ? number
-        email: "shippotle@shippo.com", // Add ? number
+        email: "dev@sagecodes.tech", 
     };
 
-
-    // Add Dynamic Data
     const addressTo: AddressCreateRequest = {
-        name: "Mr Hippo",
-        company: "",
-        street1: "618 2Ave NW",
-        street2: "205",
-        city: "Calgary",
-        state: "AB",
-        zip: "T2N0E1",
-        country: "CA",
-        phone: "+1 555 341 9393",
-        email: "mrhippo@shippo.com",
-        metadata: "Hippos don't lie",
+        name: fullName,
+        street1: line1,
+        street2: line2 ,
+        city: city,
+        state: stateOrProvince,
+        zip: postalCode,
+        country: country,
+        phone: mobileNumber,
+        email: email,
     };
-
+// Comes from DB... 
     const parcel: ParcelCreateRequest = {
         length: "5",
         width: "5",
@@ -81,5 +100,5 @@ export async function createLabel() {
         console.error('No rates available for this shipment.');
     }
 }
-createLabel()
+
 
