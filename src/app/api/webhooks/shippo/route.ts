@@ -1,4 +1,16 @@
 import { NextResponse } from "next/server";
+import * as actions from '@/actions';
+
+
+async function emailClientTracking (trackingNumber:string, trackingUrl:string){
+  await actions.sendTrackingNumber({
+    trackingNumber,trackingUrl})
+}
+
+async function emailShipperLabel(labelLink:string) {
+  await actions.sendShippingLabel({labelLink})
+}
+
 
 export async function POST(request: Request) {
   try {
@@ -6,16 +18,14 @@ export async function POST(request: Request) {
 
     switch (responseBody.event) {
       case 'transaction_created':
-        console.log('Transaction ID: ', responseBody.data.object_id);
-        console.log('Tracking Status: ', responseBody.data.tracking_status);
-        console.log('Tracking URL Provider: ', responseBody.data.tracking_url_provider);
-        console.log('ETA: ', responseBody.data.eta);
+  
+        const labelLink = responseBody.data.label_url;
+        const trackingNumber= responseBody.data.tracking_number;
+        const trackingUrl= responseBody.data.tracking_url_provider;
 
-        //Send trcacking number & url to cleint 
+        await emailClientTracking(trackingNumber,trackingUrl)
+        await emailShipperLabel(labelLink)
 
-        // Send label to Jess & me
-
-        
         break;
       default:
         console.log('Default Response body', responseBody);

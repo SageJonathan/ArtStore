@@ -1,7 +1,7 @@
 'use server'
 
-import { createClient,updateClient,checkClient } from '@/app/db/queries/client';
-import { newClientData,existingClientData,clientEmail } from '@/app/db/queries/client';
+import { createClient,updateClient,checkClient} from '@/app/db/queries/client';
+import { newClientData,existingClientData,clientEmail} from '@/app/db/queries/client';
 
 
 export async function verifyClientData (data:clientEmail){
@@ -18,5 +18,3 @@ export async function updateClientData(data:existingClientData){
     const updatedClient = await updateClient(data);
     return updateClient;
 }
-
-

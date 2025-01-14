@@ -102,7 +102,20 @@ export async function createLabel(cutomeradress:CustomerAdress) {
             labelFileType: LabelFileTypeEnum.Pdf,
             async: false,
         });
-    
+
+    //   console.log(`Tracking Number: ${transaction.trackingNumber}`);
+    //     console.log(`Label URL: ${transaction.labelUrl}`);
+    //     console.log(`pbject id ${transaction.objectId}`)
+            const trackingNumber= transaction.trackingNumber;
+            const trackingUrl = transaction.trackingUrlProvider;
+
+        // await action.storeShippingDeatils({
+        //     trackingNumber, trackingUrl, email, artId, fullName
+        // })
+
+
+
+
 
         // const result = await shippo.webhooks.createWebhook({
         //     event: "transaction_created", // The event type you want to listen to
@@ -116,14 +129,3 @@ export async function createLabel(cutomeradress:CustomerAdress) {
     }
 }
 
-
-
-
-// Refractor conosole to extracing data. Then pass data to 2 server calls (Email client & Email Jess & Me)
-        //OR set up webhook and take care of logic there = Better and more module 
-        // console.log(`Tracking URL: ${transaction.trackingUrlProvider}`);
-        // console.log(`Tracking Number: ${transaction.trackingNumber}`);
-        // console.log(`Label URL: ${transaction.labelUrl}`);
-        // const trackingNumber=transaction.trackingNumber
-        // const trackingUrl= transaction.trackingUrlProvider
-        // const labelUrl= transaction.labelUrl
