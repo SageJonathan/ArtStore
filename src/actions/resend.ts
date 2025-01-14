@@ -12,7 +12,7 @@ export async function sendOrderConfirmation({ email, name}: { email: string, nam
       <h1>Hello ${name},</h1>
       <p>Your order is on its way! We'll send you another email with the tracking number once it's available.</p>
       <p>Thank you for supporting Louise Guay. We are thrilled to share her art with you.</p>
-      <img src="/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
+      <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
     </div>
   `;
  
