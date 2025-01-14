@@ -104,14 +104,26 @@ export async function createLabel(cutomeradress:CustomerAdress) {
         });
     
 
-        // Refractor conosole to extracing data. Then pass data to 2 server calls (Email client & Email Jess & Me)
-        //OR set up webhook and take care of logic there = Better and more module 
-        console.log(`Tracking URL: ${transaction.trackingUrlProvider}`);
-        console.log(`Tracking Number: ${transaction.trackingNumber}`);
-        console.log(`Label URL: ${transaction.labelUrl}`);
+        // const result = await shippo.webhooks.createWebhook({
+        //     event: "transaction_created", // The event type you want to listen to
+        //     url: "http://localhost:3000/api/webhooks/shippo", // The URL where Shippo will send the webhook notifications
+        //     active: true, // Whether the webhook is active
+        //     isTest: false, // Whether this is a test webhook
+        //   });
+
     } else {
         console.error('No rates available for this shipment.');
     }
 }
 
 
+
+
+// Refractor conosole to extracing data. Then pass data to 2 server calls (Email client & Email Jess & Me)
+        //OR set up webhook and take care of logic there = Better and more module 
+        // console.log(`Tracking URL: ${transaction.trackingUrlProvider}`);
+        // console.log(`Tracking Number: ${transaction.trackingNumber}`);
+        // console.log(`Label URL: ${transaction.labelUrl}`);
+        // const trackingNumber=transaction.trackingNumber
+        // const trackingUrl= transaction.trackingUrlProvider
+        // const labelUrl= transaction.labelUrl

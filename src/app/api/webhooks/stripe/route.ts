@@ -66,7 +66,7 @@ async function callShippoApi(email: string, artId: string, shipping: Stripe.Paym
 
 
 export const config = {
-  matcher: "/api/webhooks",
+  matcher: "/api/webhooks/stripe",
   api: {
     bodyParser: false, // Disable Next.js body parser for raw body handling
   },
