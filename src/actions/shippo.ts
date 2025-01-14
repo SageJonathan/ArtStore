@@ -43,7 +43,7 @@ export async function createLabel(cutomeradress:CustomerAdress) {
         return;  
       }
     
-      const {weight, size } = artPiece;
+      const {length, height,shippingWeight,shippingWidth } = artPiece;
     
 
     const addressFrom: AddressCreateRequest = {
@@ -67,13 +67,13 @@ export async function createLabel(cutomeradress:CustomerAdress) {
         phone: mobileNumber,
         email: email,
     };
-// Comes from DB... 
+
     const parcel: ParcelCreateRequest = {
-        length: "5",
-        width: "5",
-        height: "5",
+        length:length,
+        width: shippingWidth,
+        height: height,
         distanceUnit: DistanceUnitEnum.In,
-        weight: weight,
+        weight: shippingWeight,
         massUnit: WeightUnitEnum.Lb
     };
 
@@ -105,6 +105,7 @@ export async function createLabel(cutomeradress:CustomerAdress) {
     
 
         // Refractor conosole to extracing data. Then pass data to 2 server calls (Email client & Email Jess & Me)
+        //OR set up webhook and take care of logic there = Better and more module 
         console.log(`Tracking URL: ${transaction.trackingUrlProvider}`);
         console.log(`Tracking Number: ${transaction.trackingNumber}`);
         console.log(`Label URL: ${transaction.labelUrl}`);

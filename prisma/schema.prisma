@@ -14,19 +14,28 @@ datasource db {
 }
 
 model ArtPiece {
-  id              Int     @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   title           String
   medium          String
   price           Float
   isVertical      Boolean
   size            String
-  weight          String
+  weight          String   
+  height          String   
+  length          String   
+  //Shipping height
+  //shipping length 
+  ///  Modify the above__ Best to get actualt numbers for those & shipoing width/weight
+  shippingWidth   String   
+  shippingWeight  String   
   inStock         Boolean @default(true)
   imageUrlFront   String
   imageUrlBack    String
   clientId        Int?
   client          ClientData? @relation(fields: [clientId], references: [id])
 }
+
+
 
 model ClientData {
   id                Int    @id @default(autoincrement())

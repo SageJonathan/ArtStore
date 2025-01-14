@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 // weight in lbs
+// size in inches
 async function main() {
   const artPiecesData = [
     {
@@ -15,6 +16,10 @@ async function main() {
       imageUrlFront: '/art1.png',
       imageUrlBack: '/artback1.png', 
       clientId: null,
+      height: '6.5',
+      length: '10.5',
+      shippingWidth: '3',
+      shippingWeight: '3.8', 
     },
     {
       title: 'Charme vieilot',
@@ -27,6 +32,10 @@ async function main() {
       imageUrlFront: '/art2.png',
       imageUrlBack: '/artback2.png', 
       clientId: null,
+      height: '18.5',
+      length: '22.5',
+      shippingWidth: '3',
+      shippingWeight: '7',
     },
     {
       title: 'Féérie hivernale',
@@ -39,6 +48,10 @@ async function main() {
       imageUrlFront: '/art3.png',
       imageUrlBack: '/artback3.png',  
       clientId: null,
+      height: '14',
+      length: '18',
+      shippingWidth: '3',
+      shippingWeight: '6.6',
     },
     {
       title: 'Féérie hivernale',
@@ -51,6 +64,10 @@ async function main() {
       imageUrlFront: '/art4.png',
       imageUrlBack: '/artback4.png',
       clientId: null,
+      height: '12',
+      length: '17.5',
+      shippingWidth: '3',
+      shippingWeight: '5.2',
     },
     {
       title: 'Les rayons du soleil couchent',
@@ -63,6 +80,10 @@ async function main() {
       imageUrlFront: '/art5.png',
       imageUrlBack: '/artback5.png',
       clientId: null,
+      height: '12',
+      length: '14',
+      shippingWidth: '3',
+      shippingWeight: '4.8',
     },
     {
       title: 'Détente ',
@@ -75,6 +96,10 @@ async function main() {
       imageUrlFront: '/art6.png',
       imageUrlBack: '/artback6.png',
       clientId: null,
+      height: '15',
+      length: '20',
+      shippingWidth: '3',
+      shippingWeight: '6',
     },
     {
       title: 'Refuge',
@@ -87,6 +112,10 @@ async function main() {
       imageUrlFront: '/art7.png',
       imageUrlBack: '/artback7.png',  
       clientId: null,
+      height: '20',
+      length: '25',
+      shippingWidth: '3',
+      shippingWeight: '7',
     },
     {
       title: "Un regard vers l'avenir ",
@@ -99,6 +128,10 @@ async function main() {
       imageUrlFront: '/art8.png',
       imageUrlBack: '/artback8.png',  
       clientId: null,
+      height: '19',
+      length: '25',
+      shippingWidth: '3',
+      shippingWeight: '7',
     },
     {
       title: 'Luminosité',
@@ -111,6 +144,10 @@ async function main() {
       imageUrlFront: '/art9.png',
       imageUrlBack: '/artback9.png', 
       clientId: null,
+      height: '15',
+      length: '25',
+      shippingWidth: '3',
+      shippingWeight: '6.4',
     },
     {
       title: 'Éloge a la nature ',
@@ -123,6 +160,10 @@ async function main() {
       imageUrlFront: '/art10.png',
       imageUrlBack: '/artback10.png', 
       clientId: null,
+      height: '22.5',
+      length: '26.5',
+      shippingWidth: '3',
+      shippingWeight: '8.2',
     },
     {
       title: "L'écho d'automne qui résonne",
@@ -135,6 +176,10 @@ async function main() {
       imageUrlFront: '/art11.png',
       imageUrlBack: '/artback11.png',  
       clientId: null,
+      height: '25',
+      length: '29',
+      shippingWidth: '3',
+      shippingWeight: '8.6',
     },
     {
       title: 'Les merveilles de la nature',
@@ -147,6 +192,10 @@ async function main() {
       imageUrlFront: '/art12.png',
       imageUrlBack: '/artback12.png',  
       clientId: null,
+      height: '25',
+      length: '33',
+      shippingWidth: '3',
+      shippingWeight: '10.8',
     },
     {
       title: 'Ressource Chalevoix',
@@ -159,6 +208,10 @@ async function main() {
       imageUrlFront: '/art13.png',
       imageUrlBack: '/artback13.png',  
       clientId: null,
+      height: '22',
+      length: '28',
+      shippingWidth: '3',
+      shippingWeight: '7.4', 
     },
     {
       title: 'Un souvenir de jeunesse',
@@ -171,9 +224,13 @@ async function main() {
       imageUrlFront: '/art14.png',
       imageUrlBack: '/artback14.png',  
       clientId: null,
+      height: '19',
+      length: '23',
+      shippingWidth: '3',
+      shippingWeight: '7.2', 
     },
-];
-
+  ];
+  
 
   for (const artPieceData of artPiecesData) {
     await prisma.artPiece.create({
