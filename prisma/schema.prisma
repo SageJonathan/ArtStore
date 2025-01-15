@@ -51,6 +51,7 @@ model ClientData {
   artPieces        ArtPiece[] 
 }
 
+//Drop Orderdata completly
 model orderData {
   fullName String
   email String

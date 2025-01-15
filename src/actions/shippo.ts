@@ -1,7 +1,7 @@
 'use server'
 import * as action from '@/actions';
+import { error } from 'console';
 import {Shippo,AddressCreateRequest, ParcelCreateRequest, WeightUnitEnum, DistanceUnitEnum,ServiceLevelUPSEnum,LabelFileTypeEnum} from 'shippo'; 
-
 
 interface CustomerAdress {
     fullName: string;
@@ -101,38 +101,17 @@ export async function createLabel(cutomeradress:CustomerAdress) {
             servicelevelToken: ServiceLevelUPSEnum.UpsStandard.valueOf(), 
             labelFileType: LabelFileTypeEnum.Pdf,
             async: false,
+            metadata: JSON.stringify({
+                email: email,
+                name: fullName,
+            }),
         });
-
-        if (!transaction || !transaction.trackingNumber || !transaction.trackingUrlProvider|| !fullName|| !artId) {
-            console.error('Art piece not found or invalid for the given client.');
+        if (!transaction) {
+            console.error('Transaction Failed');
             return;
         }
-            const trackingNumber= transaction.trackingNumber;
-            const trackingUrl = transaction.trackingUrlProvider;
-
-
-            console.log('DE BUG ORDER CREATION___________________________________________');
-            console.log(trackingNumber, "TRACKING #");
-            console.log(trackingUrl, "TRACKING URL ")
-            console.log(fullName,"FULLNAME")
-            console.log(artId, "ART ID")
-            console.log(artPiece.id,"ART PIECE.ID")
-            console.log("__________________________________________________________")
-
-        await action.storeShippingDetails({
-            trackingNumber, trackingUrl, email, fullName,artId
-        })
-
+      
     } else {
-        console.error('No rates available for this shipment.');
+        console.error(error);
     }
 }
-
-
-
-  // const result = await shippo.webhooks.createWebhook({
-        //     event: "transaction_created", // The event type you want to listen to
-        //     url: "http://localhost:3000/api/webhooks/shippo", // The URL where Shippo will send the webhook notifications
-        //     active: true, // Whether the webhook is active
-        //     isTest: false, // Whether this is a test webhook
-        //   });

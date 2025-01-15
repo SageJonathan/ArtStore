@@ -1,8 +1,6 @@
 'use server'
 
-import * as actions from '@/actions';
 import { Resend } from 'resend';
-
 
 const resend = new Resend(process.env.RESEND_API_KEY!); 
 
@@ -16,14 +14,13 @@ export async function sendOrderConfirmation({ email, name}: { email: string, nam
       <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
     </div>
   `;
- 
+
   // const emails = [email, 'sagejonathan.tesol@gmail.com', 'jessica.sage@usherbrooke.ca'];
   try {
     const { data, error } = await resend.emails.send({
       from: 'dev@sagecodes.tech',  
       to: email,
       subject: 'Art Order Confirmation',
-      // Add gmail & Jess mail for confirmation on our end
       html: emailHtml,
     });
 
@@ -39,57 +36,42 @@ export async function sendOrderConfirmation({ email, name}: { email: string, nam
   }
 }
 
-// export async function sendTrackingNumber({ trackingNumber, trackingUrl }: { trackingNumber: string; trackingUrl: string }){
+export async function sendTrackingNumber({ trackingNumber, trackingUrl, fullName, email }: { trackingNumber: string; trackingUrl: string; fullName :string; email: string;}){
 
-//   const client = await actions.getClientDataFromOrder({
-//     trackingNumber,
-//     trackingUrl
-//   });
+  const emailHtml = `
+   <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+    <h1>Hello, ${fullName}!</h1>
+    <p>Your order is on its way! You can track it using the tracking number below:</p>
+    <p><strong>Tracking Number:</strong> ${trackingNumber}</p>
+    <p><strong>Track your order here:</strong> <a href="${trackingUrl}" target="_blank">${trackingUrl}</a></p>
+    <p>Thank you for supporting Louise Guay. We are thrilled to share her art with you.</p>
+    <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
+  </div>
+`;
 
+try {
+  const { data, error } = await resend.emails.send({
+    from: 'dev@sagecodes.tech',  
+    to: email,
+    subject: 'Art Order Tracking Number',
+    html: emailHtml,
+  });
 
-//   if (!client) {
-//     console.error('Art piece not found or invalid for the given client.');
-//     return;
-//   }
-  
-//   const { name, email } = client;
-//   const emails = [email, 'sagejonathan.tesol@gmail.com']
+  if (error) {
+    console.error({ error });
+    throw new Error('Failed to send email');
+  }
 
-//   const emailHtml = `
-//    <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-//     <h1>Hello, ${name}!</h1>
-//     <p>Your order is on its way! You can track it using the tracking number below:</p>
-//     <p><strong>Tracking Number:</strong> ${trackingNumber}</p>
-//     <p><strong>Track your order here:</strong> <a href="${trackingUrl}" target="_blank">${trackingUrl}</a></p>
-//     <p>Thank you for supporting Louise Guay. We are thrilled to share her art with you.</p>
-//     <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
-//   </div>
-// `;
-
-// try {
-//   const { data, error } = await resend.emails.send({
-//     from: 'dev@sagecodes.tech',  
-//     to: emails,
-//     subject: 'Art Order Tracking Number',
-//     html: emailHtml,
-//   });
-
-//   if (error) {
-//     console.error({ error });
-//     throw new Error('Failed to send email');
-//   }
-
-//   return data;
-// } catch (error) {
-//   console.error('Error sending email:', error);
-//   throw new Error('Error sending email');
-// }
-// }
-
+  return data;
+} catch (error) {
+  console.error('Error sending email:', error);
+  throw new Error('Error sending email');
+}
+}
 
 export async function sendShippingLabel (labelLink: { labelLink: string; }){
 
-  // const emails = ['jessica.sage@usherbrooke.ca','sagejonathan.tesol@gmail.com'];
+  // const emails = 'jessica.sage@usherbrooke.ca'
 
   const emailHtml = `
   <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
@@ -114,7 +96,7 @@ export async function sendShippingLabel (labelLink: { labelLink: string; }){
       subject: 'Art Order Shipping Label',
       html: emailHtml,
     });
-
+console.log("LABEL SENT----------------------------- ")
     if (error) {
       console.error({ error });
       throw new Error('Failed to send email');
