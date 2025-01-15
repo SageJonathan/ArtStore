@@ -57,7 +57,6 @@ export async function updateInventory(artSold: ArtSold) {
 
 export async function getArtShippingData(artSold: ArtSold) {
   const { artPieceId, email } = artSold;
-// Include some verification 
   const [artPiece, client] = await Promise.all([
     db.artPiece.findUnique({ where: { id: artPieceId } }),
     db.clientData.findUnique({ where: { email }, include: { artPieces: true } })

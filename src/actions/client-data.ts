@@ -16,5 +16,5 @@ export async function handleClientData(data: newClientData) {
 
 export async function updateClientData(data:existingClientData){
     const updatedClient = await updateClient(data);
-    return updateClient;
+    return updatedClient;
 }

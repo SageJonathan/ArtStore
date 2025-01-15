@@ -52,10 +52,11 @@ model ClientData {
 }
 
 model orderData {
-  id Int @id @default(autoincrement())
   fullName String
   email String
-  trackingUrl String
-  trackingNumber String
-  artId Int
+  trackingUrl String  @unique
+  trackingNumber String @unique
+  artId            Int
 }
+
+

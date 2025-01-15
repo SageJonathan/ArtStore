@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
-import * as actions from '@/actions';
+// import * as actions from '@/actions';
 
 
-async function emailClientTracking (trackingNumber:string, trackingUrl:string){
-  await actions.sendTrackingNumber({
-    trackingNumber,trackingUrl})
-}
+// async function emailClientTracking (trackingNumber:string, trackingUrl:string){
+//   await actions.sendTrackingNumber({
+//     trackingNumber,trackingUrl})
+// }
 
-async function emailShipperLabel(labelLink:string) {
-  await actions.sendShippingLabel({labelLink})
-}
+// async function emailShipperLabel(labelLink:string) {
+//   await actions.sendShippingLabel({labelLink})
+// }
 
 
 export async function POST(request: Request) {
@@ -23,8 +23,13 @@ export async function POST(request: Request) {
         const trackingNumber= responseBody.data.tracking_number;
         const trackingUrl= responseBody.data.tracking_url_provider;
 
-        await emailClientTracking(trackingNumber,trackingUrl)
-        await emailShipperLabel(labelLink)
+
+console.log('Label Link:', labelLink);
+console.log('Tracking Number:', trackingNumber);
+console.log('Tracking URL:', trackingUrl);
+
+        // await emailClientTracking(trackingNumber,trackingUrl)
+        // await emailShipperLabel(labelLink)
 
         break;
       default:
