@@ -35,6 +35,10 @@ export default function CartPage() {
     setActiveImage(activeImage === "front" ? "back" : "front");
   };
 
+  const handleTaxChange = (tax: number) => {
+    setTaxRate(tax);
+  };
+
   useEffect(() => {
     const shippingCost = 50; 
     const validPrice = price || 0; 
@@ -42,13 +46,8 @@ export default function CartPage() {
     const calculatedTax = validPrice * validTaxRate;
     const newTotalCost = validPrice + calculatedTax + shippingCost;
     setTotalCost(newTotalCost > 0 ? newTotalCost : 0); 
-  }, [price, taxRate]);
+  }, [taxRate]);
   
-
-  const handleTaxChange = (tax: number) => {
-    setTaxRate(tax);
-  };
-
   const router = useRouter();
 
 
