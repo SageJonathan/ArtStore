@@ -7,29 +7,37 @@
 
 import { useSearchParams,useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import * as actions from "@/actions";
 import Image from "next/image";
 import TaxesForm from "@/components/cart/taxesForm";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
+
 export default function CartPage() {
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
-  const [taxRate, setTaxRate] = useState<number>(0); 
-  const [totalCost, setTotalCost] = useState<number>(0); 
-  
+  const [taxRate, setTaxRate] = useState<number>(0);
+  const [shippingCost, setShippingCost] = useState<number | null>(0);
+  const [totalCost, setTotalCost] = useState<number>(0);
+  const [country, setCountry] = useState<string>("");
+  const [stateOrProvince, setStateOrProvince] = useState<string>("");
+  const [postalCode, setPostalCode] = useState<string>("");
+
   const searchParams = useSearchParams();
-  const id = searchParams.get('id');
+  const id = searchParams.get("id");
   const title = searchParams.get("title");
   const size = searchParams.get("size");
   const medium = searchParams.get("medium");
   const price = parseFloat(searchParams.get("price") || "0");
   const isVertical = searchParams.get("isVertical") === "true";
-  // const weight = searchParams.get("weight");
-  // const inStock = searchParams.get("inStock") === "true";
+  const shippingWeight = searchParams.get("shippingWeight");
+  const shippingWidth = searchParams.get("shippingWidth");
+  const length = searchParams.get("length");
+  const height = searchParams.get("height");
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
-  // const clientId = searchParams.get("clientId");
-  const width = isVertical ? 350 : 800;
-  const height = isVertical ? 350 : 800;
+
+  const imgWidth = isVertical ? 350 : 800;
+  const imgHeight = isVertical ? 350 : 800;
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
@@ -39,17 +47,37 @@ export default function CartPage() {
     setTaxRate(tax);
   };
 
-  useEffect(() => {
-    const shippingCost = 50; 
-    const validPrice = price || 0; 
-    const validTaxRate = taxRate || 0; 
-    const calculatedTax = validPrice * validTaxRate;
-    const newTotalCost = validPrice + calculatedTax + shippingCost;
-    setTotalCost(newTotalCost > 0 ? newTotalCost : 0); 
-  }, [taxRate]);
-  
-  const router = useRouter();
+  const handleShippingChange = (newCountry: string, newStateOrProvince: string, newPostalCode: string) => {
+    setCountry(newCountry);
+    setStateOrProvince(newStateOrProvince);
+    setPostalCode(newPostalCode);
+  };
 
+    const estimateData = {
+  country,
+    stateOrProvince,
+        postalCode,
+     length: length,
+    height: height,
+     shippingWeight: shippingWeight,
+     shippingWidth: shippingWidth,
+   };
+  
+
+//    async function getShippingRate  (estimateData) {
+//      await actions.shippingRate (estimateData);
+//  }
+
+  useEffect(() => {
+    const shippingRate = shippingCost || 0;
+    const validPrice = price || 0;
+    const validTaxRate = taxRate || 0;
+    const calculatedTax = validPrice * validTaxRate;
+    const newTotalCost = validPrice + calculatedTax + shippingRate;
+    setTotalCost(newTotalCost > 0 ? newTotalCost : 0);
+  }, [taxRate]);
+
+  const router = useRouter();
 
   return (
     <div className="flex flex-col m-10">
@@ -75,7 +103,7 @@ export default function CartPage() {
               />
             </div>
           </div>
-          <div className="ml-12 lg:ml-0 ">
+          <div className="ml-12 lg:ml-0">
             <Image
               src={
                 activeImage === "front"
@@ -83,8 +111,8 @@ export default function CartPage() {
                   : imageUrlBack || "/errorImg.png"
               }
               alt="Main Img"
-              width={width}
-              height={height}
+              width={imgWidth}
+              height={imgHeight}
             />
           </div>
         </div>
@@ -96,28 +124,30 @@ export default function CartPage() {
               <p>Medium: {medium}</p>
               <p>Size: {size}</p>
             </div>
-            <TaxesForm onTaxChange={handleTaxChange} />
+            <TaxesForm
+              onTaxChange={handleTaxChange}
+              onShippingChange={handleShippingChange}
+            />
             <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Cost:</h1>
               <p>Base: {price.toFixed(2)}</p>
               <p>Tax: {((price * taxRate) || 0).toFixed(2)}</p>
-              <p>Shipping Cost: 50.00</p>
+              <p>Shipping Cost: {shippingCost}</p>
               <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
             </div>
           </div>
           <div className="mb-1">
             <h1 className="font-bold mb-1">Payment</h1>
-
             <div className="block">
-                <button
-                  //  disabled={Add logic } 
+              <button
+                // disabled={Add logic }
                 className="bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
                 type="button"
                 onClick={() => {
                   const queryString = new URLSearchParams({
                     amount: totalCost.toFixed(2),
-                    id: id || '',
+                    id: id || "",
                   }).toString();
                   router.push(`/stripe-checkout?${queryString}`);
                 }}
@@ -130,7 +160,7 @@ export default function CartPage() {
                   className="pl-2"
                 />
               </button>
-              </div>
+            </div>
           </div>
         </div>
       </div>

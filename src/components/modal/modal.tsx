@@ -110,12 +110,15 @@ export default function ArtDetails({
             const queryString = new URLSearchParams({
               id: painting.id.toString(),
               title: painting.title,
-              description: painting.description,
               medium: painting.medium,
               price: painting.price.toString(),
               isVertical: painting.isVertical.toString(),
               size: painting.size,
-              weight: painting.weight,
+              // Refracrir to shipping prefixes on L/H
+              shippingWeight: painting.shippingWeight,
+              length: painting.length,
+              height: painting.height,
+              shippingWidth: painting.shippingWidth,
               inStock: painting.inStock.toString(),
               imageUrlFront: painting.imageUrlFront,
               imageUrlBack: painting.imageUrlBack,
