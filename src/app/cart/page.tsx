@@ -11,7 +11,6 @@ import { useSearchParams,useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import TaxesForm from "@/components/cart/taxesForm";
-import PaypalIcon from "@/app/assets/icons/paypal.png";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
 export default function CartPage() {
@@ -112,22 +111,10 @@ export default function CartPage() {
           <div className="mb-1">
             <h1 className="font-bold mb-1">Payment</h1>
 
-            <div className="flex flex-row gap-4">
-              <button
-                className="flex flex-row items-center justify-center bg-blue-200 border rounded-md px-2 text-lg"
-                id="stripe-payment"
-              >
-                <Image
-                  src={PaypalIcon}
-                  alt="PaypalIcon"
-                  width={80}
-                  height={80}
-                  className="pl-2"
-                />
-              </button>
+            <div className="block">
                 <button
                   //  disabled={Add logic } 
-                className="flex flex-row items-center justify-center bg-purple-200 border rounded-md px-2 text-lg"
+                className="bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
                 type="button"
                 onClick={() => {
