@@ -25,9 +25,7 @@ interface CustomerAdress {
 }
 
 interface CartRate {
-  // city: string;
   country: string;
-  // line1: string;
   postalCode: string;
   stateOrProvince: string;
   //Refractir to shipping L &  H
@@ -137,19 +135,19 @@ export async function createLabel(cutomeradress: CustomerAdress) {
   }
 }
 
-export async function shippingRate(estimateData: CartRate) {
-  //Refractor to shipping H & L
+export async function shippingRate(
+  estimateData: CartRate
+): Promise<number | null> {
   const {
-    // city,
     country,
     postalCode,
     stateOrProvince,
-    // line1,
     length,
     height,
     shippingWeight,
     shippingWidth,
   } = estimateData;
+
   const addressFrom: AddressCreateRequest = {
     name: "Louise Guay",
     street1: "72 Gerin-lajoie",
@@ -162,8 +160,6 @@ export async function shippingRate(estimateData: CartRate) {
 
   const addressTo: AddressCreateRequest = {
     name: "John Doe",
-    // street1: line1,
-    // city: city,
     state: stateOrProvince,
     zip: postalCode,
     country: country,
@@ -178,24 +174,40 @@ export async function shippingRate(estimateData: CartRate) {
     massUnit: WeightUnitEnum.Lb,
   };
 
-  const shipment = await shippo.shipments.create({
-    addressFrom: addressFrom,
-    addressTo: addressTo,
-    parcels: [parcel],
-    async: false,
-  });
-
-  // Added logic to reduce multiples created by shippo
-  if (shipment.rates && shipment.rates.length > 0) {
-    const uniqueRates = shipment.rates.filter(
-      (rate, index, self) =>
-        index ===
-        self.findIndex(
-          (r) => r.amount === rate.amount && r.provider === rate.provider
-        )
-    );
-    const cheapestRate = uniqueRates.reduce((prev, curr) => {
-      return parseFloat(prev.amount) < parseFloat(curr.amount) ? prev : curr;
+  try {
+    const shipment = await shippo.shipments.create({
+      addressFrom: addressFrom,
+      addressTo: addressTo,
+      parcels: [parcel],
+      async: false,
     });
+
+    if (shipment.rates && shipment.rates.length > 0) {
+      const uniqueRates = shipment.rates.filter(
+        (rate, index, self) =>
+          index ===
+          self.findIndex(
+            (r) => r.amount === rate.amount && r.provider === rate.provider
+          )
+      );
+
+      const sortedRates = uniqueRates.sort(
+        (a, b) => parseFloat(a.amount) - parseFloat(b.amount)
+      );
+
+      if (sortedRates.length > 1) {
+        const secondCheapestRate = sortedRates[1];
+        console.log(secondCheapestRate);
+        return parseFloat(secondCheapestRate.amount);
+      } else {
+        console.log(sortedRates[0]);
+        return parseFloat(sortedRates[0].amount);
+      }
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error fetching shipping rate:", error);
+    return null;
   }
 }

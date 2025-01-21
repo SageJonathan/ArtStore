@@ -1,17 +1,12 @@
 
-// // Get shipping through API && Display
-
-//payment button can only be clciked once drop down is completed***
-
 "use client";
 
-import { useSearchParams,useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import * as actions from "@/actions";
 import Image from "next/image";
 import TaxesForm from "@/components/cart/taxesForm";
 import StripeIcon from "@/app/assets/icons/stripe.png";
-
 
 export default function CartPage() {
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
@@ -47,26 +42,44 @@ export default function CartPage() {
     setTaxRate(tax);
   };
 
-  const handleShippingChange = (newCountry: string, newStateOrProvince: string, newPostalCode: string) => {
+  const handleShippingChange = (
+    newCountry: string,
+    newStateOrProvince: string,
+    newPostalCode: string
+  ) => {
     setCountry(newCountry);
     setStateOrProvince(newStateOrProvince);
     setPostalCode(newPostalCode);
   };
 
-    const estimateData = {
-  country,
-    stateOrProvince,
-        postalCode,
-     length: length,
-    height: height,
-     shippingWeight: shippingWeight,
-     shippingWidth: shippingWidth,
-   };
-  
+  async function getShippingRate(estimateData:any) {
+    try {
+      const rate = await actions.shippingRate(estimateData); 
+      if (rate) {
+        setShippingCost(rate); 
+      } else {
+        setShippingCost(100); 
+      }
+    } catch (error) {
+      console.error("Error fetching shipping rate:", error);
+      setShippingCost(100); 
+    }
+  }
 
-//    async function getShippingRate  (estimateData) {
-//      await actions.shippingRate (estimateData);
-//  }
+  useEffect(() => {
+    if (country && stateOrProvince && postalCode) {
+      const estimateData = {
+        country,
+        stateOrProvince,
+        postalCode,
+        length,
+        height,
+        shippingWeight,
+        shippingWidth,
+      };
+      getShippingRate(estimateData);
+    }
+  }, [postalCode]);
 
   useEffect(() => {
     const shippingRate = shippingCost || 0;
@@ -123,16 +136,19 @@ export default function CartPage() {
               <p>Title: {title}</p>
               <p>Medium: {medium}</p>
               <p>Size: {size}</p>
-            </div>
+            </div>               
             <TaxesForm
               onTaxChange={handleTaxChange}
               onShippingChange={handleShippingChange}
+              country={country}
+              stateOrProvince={stateOrProvince}
+              postalCode={postalCode}
             />
             <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Cost:</h1>
               <p>Base: {price.toFixed(2)}</p>
-              <p>Tax: {((price * taxRate) || 0).toFixed(2)}</p>
-              <p>Shipping Cost: {shippingCost}</p>
+              <p>Tax: {(price * taxRate || 0).toFixed(2)}</p>   
+              <p>Shipping Cost: {(shippingCost || 0).toFixed(2)}</p>
               <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
             </div>
           </div>
@@ -140,7 +156,7 @@ export default function CartPage() {
             <h1 className="font-bold mb-1">Payment</h1>
             <div className="block">
               <button
-                // disabled={Add logic }
+                disabled={shippingCost === 0}
                 className="bg-purple-200 border rounded-md px-2 text-lg"
                 id="paypal-payment"
                 type="button"
