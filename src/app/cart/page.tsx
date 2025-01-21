@@ -1,5 +1,3 @@
-// // This is checkout
-// //  Do we make a cart? Do we need one?
 
 // // Get shipping through API && Display
 
@@ -98,11 +96,11 @@ export default function CartPage() {
               <p>Title: {title}</p>
               <p>Medium: {medium}</p>
               <p>Size: {size}</p>
-              <p>Price: {price.toFixed(2)} CAD</p>
             </div>
             <TaxesForm onTaxChange={handleTaxChange} />
             <div className="mb-5 mt-5 leading-relaxed">
-              <h1 className="font-bold">Estimated Cost:</h1>
+              <h1 className="font-bold">Cost:</h1>
+              <p>Base: {price.toFixed(2)}</p>
               <p>Tax: {((price * taxRate) || 0).toFixed(2)}</p>
               <p>Shipping Cost: 50.00</p>
               <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
@@ -151,7 +149,7 @@ export default function CartPage() {
             <strong>Available for shipping within Canada and the USA</strong>
           </p>
           <p>
-            <strong>Shipping is handled exclusively through FedEx</strong>
+            <strong>Shipping is handled exclusively through UPS</strong>
           </p>
         </div>
       </div>
