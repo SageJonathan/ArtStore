@@ -16,6 +16,7 @@ async function main() {
       imageUrlFront: '/art1.png',
       imageUrlBack: '/artback1.jpg', 
       clientId: null,
+      // turn h & l to shipping height and shipping length
       height: '6.5',
       length: '10.5',
       shippingWidth: '3',

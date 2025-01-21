@@ -16,6 +16,20 @@ interface CustomerAdress {
     artId?: number;
 }
 
+interface CartRate {
+    city: string;
+    country: string;
+    line1: string;
+    postalCode: string;
+    stateOrProvince: string;
+    length: string;
+    height: string;
+    shippingWidth: string;
+    shippingWeight: string;
+
+    
+}
+
 const apiKeyHeader = process.env.SHIPPO_API_TOKEN;
 const shippo = new Shippo({apiKeyHeader});
 
@@ -114,4 +128,55 @@ export async function createLabel(cutomeradress:CustomerAdress) {
     } else {
         console.error(error);
     }
+}
+
+export async function shippingRate(estimateData: CartRate) {
+    const {city, country,postalCode,stateOrProvince,line1,length,height,shippingWeight,shippingWidth} = estimateData
+    const addressFrom: AddressCreateRequest = {
+        name: "Louise Guay",
+        street1: "72 Gerin-lajoie",
+        city: "Coaticook",
+        state: "QC",
+        zip: "J1A 1R4",
+        country: "CA",
+        email: "dev@sagecodes.tech", 
+    };
+
+    const addressTo: AddressCreateRequest = {
+        name: "John Doe",
+        street1: line1,
+        city: city,
+        state: stateOrProvince,
+        zip: postalCode,
+        country: country,
+    };
+    
+
+    const parcel: ParcelCreateRequest = {
+        length:length,
+        width: shippingWidth,
+        height: height,
+        distanceUnit: DistanceUnitEnum.In,
+        weight: shippingWeight,
+        massUnit: WeightUnitEnum.Lb
+    };
+
+    const shipment = await shippo.shipments.create({
+        addressFrom: addressFrom,
+        addressTo: addressTo,
+        parcels: [parcel],
+        async: false
+    });
+
+            // Added logic to reduce multiples created by shippo
+    if (shipment.rates && shipment.rates.length > 0) {
+        const uniqueRates = shipment.rates.filter((rate, index, self) =>
+            index === self.findIndex((r) => (
+                r.amount === rate.amount && r.provider === rate.provider
+            ))
+        );
+        const cheapestRate = uniqueRates.reduce((prev, curr) => {
+            return parseFloat(prev.amount) < parseFloat(curr.amount) ? prev : curr;
+        });
+}
 }
