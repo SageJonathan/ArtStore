@@ -21,11 +21,8 @@ model ArtPiece {
   isVertical      Boolean
   size            String
   weight          String   
-  height          String   
-  length          String   
-  //Shipping height
-  //shipping length 
-  ///  Modify the above__ Best to get actualt numbers for those & shipoing width/weight
+  shippingHeight  String   
+  shippingLength  String   
   shippingWidth   String   
   shippingWeight  String   
   inStock         Boolean @default(true)
@@ -49,15 +46,6 @@ model ClientData {
   postalCode        String
   stateOrProvince   String
   artPieces        ArtPiece[] 
-}
-
-//Drop Orderdata completly
-model orderData {
-  fullName String
-  email String
-  trackingUrl String  @unique
-  trackingNumber String @unique
-  artId            Int
 }
 
 
