@@ -28,9 +28,8 @@ interface CartRate {
   country: string;
   postalCode: string;
   stateOrProvince: string;
-  //Refractir to shipping L &  H
-  length: string;
-  height: string;
+  shippingLength: string;
+  shippingHeight: string;
   shippingWidth: string;
   shippingWeight: string;
 }
@@ -62,7 +61,7 @@ export async function createLabel(cutomeradress: CustomerAdress) {
     return;
   }
 
-  const { length, height, shippingWeight, shippingWidth } = artPiece;
+  const { shippingLength, shippingHeight, shippingWeight, shippingWidth } = artPiece;
 
   const addressFrom: AddressCreateRequest = {
     name: "Louise Guay",
@@ -87,9 +86,9 @@ export async function createLabel(cutomeradress: CustomerAdress) {
   };
 
   const parcel: ParcelCreateRequest = {
-    length: length,
+    length: shippingLength,
     width: shippingWidth,
-    height: height,
+    height: shippingHeight,
     distanceUnit: DistanceUnitEnum.In,
     weight: shippingWeight,
     massUnit: WeightUnitEnum.Lb,
@@ -142,8 +141,8 @@ export async function shippingRate(
     country,
     postalCode,
     stateOrProvince,
-    length,
-    height,
+    shippingLength,
+    shippingHeight,
     shippingWeight,
     shippingWidth,
   } = estimateData;
@@ -166,9 +165,9 @@ export async function shippingRate(
   };
 
   const parcel: ParcelCreateRequest = {
-    length: length,
+    length: shippingLength,
     width: shippingWidth,
-    height: height,
+    height: shippingHeight,
     distanceUnit: DistanceUnitEnum.In,
     weight: shippingWeight,
     massUnit: WeightUnitEnum.Lb,

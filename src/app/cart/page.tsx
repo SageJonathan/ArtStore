@@ -28,8 +28,8 @@ export default function CartPage() {
   const isVertical = searchParams.get("isVertical") === "true";
   const shippingWeight = searchParams.get("shippingWeight");
   const shippingWidth = searchParams.get("shippingWidth");
-  const length = searchParams.get("length");
-  const height = searchParams.get("height");
+  const shippingLength = searchParams.get("shippingLength");
+  const shippingHeight = searchParams.get("shippingHeight");
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
 
@@ -74,8 +74,8 @@ export default function CartPage() {
         country,
         stateOrProvince,
         postalCode,
-        length,
-        height,
+        shippingLength,
+        shippingHeight,
         shippingWeight,
         shippingWidth,
       };

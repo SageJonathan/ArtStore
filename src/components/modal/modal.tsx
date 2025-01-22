@@ -114,10 +114,9 @@ export default function ArtDetails({
               price: painting.price.toString(),
               isVertical: painting.isVertical.toString(),
               size: painting.size,
-              // Refracrir to shipping prefixes on L/H
               shippingWeight: painting.shippingWeight,
-              length: painting.length,
-              height: painting.height,
+              shippingLength: painting.shippingLength,
+              shippingHeight: painting.shippingHeight,
               shippingWidth: painting.shippingWidth,
               inStock: painting.inStock.toString(),
               imageUrlFront: painting.imageUrlFront,
