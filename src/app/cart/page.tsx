@@ -16,7 +16,9 @@ export default function CartPage() {
   const [country, setCountry] = useState<string>("");
   const [stateOrProvince, setStateOrProvince] = useState<string>("");
   const [postalCode, setPostalCode] = useState<string>("");
-
+  const [showError, setShowError] = useState(false);
+  
+// Get Data From Modal
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const title = searchParams.get("title");
@@ -88,9 +90,23 @@ export default function CartPage() {
     const calculatedTax = validPrice * validTaxRate;
     const newTotalCost = validPrice + calculatedTax + shippingRate;
     setTotalCost(newTotalCost > 0 ? newTotalCost : 0);
-  }, [taxRate]);
+  }, [shippingCost]);
+
 
   const router = useRouter();
+
+  const handlePayment = () =>{
+    if (shippingCost === 0) {
+      setShowError(true);
+      alert("Please fill in shipping details to continue");
+    } else {
+      const queryString = new URLSearchParams({
+        amount: totalCost.toFixed(2),
+        id: id || "",
+      }).toString();
+      router.push(`/stripe-checkout?${queryString}`);
+    }
+  }
 
   return (
     <div className="flex flex-col m-10">
@@ -143,6 +159,7 @@ export default function CartPage() {
               country={country}
               stateOrProvince={stateOrProvince}
               postalCode={postalCode}
+              isError={showError} 
             />
             <div className="mb-5 mt-5 leading-relaxed">
               <h1 className="font-bold">Cost:</h1>
@@ -156,17 +173,13 @@ export default function CartPage() {
             <h1 className="font-bold mb-1">Payment</h1>
             <div className="block">
               <button
-                disabled={shippingCost === 0}
                 className="bg-purple-200 border rounded-md px-2 text-lg"
-                id="paypal-payment"
+                id="stripe-payment"
                 type="button"
-                onClick={() => {
-                  const queryString = new URLSearchParams({
-                    amount: totalCost.toFixed(2),
-                    id: id || "",
-                  }).toString();
-                  router.push(`/stripe-checkout?${queryString}`);
-                }}
+                onClick={(e) => {
+                    e.preventDefault(); 
+                    handlePayment();
+                }} 
               >
                 <Image
                   src={StripeIcon}

@@ -14,6 +14,7 @@ interface TaxesFormProps {
   country: string;
   stateOrProvince: string;
   postalCode: string;
+  isError: boolean; 
 }
 
 export default function TaxesForm({
@@ -22,6 +23,7 @@ export default function TaxesForm({
   country,
   stateOrProvince,
   postalCode,
+  isError,
 }: TaxesFormProps) {
   const { Canada, USA }: TaxesData = Taxes;
 
@@ -53,12 +55,15 @@ export default function TaxesForm({
     country === "Canada" ? Object.keys(Canada) : Object.keys(USA);
 
   return (
-    <div className="flex flex-col space-y-4 mt-2">
+    <div
+     className="flex flex-col space-y-4 mt-2"
+    >
       <h1 className="font-bold">Shipping Info</h1>
       <select
         id="country"
         name="shippingAddress"
-        className="p-2 border rounded-md"
+        className={`p-2 border rounded-md ${isError ? "border-red-500" : "border-gray-300"}`}
+
         required
         value={country}
         onChange={handleCountryChange}
@@ -76,7 +81,8 @@ export default function TaxesForm({
         <select
           id="stateOrProvince"
           name="shippingAddress"
-          className="p-2 border rounded-md"
+          className={`p-2 border rounded-md ${isError ? "border-red-500" : "border-gray-300"}`}
+
           required
           value={stateOrProvince}
           onChange={handleStateOrProvinceChange}
@@ -96,7 +102,7 @@ export default function TaxesForm({
           type="text"
           id="postalCode"
           name="postalCode"
-          className="p-2 border rounded-md"
+          className={`p-2 border rounded-md ${isError ? "border-red-500" : "border-gray-300"}`}
           placeholder="Enter Postal Code"
           value={postalCode}
           onChange={handlePostalCodeChange}
