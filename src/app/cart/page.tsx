@@ -33,8 +33,11 @@ export default function CartPage() {
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
 
-  const imgWidth = isVertical ? 350 : 800;
-  const imgHeight = isVertical ? 350 : 800;
+  const smallWidth =isVertical ? 45 : 35;
+  const smallHeight =isVertical ? 45 : 35;
+
+  const imgWidth = isVertical ? 350 : activeImage === "front" ? 800 : 600; 
+  const imgHeight = isVertical ? 350 : activeImage === "front" ? 800 : 600; 
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
@@ -122,17 +125,17 @@ export default function CartPage() {
                 onClick={toggleImage}
               />
             </div>
-            <div className="pt-5">
+            <div className={`pt-5 ${isVertical ? "pl-0" : "pl-1"}`}>
               <Image
                 src={imageUrlBack || "/errorImg.png"}
                 alt="back side"
-                width={45}
-                height={45}
+                width={smallWidth}
+                height={smallHeight}
                 onClick={toggleImage}
               />
             </div>
           </div>
-          <div className="ml-12 lg:ml-0">
+          <div className="ml-12 lg:ml-0 flex items-center justify-center">
             <Image
               src={
                 activeImage === "front"
@@ -142,6 +145,7 @@ export default function CartPage() {
               alt="Main Img"
               width={imgWidth}
               height={imgHeight}
+              className="object-contain"
             />
           </div>
         </div>

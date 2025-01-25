@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 async function main() {
   const artPiecesData = [
     {
+      //Fleur des Îles
       title: '?',
       medium: 'oil',
       price: 150,

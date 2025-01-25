@@ -197,6 +197,7 @@ export async function shippingRate(
       if (sortedRates.length > 1) {
         const secondCheapestRate = sortedRates[1];
         console.log(secondCheapestRate);
+        console.log(sortedRates[0])
         return parseFloat(secondCheapestRate.amount);
       } else {
         console.log(sortedRates[0]);
