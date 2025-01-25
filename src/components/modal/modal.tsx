@@ -24,8 +24,14 @@ export default function ArtDetails({
 }: ModalProps) {
   const router = useRouter();
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
-  const width = painting.isVertical ? 270 : 700;
-  const height = painting.isVertical ? 270 : 700;
+
+   // Side imgs for back url
+  const smallWidth = painting.isVertical ? 45 : 35;
+  const smallHeight = painting.isVertical ? 45 : 35;
+  // Main img
+  const mainWidth = painting.isVertical ? 270: activeImage === "back" ? 450 : 700;
+  const mainHeight = painting.isVertical ? 270 : activeImage === "back" ? 450 : 700;
+
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
@@ -39,7 +45,7 @@ export default function ArtDetails({
       className="modal-container"
       overlayClassName="modal-overlay"
     >
-      <div className="">
+      <div className="w-full h-full">
         <div className="absoulte left-4 top-4 cursor-pointer">
           <Image
             src={Return}
@@ -49,7 +55,7 @@ export default function ArtDetails({
             onClick={onRequestClose}
           />
         </div>
-        <div className="relative flex flex-row w-full h-full justify-center mt-5">
+        <div className="relative flex flex-row justify-center mt-5">
           <div className="absolute top-0 left-0">
             <div className="">
               <Image
@@ -60,17 +66,17 @@ export default function ArtDetails({
                 onClick={toggleImage}
               />
             </div>
-            <div className="pt-5">
+            <div className={`pt-5 ${painting.isVertical ? "pl-0" : "pl-1"}`}>
               <Image
                 src={painting.imageUrlBack || "/errorImg.png"}
                 alt="back side"
-                width={45}
-                height={45}
+                width={smallWidth}
+                height={smallHeight}
                 onClick={toggleImage}
               />
             </div>
           </div>
-          <div>
+          <div className="">
             <Image
               src={
                 activeImage === "front"
@@ -78,8 +84,8 @@ export default function ArtDetails({
                   : painting.imageUrlBack || "/errorImg.png"
               }
               alt="Main Img"
-              width={width}
-              height={height}
+              width={mainWidth}
+              height={mainHeight}
               className="object-contain"
             />
           </div>
@@ -91,8 +97,8 @@ export default function ArtDetails({
           </div>
           <div>
             <h1 className="font-bold">
-              All paintings include a certificate of authenticity signed
-              by the artist
+              All paintings include a certificate of authenticity signed by the
+              artist
             </h1>
           </div>
         </div>
