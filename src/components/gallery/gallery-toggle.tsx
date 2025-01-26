@@ -32,7 +32,7 @@ export function GalleryToggle({ isGrid }: GalleryToggleProps) {
     >
       <button
         onClick={toggleDisplayMode}
-        className="flex items-center justify-center text-white px-4 py-2 rounded-lg hover:bg-slate focus:outline-none hover:text-black space-x-2"
+        className="flex items-center justify-center text-white px-4 py-2 rounded-lg bg-purple-200 hover:bg-blue-200 focus:outline-none hover:text-black space-x-2"
       >
         <span className="text-center">
           Toggle {currentMode ? "Gallery" : "Grid"} Mode
