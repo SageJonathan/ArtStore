@@ -122,6 +122,7 @@ async function main() {
     {
       title: "Un regard vers l'avenir ",
       medium: 'oil',
+      //260
       price: 300,
       isVertical: false,
       size: '19 x 25"', 

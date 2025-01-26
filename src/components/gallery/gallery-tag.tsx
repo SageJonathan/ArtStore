@@ -2,10 +2,9 @@ export default function GalleryTag() {
   return (
     <div
       className="flex flex-col items-center p-5 text-gray-600 bg-cover bg-center"
-      style={{ backgroundImage: `url('/flowers.webp')`, height: '80vh' }}
+      style={{ backgroundImage: `url('/flowers.webp')`, height: "80vh" }}
     >
-       <div className="absolute top-[106px] md:top-[70px] inset-0 bg-white opacity-65"></div>
-
+      <div className="absolute top-[106px] md:top-[70px] inset-0 bg-white opacity-65"></div>
 
       <div className="relative z-10">
         <h2 className="font-playfair font-semibold text-5xl text-center mb-6 text-black">
@@ -33,4 +32,3 @@ export default function GalleryTag() {
     </div>
   );
 }
-
