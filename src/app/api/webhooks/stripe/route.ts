@@ -89,16 +89,36 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify the event using the Stripe library
+    // let event;
+    // try {
+    //   event = stripe.webhooks.constructEvent(buffer, sig, endpointSecret!); // Pass raw body as Buffer
+    // } catch (err: any) {
+    //   console.error("Webhook signature verification failed:", err.message);
+    //   return NextResponse.json(
+    //     { error: `Webhook Error: ${err.message}` },
+    //     { status: 400 }
+    //   );
+    // }
     let event;
-    try {
-      event = stripe.webhooks.constructEvent(buffer, sig, endpointSecret!); // Pass raw body as Buffer
-    } catch (err: any) {
-      console.error("Webhook signature verification failed:", err.message);
-      return NextResponse.json(
-        { error: `Webhook Error: ${err.message}` },
-        { status: 400 }
-      );
-    }
+try {
+  event = stripe.webhooks.constructEvent(buffer, sig, endpointSecret!); // Pass raw body as Buffer
+} catch (err: unknown) {
+  if (err instanceof Error) {
+    console.error("Webhook signature verification failed:", err.message);
+    return NextResponse.json(
+      { error: `Webhook Error: ${err.message}` },
+      { status: 400 }
+    );
+  } else {
+    // If the error is not of type Error, handle it
+    console.error("Unknown error:", err);
+    return NextResponse.json(
+      { error: "Unknown Webhook Error" },
+      { status: 400 }
+    );
+  }
+}
+
 
     switch (event.type) {
       case "payment_intent.succeeded": {
