@@ -41,7 +41,7 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
   } else
     return (
       <div
-        className="w-full h-[calc(100vh-70px)] bg-cover bg-center flex pb-20 overflow-hidden"
+        className="w-full h-[calc(100vh-70px)] bg-cover bg-center flex overflow-hidden"
         style={{ backgroundImage: `url('/gallery.png')` }}
       >
         <div
@@ -52,7 +52,7 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
             msOverflowStyle: "none", // Internet Explorer 10+
           }}
         >
-          <div className="w-full h-full flex-shrink-0 mt-10 md:mt-20">
+          <div className="w-full h-full flex-shrink-0">
             <Tag />
           </div>
           {paintings.map((painting, index) => (

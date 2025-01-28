@@ -34,7 +34,7 @@ export default function GalleryGrid({ paintings }: GalleryGridProps) {
   }
 
   return (
-    <div className="w-full min-h-screen bg-center pt-10 bg-gray-100">
+    <div className="w-full min-h-screen bg-center bg-gray-200">
       <Tag />
       <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0 mt-10">
         {/* Gallery Grid */}
