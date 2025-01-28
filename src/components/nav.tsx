@@ -16,14 +16,14 @@ export default function Nav() {
         <div>
           <Link href="/">
             <h3 className="text-black text-2xl font-playfair cursor-pointer hover:underline">
-              <span className="sm:block md:hidden">|</span> Works
+             Works
             </h3>
           </Link>
         </div>
         <div>
           <Link href="/about">
             <h3 className="text-black text-2xl font-playfair cursor-pointer hover:underline">
-              <span className="sm:block md:hidden">|</span> About
+            About
             </h3>
           </Link>
         </div>

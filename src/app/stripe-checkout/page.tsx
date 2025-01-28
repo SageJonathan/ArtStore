@@ -14,9 +14,7 @@ export default function StripeCheckout() {
     const searchParams = useSearchParams();
     const amount = parseFloat(searchParams.get("amount") || "0");
     const id = parseInt(searchParams.get('id') || '0', 10);
-  // Add LINK to error page if cannont define amount
 
-  
   return (
     <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-blue-500 to-purple-500">
       <div className="mb-10">

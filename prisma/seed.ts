@@ -23,7 +23,7 @@ async function main() {
       shippingWeight: '7',
     },
     {
-      title: 'Féérie hivernale',
+      title: 'Féérie hivernale (G)',
       medium: 'oil',
       price: 275,
       isVertical: false,
@@ -39,7 +39,7 @@ async function main() {
       shippingWeight: '6.6',
     },
     {
-      title: 'Féérie hivernale',
+      title: 'Féérie hivernale (P)',
       medium: 'oil',
       price: 200,
       isVertical: false,
@@ -105,8 +105,7 @@ async function main() {
     {
       title: "Un regard vers l'avenir ",
       medium: 'oil',
-      //260
-      price: 300,
+      price: 260,
       isVertical: false,
       size: '19 x 25"', 
       weight: '4',
@@ -136,7 +135,7 @@ async function main() {
       shippingWeight: '6.4',
     },
     {
-      title: 'Éloge a la nature ',
+      title: 'Éloge à la nature',
       medium: 'oil',
       price: 425,
       isVertical: false,

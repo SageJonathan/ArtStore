@@ -36,8 +36,8 @@ export default function CartPage() {
   const smallWidth =isVertical ? 45 : 35;
   const smallHeight =isVertical ? 45 : 35;
 
-  const imgWidth = isVertical ? 350 : activeImage === "front" ? 800 : 600; 
-  const imgHeight = isVertical ? 350 : activeImage === "front" ? 800 : 600; 
+  const imgWidth = isVertical ? 350 : activeImage === "front" ? 800 : 500; 
+  const imgHeight = isVertical ? 350 : activeImage === "front" ? 800 : 500; 
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
@@ -112,9 +112,11 @@ export default function CartPage() {
   }
 
   return (
-    <div className="flex flex-col m-10">
+    <div className="flex flex-col p-10">
       <div className="md:flex md:flex-row">
-        <div className="relative flex flex-row w-full md:w-1/2 lg:w-3/4 justify-center">
+
+
+        <div className="relative flex flex-row w-full md:w-3/4 justify-center">
           <div className="absolute top-0 left-0">
             <div className="">
               <Image
@@ -135,7 +137,7 @@ export default function CartPage() {
               />
             </div>
           </div>
-          <div className="ml-12 lg:ml-0 flex items-center justify-center">
+          <div className="">
             <Image
               src={
                 activeImage === "front"
@@ -149,8 +151,11 @@ export default function CartPage() {
             />
           </div>
         </div>
+
+
+        
         <div className="flex flex-col justify-center border pl-2 w-full md:w-1/2 lg:w-1/4">
-          <div className="">
+          <div>
             <div className="leading-relaxed">
               <h1 className="font-bold">Art Piece:</h1>
               <p>Title: {title}</p>
