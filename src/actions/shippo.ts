@@ -24,7 +24,7 @@ interface CustomerAdress {
   artId?: number;
 }
 
-interface CartRate {
+export interface CartRate {
   country: string;
   postalCode: string;
   stateOrProvince: string;

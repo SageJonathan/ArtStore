@@ -3,6 +3,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import {CartRate} from "@/actions/shippo";
 import * as actions from "@/actions";
 import Image from "next/image";
 import TaxesForm from "@/components/cart/taxesForm";
@@ -57,7 +58,8 @@ export default function CartPage() {
     setPostalCode(newPostalCode);
   };
 
-  async function getShippingRate(estimateData:any) {
+  
+  async function getShippingRate(estimateData:CartRate) {
     try {
       const rate = await actions.shippingRate(estimateData); 
       if (rate) {
@@ -72,7 +74,7 @@ export default function CartPage() {
   }
 
   useEffect(() => {
-    if (country && stateOrProvince && postalCode) {
+    if (country && stateOrProvince && postalCode && shippingLength && shippingHeight && shippingWeight && shippingWidth) {
       const estimateData = {
         country,
         stateOrProvince,
