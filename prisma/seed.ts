@@ -7,23 +7,6 @@ const prisma = new PrismaClient();
 async function main() {
   const artPiecesData = [
     {
-      //Fleur des Îles
-      title: '?',
-      medium: 'oil',
-      price: 150,
-      isVertical: true,
-      size: '6.5 x 10.5"',  
-      weight: '0.8',
-      inStock: true,
-      imageUrlFront: '/art1.webp',
-      imageUrlBack: '/artback1.webp', 
-      clientId: null,
-      shippingHeight: '6.5',
-      shippingLength: '10.5',
-      shippingWidth: '3',
-      shippingWeight: '3.8', 
-    },
-    {
       title: 'Charme vieilot',
       medium: 'oil',
       price: 350,
@@ -72,10 +55,10 @@ async function main() {
       shippingWeight: '5.2',
     },
     {
-      title: 'Les rayons du soleil couchent',
+      title: 'Les rayons du soleil',
       medium: 'oil',
       price: 150,
-      isVertical: false,
+      isVertical: false,              
       size: '12 x 14"', 
       weight: '1.8',
       inStock: true,
@@ -169,7 +152,7 @@ async function main() {
       shippingWeight: '8.2',
     },
     {
-      title: "L'écho d'automne qui résonne",
+      title: "L'écho d'automne",
       medium: 'oil',
       price: 450,
       isVertical: false,
@@ -185,7 +168,7 @@ async function main() {
       shippingWeight: '8.6',
     },
     {
-      title: 'Les merveilles de la nature',
+      title: 'Les merveilles',
       medium: 'oil',
       price: 450,
       isVertical: false,
@@ -215,6 +198,22 @@ async function main() {
       shippingLength: '28',
       shippingWidth: '3',
       shippingWeight: '7.4', 
+    },
+    {
+      title: 'Fleur des Îles',
+      medium: 'oil',
+      price: 150,
+      isVertical: true,
+      size: '6.5 x 10.5"',  
+      weight: '0.8',
+      inStock: true,
+      imageUrlFront: '/art1.webp',
+      imageUrlBack: '/artback1.webp', 
+      clientId: null,
+      shippingHeight: '6.5',
+      shippingLength: '10.5',
+      shippingWidth: '3',
+      shippingWeight: '3.8', 
     },
     {
       title: 'Un souvenir de jeunesse',
