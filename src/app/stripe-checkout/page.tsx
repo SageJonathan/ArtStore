@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { useSearchParams} from "next/navigation";
 import CheckoutPage from "@/components/payment/stripe";
 import convertToSubcurrency from "@/utils/convertToSubcurrency";
@@ -24,7 +25,6 @@ export default function StripeCheckout() {
           <span className="font-bold"> ${amount} CAD</span>
         </h2>
       </div>
-
       <Elements
         stripe={stripePromise}
         options={{

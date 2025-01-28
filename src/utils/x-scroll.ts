@@ -37,7 +37,7 @@ export const useHorizontalScroll = (
         currentGallery.removeEventListener("wheel", handleWheel);
       }
     };
-  }, [galleryRef]);
+  });
 
   return { handleScroll };
 };

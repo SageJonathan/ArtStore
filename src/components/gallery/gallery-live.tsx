@@ -9,20 +9,20 @@ import ArtDetails from "@/components/modal/modal";
 import Tag from "@/components/gallery/gallery-tag";
 
 
-interface Painting extends ArtPiece {
-}
+// interface Painting extends ArtPiece {
+// }
 interface GalleryGridProps {
-  paintings: Painting[];
+  paintings: ArtPiece[];
 }
 
 export default function GalleryLive({ paintings }: GalleryGridProps) {
   const [modalOpen, setmodalOpen] = useState(false);
-  const [selectedPainting, setSelectedPainting] = useState<Painting | null>(
+  const [selectedPainting, setSelectedPainting] = useState<ArtPiece | null>(
     null
   );
 
   // Modal logic
-  const openModal = (painting: Painting) => {
+  const openModal = (painting: ArtPiece) => {
     if (!modalOpen && painting.inStock) {
       setSelectedPainting(painting);
       setmodalOpen(true);

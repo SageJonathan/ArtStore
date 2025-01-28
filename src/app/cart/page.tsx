@@ -3,6 +3,7 @@
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Suspense } from "react";
 import {CartRate} from "@/actions/shippo";
 import * as actions from "@/actions";
 import Image from "next/image";
@@ -95,7 +96,7 @@ export default function CartPage() {
     const calculatedTax = validPrice * validTaxRate;
     const newTotalCost = validPrice + calculatedTax + shippingRate;
     setTotalCost(newTotalCost > 0 ? newTotalCost : 0);
-  });
+  },[shippingCost, price, taxRate]);
 
 
   const router = useRouter();
@@ -114,10 +115,9 @@ export default function CartPage() {
   }
 
   return (
+    <Suspense fallback={<div>Loading form...</div>}>
     <div className="flex flex-col p-10">
       <div className="md:flex md:flex-row">
-
-
         <div className="relative flex flex-row w-full md:w-3/4 justify-center">
           <div className="absolute top-0 left-0">
             <div className="">
@@ -223,5 +223,6 @@ export default function CartPage() {
         </div>
       </div>
     </div>
+    </Suspense>
   );
 }

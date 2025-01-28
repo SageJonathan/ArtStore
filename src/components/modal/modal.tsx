@@ -8,11 +8,11 @@ import type { ArtPiece } from "@prisma/client";
 import Return from "@/app/assets/icons/return.png";
 import "./modal.css";
 
-interface Painting extends ArtPiece {}
+// interface Painting extends ArtPiece {}
 interface ModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  painting: Painting;
+  painting: ArtPiece;
 }
 
 Modal.setAppElement("#__next");

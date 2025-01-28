@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 "use client";
 
@@ -18,7 +19,7 @@ interface StripeProps {
 const Stripe = ({ amount,id }: StripeProps) => {
   const stripe = useStripe();
   const elements = useElements();
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [errorMessage, setErrorMessage] = useState<string | null>();
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [address, setAddress] = useState<any | null>(null);
@@ -147,4 +148,5 @@ const Stripe = ({ amount,id }: StripeProps) => {
 };
 
 export default Stripe;
+
 
