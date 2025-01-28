@@ -10,7 +10,7 @@ import Image from "next/image";
 import TaxesForm from "@/components/cart/taxesForm";
 import StripeIcon from "@/app/assets/icons/stripe.png";
 
-export default function CartPage() {
+function CartPageContent() {
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
   const [taxRate, setTaxRate] = useState<number>(0);
   const [shippingCost, setShippingCost] = useState<number | null>(0);
@@ -115,7 +115,6 @@ export default function CartPage() {
   }
 
   return (
-    <Suspense fallback={<div>Loading form...</div>}>
     <div className="flex flex-col p-10">
       <div className="md:flex md:flex-row">
         <div className="relative flex flex-row w-full md:w-3/4 justify-center">
@@ -223,6 +222,23 @@ export default function CartPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+function CartSuccessFallback() {
+  return <div>Loading...</div>;
+}
+
+export default function CartPageSuccess() {
+  return (
+    <Suspense fallback={<CartSuccessFallback />}>
+      <CartPageContent />
     </Suspense>
   );
 }
+
+
+
+
+

@@ -1,3 +1,5 @@
+'use client'
+
 import Taxes from "@/data/taxes.json";
 
 interface TaxesData {
