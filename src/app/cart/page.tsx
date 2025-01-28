@@ -86,7 +86,7 @@ export default function CartPage() {
       };
       getShippingRate(estimateData);
     }
-  }, [postalCode]);
+  });
 
   useEffect(() => {
     const shippingRate = shippingCost || 0;
@@ -95,7 +95,7 @@ export default function CartPage() {
     const calculatedTax = validPrice * validTaxRate;
     const newTotalCost = validPrice + calculatedTax + shippingRate;
     setTotalCost(newTotalCost > 0 ? newTotalCost : 0);
-  }, [shippingCost]);
+  });
 
 
   const router = useRouter();
