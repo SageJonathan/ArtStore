@@ -11,6 +11,7 @@ export async function sendOrderConfirmation({ email, name}: { email: string, nam
       <h1>Hello ${name},</h1>
       <p>Your order is on its way! We'll send you another email with the tracking number once it's available.</p>
       <p>Thank you for supporting Louise Guay. We are thrilled to share her art with you.</p>
+       <p style="margin-top: 20px;">Warm regards,<br />The Louise Guay Team</p>
       <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
     </div>
   `;
@@ -18,7 +19,7 @@ export async function sendOrderConfirmation({ email, name}: { email: string, nam
   // const emails = [email, 'sagejonathan.tesol@gmail.com', 'jessica.sage@usherbrooke.ca'];
   try {
     const { data, error } = await resend.emails.send({
-      from: 'dev@sagecodes.tech',  
+      from: 'support@sagecodes.tech',  
       to: email,
       subject: 'Art Order Confirmation',
       html: emailHtml,
@@ -45,13 +46,14 @@ export async function sendTrackingNumber({ trackingNumber, trackingUrl, fullName
     <p><strong>Tracking Number:</strong> ${trackingNumber}</p>
     <p><strong>Track your order here:</strong> <a href="${trackingUrl}" target="_blank">${trackingUrl}</a></p>
     <p>Thank you for supporting Louise Guay. We are thrilled to share her art with you.</p>
+  <p style="margin-top: 20px;">Warm regards,<br />The Louise Guay Team</p>
     <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
   </div>
 `;
 
 try {
   const { data, error } = await resend.emails.send({
-    from: 'dev@sagecodes.tech',  
+    from: 'support@sagecodes.tech',  
     to: email,
     subject: 'Art Order Tracking Number',
     html: emailHtml,
@@ -91,7 +93,7 @@ export async function sendShippingLabel (labelLink: { labelLink: string; }){
  
   try {
     const { data, error } = await resend.emails.send({
-      from: 'dev@sagecodes.tech',  
+      from: 'support@sagecodes.tech',  
       to: 'sagejonathan.tesol@gmail.com',
       subject: 'Art Order Shipping Label',
       html: emailHtml,

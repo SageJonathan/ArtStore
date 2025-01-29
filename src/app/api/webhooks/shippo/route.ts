@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         
         await emailClientTracking(trackingNumber,trackingUrl,fullName,email)
         await emailShipperLabel(labelLink)
-
+console.log("LINK OKAY _______________________________")
         break;
       default:
         console.log('Default Response body', responseBody);
