@@ -1,9 +1,9 @@
 -- CreateTable
 CREATE TABLE "ArtPiece" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "medium" TEXT NOT NULL,
-    "price" REAL NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
     "isVertical" BOOLEAN NOT NULL,
     "size" TEXT NOT NULL,
     "weight" TEXT NOT NULL,
@@ -15,12 +15,13 @@ CREATE TABLE "ArtPiece" (
     "imageUrlFront" TEXT NOT NULL,
     "imageUrlBack" TEXT NOT NULL,
     "clientId" INTEGER,
-    CONSTRAINT "ArtPiece_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "ClientData" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+
+    CONSTRAINT "ArtPiece_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "ClientData" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "fullName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "mobileNumber" TEXT,
@@ -29,8 +30,13 @@ CREATE TABLE "ClientData" (
     "line1" TEXT NOT NULL,
     "line2" TEXT,
     "postalCode" TEXT NOT NULL,
-    "stateOrProvince" TEXT NOT NULL
+    "stateOrProvince" TEXT NOT NULL,
+
+    CONSTRAINT "ClientData_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "ClientData_email_key" ON "ClientData"("email");
+
+-- AddForeignKey
+ALTER TABLE "ArtPiece" ADD CONSTRAINT "ArtPiece_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "ClientData"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -32,14 +32,14 @@ export default function GalleryGrid({ paintings }: GalleryGridProps) {
   if (!paintings) {
     return <div>Loading gallery...</div>;
   }
-
+  const sortedPaintings = paintings.sort((a, b) => a.id - b.id);
   return (
     <div className="w-full min-h-screen bg-center bg-gray-200">
       <Tag />
       <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0 mt-10">
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-0 w-full">
-          {paintings.map((painting, index) => (
+          {sortedPaintings.map((painting, index) => (
             <div
               key={index}
               className="w-full h-full overflow-hidden flex flex-col justify-center items-center"

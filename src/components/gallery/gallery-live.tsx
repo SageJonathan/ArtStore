@@ -38,7 +38,8 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
   if (!paintings) {
     return;
     <div>Loading galery...</div>;
-  } else
+  } 
+  const sortedPaintings = paintings.sort((a, b) => a.id - b.id);
     return (
       <div
         className="w-full h-[calc(100vh-70px)] bg-cover bg-center flex overflow-hidden"
@@ -55,7 +56,7 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
           <div className="w-full h-full flex-shrink-0">
             <Tag />
           </div>
-          {paintings.map((painting, index) => (
+          {sortedPaintings.map((painting, index) => (
             <div
               key={index}
               className="painting-item w-full sm:w-auto md:min-w-[50%] lg:min-w-[33.33%] xl:min-w-[25%] h-full flex-shrink-0 snap-center p-2 flex justify-center flex-col items-center"
