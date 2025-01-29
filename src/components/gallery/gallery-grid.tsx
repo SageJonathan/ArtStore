@@ -6,9 +6,7 @@ import type { ArtPiece } from '@prisma/client';
 import Tag from "@/components/gallery/gallery-tag";
 
 
-// interface Painting extends ArtPiece {
-// }
-
+   
 interface GalleryGridProps {
   paintings: ArtPiece[];
 }

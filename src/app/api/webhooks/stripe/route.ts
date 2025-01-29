@@ -8,32 +8,36 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 const endpointSecret = process.env.WEBHOOK_SECRET;
 
 // Handle Client Database
-async function handleClient(email: string, artId: string, shipping: Stripe.PaymentIntent.Shipping | null) {
+async function handleClient(
+  email: string,
+  artId: string,
+  shipping: Stripe.PaymentIntent.Shipping | null
+) {
   const emailExists = await action.verifyClientData({ email });
 
   if (emailExists) {
     await action.updateClientData({
-      email, 
+      email,
       artPieces: artId ? [{ id: parseInt(artId) }] : [],
     });
   } else {
     await action.handleClientData({
       fullName: shipping?.name || "",
       email: email,
-      mobileNumber: shipping?.phone || null, 
-      city: shipping?.address?.city || "", 
-      country: shipping?.address?.country || "", 
-      line1: shipping?.address?.line1 || "", 
-      line2: shipping?.address?.line2 || null, 
-      postalCode: shipping?.address?.postal_code || "", 
-      stateOrProvince: shipping?.address?.state || "", 
+      mobileNumber: shipping?.phone || null,
+      city: shipping?.address?.city || "",
+      country: shipping?.address?.country || "",
+      line1: shipping?.address?.line1 || "",
+      line2: shipping?.address?.line2 || null,
+      postalCode: shipping?.address?.postal_code || "",
+      stateOrProvince: shipping?.address?.state || "",
       artPieces: artId ? [{ id: parseInt(artId) }] : [],
     });
   }
 }
 
 // Handle Art Database
-async function handleArt(email:string, artId:string) {
+async function handleArt(email: string, artId: string) {
   await action.paintingsUpdate({
     email: email,
     artPieceId: parseInt(artId, 10),
@@ -41,29 +45,32 @@ async function handleArt(email:string, artId:string) {
 }
 
 //Handle Order Confirmation Email
-async function emailOrderConfirmation (email: string, name:string){
-  await action.sendOrderConfirmation ({
-    email:email,
+async function emailOrderConfirmation(email: string, name: string) {
+  await action.sendOrderConfirmation({
+    email: email,
     name: name,
   });
 }
 
 // Hande Shipping Label & Tracking Number
-async function callShippoApi(email: string, artId: string, shipping: Stripe.PaymentIntent.Shipping | null){
+async function callShippoApi(
+  email: string,
+  artId: string,
+  shipping: Stripe.PaymentIntent.Shipping | null
+) {
   await action.createLabel({
     fullName: shipping?.name || "",
     email: email,
-    mobileNumber: shipping?.phone || undefined, 
-    city: shipping?.address?.city || "", 
-    country: shipping?.address?.country || "", 
-    line1: shipping?.address?.line1 || "", 
-    line2: shipping?.address?.line2 || undefined, 
-    postalCode: shipping?.address?.postal_code || "", 
-    stateOrProvince: shipping?.address?.state || "", 
-    artId: parseInt(artId,10),
-  })
+    mobileNumber: shipping?.phone || undefined,
+    city: shipping?.address?.city || "",
+    country: shipping?.address?.country || "",
+    line1: shipping?.address?.line1 || "",
+    line2: shipping?.address?.line2 || undefined,
+    postalCode: shipping?.address?.postal_code || "",
+    stateOrProvince: shipping?.address?.state || "",
+    artId: parseInt(artId, 10),
+  });
 }
-
 
 export const config = {
   matcher: "/api/webhooks/stripe",
@@ -88,37 +95,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Verify the event using the Stripe library
-    // let event;
-    // try {
-    //   event = stripe.webhooks.constructEvent(buffer, sig, endpointSecret!); // Pass raw body as Buffer
-    // } catch (err: any) {
-    //   console.error("Webhook signature verification failed:", err.message);
-    //   return NextResponse.json(
-    //     { error: `Webhook Error: ${err.message}` },
-    //     { status: 400 }
-    //   );
-    // }
     let event;
-try {
-  event = stripe.webhooks.constructEvent(buffer, sig, endpointSecret!); // Pass raw body as Buffer
-} catch (err: unknown) {
-  if (err instanceof Error) {
-    console.error("Webhook signature verification failed:", err.message);
-    return NextResponse.json(
-      { error: `Webhook Error: ${err.message}` },
-      { status: 400 }
-    );
-  } else {
-    // If the error is not of type Error, handle it
-    console.error("Unknown error:", err);
-    return NextResponse.json(
-      { error: "Unknown Webhook Error" },
-      { status: 400 }
-    );
-  }
-}
-
+    try {
+      event = stripe.webhooks.constructEvent(buffer, sig, endpointSecret!); // Pass raw body as Buffer
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error("Webhook signature verification failed:", err.message);
+        return NextResponse.json(
+          { error: `Webhook Error: ${err.message}` },
+          { status: 400 }
+        );
+      } else {
+        // If the error is not of type Error, handle it
+        console.error("Unknown error:", err);
+        return NextResponse.json(
+          { error: "Unknown Webhook Error" },
+          { status: 400 }
+        );
+      }
+    }
 
     switch (event.type) {
       case "payment_intent.succeeded": {
@@ -129,13 +124,12 @@ try {
         const shipping = paymentIntent.shipping;
         const receiptEmail = paymentIntent.receipt_email;
         const artId = paymentIntent.metadata.artId;
-        const name = paymentIntent.shipping?.name
-    
+        const name = paymentIntent.shipping?.name;
+
         await handleClient(receiptEmail || "", artId, shipping);
-        await handleArt (receiptEmail ||"", artId);
-        await emailOrderConfirmation (receiptEmail || "", name || "");
-        await callShippoApi(receiptEmail || "", artId, shipping)
-      
+        await handleArt(receiptEmail || "", artId);
+        await emailOrderConfirmation(receiptEmail || "", name || "");
+        await callShippoApi(receiptEmail || "", artId, shipping);
 
         break;
       }
@@ -146,7 +140,7 @@ try {
       case "payment_method.attached": {
         const paymentMethod = event.data.object;
         console.log(`PaymentMethod ${paymentMethod.id} was attached.`);
-      //add to db for refund?
+        //add to db for refund?
         break;
       }
       default:

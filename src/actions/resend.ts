@@ -16,11 +16,11 @@ export async function sendOrderConfirmation({ email, name}: { email: string, nam
     </div>
   `;
 
-  // const emails = [email, 'sagejonathan.tesol@gmail.com', 'jessica.sage@usherbrooke.ca'];
+  const emails = [email, 'sagejonathan.tesol@gmail.com'];
   try {
     const { data, error } = await resend.emails.send({
       from: 'support@sagecodes.tech',  
-      to: email,
+      to: emails,
       subject: 'Art Order Confirmation',
       html: emailHtml,
     });
@@ -73,7 +73,6 @@ try {
 
 export async function sendShippingLabel (labelLink: { labelLink: string; }){
 
-  // const emails = 'jessica.sage@usherbrooke.ca'
 
   const emailHtml = `
   <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
@@ -94,11 +93,10 @@ export async function sendShippingLabel (labelLink: { labelLink: string; }){
   try {
     const { data, error } = await resend.emails.send({
       from: 'support@sagecodes.tech',  
-      to: 'sagejonathan.tesol@gmail.com',
+      to: 'jessica.sage@usherbrooke.ca',
       subject: 'Art Order Shipping Label',
       html: emailHtml,
     });
-console.log("LABEL SENT----------------------------- ")
     if (error) {
       console.error({ error });
       throw new Error('Failed to send email');

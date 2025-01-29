@@ -8,7 +8,6 @@ import type { ArtPiece } from "@prisma/client";
 import Return from "@/app/assets/icons/return.png";
 import "./modal.css";
 
-// interface Painting extends ArtPiece {}
 interface ModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
