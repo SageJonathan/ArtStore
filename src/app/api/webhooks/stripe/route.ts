@@ -86,8 +86,7 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(rawBody); // Convert the ArrayBuffer to Node.js Buffer
 
     const sig = request.headers.get("stripe-signature"); // Get the Stripe signature from headers
-    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    if (!sig || !endpointSecret) {
+    if (!sig) {
       console.error("Missing Stripe signature");
       return NextResponse.json(
         { error: "Missing Stripe signature" },
