@@ -1,10 +1,9 @@
-
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Suspense } from "react";
-import {CartRate} from "@/actions/shippo";
+import { CartRate } from "@/actions/shippo";
 import * as actions from "@/actions";
 import Image from "next/image";
 import TaxesForm from "@/components/cart/taxesForm";
@@ -19,8 +18,8 @@ function CartPageContent() {
   const [stateOrProvince, setStateOrProvince] = useState<string>("");
   const [postalCode, setPostalCode] = useState<string>("");
   const [showError, setShowError] = useState(false);
-  
-// Get Data From Modal
+
+  // Get Data From Modal
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const title = searchParams.get("title");
@@ -35,11 +34,11 @@ function CartPageContent() {
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
 
-  const smallWidth =isVertical ? 45 : 35;
-  const smallHeight =isVertical ? 45 : 35;
+  const smallWidth = isVertical ? 45 : 35;
+  const smallHeight = isVertical ? 45 : 35;
 
-  const imgWidth = isVertical ? 350 : activeImage === "front" ? 800 : 500; 
-  const imgHeight = isVertical ? 350 : activeImage === "front" ? 800 : 500; 
+  const imgWidth = isVertical ? 350 : activeImage === "front" ? 800 : 500;
+  const imgHeight = isVertical ? 350 : activeImage === "front" ? 800 : 500;
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
@@ -59,23 +58,30 @@ function CartPageContent() {
     setPostalCode(newPostalCode);
   };
 
-  
-  async function getShippingRate(estimateData:CartRate) {
+  async function getShippingRate(estimateData: CartRate) {
     try {
-      const rate = await actions.shippingRate(estimateData); 
+      const rate = await actions.shippingRate(estimateData);
       if (rate) {
-        setShippingCost(rate); 
+        setShippingCost(rate);
       } else {
-        setShippingCost(100); 
+        setShippingCost(100);
       }
     } catch (error) {
       console.error("Error fetching shipping rate:", error);
-      setShippingCost(100); 
+      setShippingCost(100);
     }
   }
 
   useEffect(() => {
-    if (country && stateOrProvince && postalCode && shippingLength && shippingHeight && shippingWeight && shippingWidth) {
+    if (
+      country &&
+      stateOrProvince &&
+      postalCode &&
+      shippingLength &&
+      shippingHeight &&
+      shippingWeight &&
+      shippingWidth
+    ) {
       const estimateData = {
         country,
         stateOrProvince,
@@ -96,12 +102,11 @@ function CartPageContent() {
     const calculatedTax = validPrice * validTaxRate;
     const newTotalCost = validPrice + calculatedTax + shippingRate;
     setTotalCost(newTotalCost > 0 ? newTotalCost : 0);
-  },[shippingCost, price, taxRate]);
-
+  }, [shippingCost, price, taxRate]);
 
   const router = useRouter();
 
-  const handlePayment = () =>{
+  const handlePayment = () => {
     if (shippingCost === 0) {
       setShowError(true);
       alert("Please fill in shipping details to continue");
@@ -112,7 +117,7 @@ function CartPageContent() {
       }).toString();
       router.push(`/stripe-checkout?${queryString}`);
     }
-  }
+  };
 
   return (
     <div className="flex flex-col p-10">
@@ -153,57 +158,72 @@ function CartPageContent() {
           </div>
         </div>
 
-
-        
-        <div className="flex flex-col justify-center border pl-2 w-full md:w-1/2 lg:w-1/4">
-          <div>
-            <div className="leading-relaxed">
-              <h1 className="font-bold">Art Piece:</h1>
-              <p>Title: {title}</p>
-              <p>Medium: {medium}</p>
-              <p>Size: {size}</p>
-            </div>               
-            <TaxesForm
-              onTaxChange={handleTaxChange}
-              onShippingChange={handleShippingChange}
-              country={country}
-              stateOrProvince={stateOrProvince}
-              postalCode={postalCode}
-              isError={showError} 
-            />
-            <div className="mb-5 mt-5 leading-relaxed">
-              <h1 className="font-bold">Cost:</h1>
-              <p>Base: {price.toFixed(2)}</p>
-              <p>Tax: {(price * taxRate || 0).toFixed(2)}</p>   
-              <p>Shipping Cost: {(shippingCost || 0).toFixed(2)}</p>
-              <p>Total Cost: {totalCost.toFixed(2)} CAD</p>
+        <div className="flex flex-col justify-center pl-2 w-full md:w-1/2 lg:w-1/4">
+          <div className="leading-relaxed border mb-10 p-4">
+            <h1 className="font-bold text-blue-600 text-xl font-playfair mb-4">
+              Painting Details
+            </h1>
+            <div className="grid grid-cols-[auto,1fr] gap-x-5">
+              <p className="font-semibold">Title:</p> <p>{title}</p>
+              <p className="font-semibold">Medium:</p> <p>{medium}</p>
+              <p className="font-semibold">Size:</p> <p>{size}</p>
             </div>
           </div>
-          <div className="mb-1">
-            <h1 className="font-bold mb-1">Payment</h1>
-            <div className="block">
-              <button
-                className="bg-purple-200 border rounded-md px-2 text-lg"
-                id="stripe-payment"
-                type="button"
-                onClick={(e) => {
-                    e.preventDefault(); 
+          <div className="border">
+            <div>
+              <TaxesForm
+                onTaxChange={handleTaxChange}
+                onShippingChange={handleShippingChange}
+                country={country}
+                stateOrProvince={stateOrProvince}
+                postalCode={postalCode}
+                isError={showError}
+              />
+            </div>
+            <div className="mb-5 mt-5 leading-relaxed pl-4">
+              <h1 className="font-bold text-blue-600 text-xl font-playfair pb-2 ">
+                Cost Estimate
+              </h1>
+              <div className="grid grid-cols-[auto,1fr] gap-x-5">
+                <p className="font-semibold">Base:</p> <p>{price.toFixed(2)}</p>
+                <p className="font-semibold">Tax:</p>{" "}
+                <p>{(price * taxRate || 0).toFixed(2)}</p>
+                <p className="font-semibold">Shipping Cost:</p>{" "}
+                <p>{(shippingCost || 0).toFixed(2)}</p>
+                <p className="font-semibold">Total Cost:</p>{" "}
+                <p>{totalCost.toFixed(2)} CAD</p>
+              </div>
+            </div>
+
+            <div className="pl-4">
+              <h1 className="font-bold text-blue-600 text-xl font-playfair pb-2">
+                Payment
+              </h1>
+              <div className="block">
+                <button
+                  className="bg-purple-200 border rounded-md px-2 text-lg"
+                  id="stripe-payment"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
                     handlePayment();
-                }} 
-              >
-                <Image
-                  src={StripeIcon}
-                  alt="Stripe Icon"
-                  width={80}
-                  height={80}
-                  className="pl-2"
-                />
-              </button>
+                  }}
+                >
+                  <Image
+                    src={StripeIcon}
+                    alt="Stripe Icon"
+                    width={80}
+                    height={80}
+                    className="pl-2"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between flex-wrap gap-4">
+
+      <div className="mt-10 p-4 bg-gray-100 border shadow-md flex flex-col md:flex-row justify-between flex-wrap gap-4 font-merriweather">
         <div className="flex flex-col gap-2">
           <p>
             <strong>Comes with a Certificate of Authenticity</strong>
@@ -225,7 +245,6 @@ function CartPageContent() {
   );
 }
 
-
 function CartSuccessFallback() {
   return <div>Loading...</div>;
 }
@@ -237,8 +256,3 @@ export default function CartPageSuccess() {
     </Suspense>
   );
 }
-
-
-
-
-
