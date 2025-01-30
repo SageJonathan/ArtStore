@@ -50,11 +50,11 @@ export async function sendTrackingNumber({ trackingNumber, trackingUrl, fullName
     <img src="https://louiseguay/logo.png" alt="Order confirmation" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
   </div>
 `;
-
+const emails = [email, 'sagejonathan.tesol@gmail.com'];
 try {
   const { data, error } = await resend.emails.send({
     from: 'support@sagecodes.tech',  
-    to: email,
+    to: emails,
     subject: 'Art Order Tracking Number',
     html: emailHtml,
   });
@@ -89,11 +89,11 @@ export async function sendShippingLabel (labelLink: { labelLink: string; }){
     <img src="https://louiseguay/logo.png" alt="Louise Guay Art" style="width: 100%; max-width: 600px; display: block; margin-top: 20px;" />
   </div>
 `;
- 
+  const emails = ['jessica.sage@usherbrooke.ca', 'sagejonathan.tesol@gmail.com'];
   try {
     const { data, error } = await resend.emails.send({
       from: 'support@sagecodes.tech',  
-      to: 'jessica.sage@usherbrooke.ca',
+      to: emails,
       subject: 'Art Order Shipping Label',
       html: emailHtml,
     });
