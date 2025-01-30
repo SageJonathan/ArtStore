@@ -73,7 +73,7 @@ async function callShippoApi(
 }
 
 export const config = {
-  matcher: "/api/webhooks/stripe",
+  // matcher: "/api/webhooks/stripe",
   api: {
     bodyParser: false, // Disable Next.js body parser for raw body handling
   },
@@ -86,8 +86,8 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(rawBody); // Convert the ArrayBuffer to Node.js Buffer
 
     const sig = request.headers.get("stripe-signature"); // Get the Stripe signature from headers
-
-    if (!sig) {
+    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    if (!sig || !endpointSecret) {
       console.error("Missing Stripe signature");
       return NextResponse.json(
         { error: "Missing Stripe signature" },
