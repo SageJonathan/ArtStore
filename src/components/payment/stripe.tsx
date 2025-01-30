@@ -68,8 +68,7 @@ const Stripe = ({ amount,id }: StripeProps) => {
       elements,
       clientSecret,
       confirmParams: {
-        // Update to prod url
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}&id=${id}`,
+        return_url: `https://louiseguay.ca//payment-success?amount=${amount}&id=${id}`,
         shipping: {
           name: address.name,
           address: address,
