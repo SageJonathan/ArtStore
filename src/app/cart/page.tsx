@@ -159,14 +159,14 @@ function CartPageContent() {
         </div>
 
         <div className="flex flex-col justify-center pl-2 w-full md:w-1/2 lg:w-1/4">
-          <div className="leading-relaxed border mb-10 p-4">
+          <div className="leading-relaxed border mb-5 p-4">
             <h1 className="font-bold text-blue-600 text-xl font-playfair mb-4">
               Painting Details
             </h1>
             <div className="grid grid-cols-[auto,1fr] gap-x-5">
-              <p className="font-semibold">Title:</p> <p>{title}</p>
-              <p className="font-semibold">Medium:</p> <p>{medium}</p>
-              <p className="font-semibold">Size:</p> <p>{size}</p>
+              <p>Title:</p> <p className="font-semibold">{title}</p>
+              <p>Medium:</p> <p className="font-semibold">{medium}</p>
+              <p>Size:</p> <p className="font-semibold">{size}</p>
             </div>
           </div>
           <div className="border">
@@ -185,13 +185,17 @@ function CartPageContent() {
                 Cost Estimate
               </h1>
               <div className="grid grid-cols-[auto,1fr] gap-x-5">
-                <p className="font-semibold">Base:</p> <p>{price.toFixed(2)}</p>
-                <p className="font-semibold">Tax:</p>{" "}
-                <p>{(price * taxRate || 0).toFixed(2)}</p>
-                <p className="font-semibold">Shipping Cost:</p>{" "}
-                <p>{(shippingCost || 0).toFixed(2)}</p>
-                <p className="font-semibold">Total Cost:</p>{" "}
-                <p>{totalCost.toFixed(2)} CAD</p>
+                <p>Base:</p> <p className="font-semibold">{price.toFixed(2)}</p>
+                <p>Tax:</p>{" "}
+                <p className="font-semibold">
+                  {(price * taxRate || 0).toFixed(2)}
+                </p>
+                <p>Shipping Cost:</p>{" "}
+                <p className="font-semibold">
+                  {(shippingCost || 0).toFixed(2)}
+                </p>
+                <p>Total Cost:</p>{" "}
+                <p className="font-semibold">{totalCost.toFixed(2)} CAD</p>
               </div>
             </div>
 
