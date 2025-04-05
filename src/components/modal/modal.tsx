@@ -24,16 +24,6 @@ export default function ArtDetails({
   const router = useRouter();
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
 
-  // Side imgs for back url
-  const smallWidth = painting.isVertical ? 45 : 35;
-  const smallHeight = painting.isVertical ? 45 : 35;
-  // Main img
-  const mainWidth = painting.isVertical ? 270 : 350;
-  const mainHeight = painting.isVertical ? 270 : 350;
-
-  const toggleImage = () => {
-    setActiveImage(activeImage === "front" ? "back" : "front");
-  };
 
   return (
     <Modal
