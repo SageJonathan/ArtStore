@@ -28,16 +28,8 @@ export default function ArtDetails({
   const smallWidth = painting.isVertical ? 45 : 35;
   const smallHeight = painting.isVertical ? 45 : 35;
   // Main img
-  const mainWidth = painting.isVertical
-    ? 270
-    : activeImage === "back"
-    ? 350
-    : 550;
-  const mainHeight = painting.isVertical
-    ? 270
-    : activeImage === "back"
-    ? 350
-    : 550;
+  const mainWidth = painting.isVertical ? 270 : 350;
+  const mainHeight = painting.isVertical ? 270 : 350;
 
   const toggleImage = () => {
     setActiveImage(activeImage === "front" ? "back" : "front");
@@ -53,7 +45,10 @@ export default function ArtDetails({
     >
       <div className="w-full h-full flex flex-col">
         <div className="relative w-full">
-          <button className="absolute left-0 top-0 cursor-pointer p-2 z-10 hover:opacity-80 transition-opacity" aria-label="Close modal">
+          <button
+            className="absolute left-0 top-0 cursor-pointer p-2 z-10 hover:opacity-80 transition-opacity"
+            aria-label="Close modal"
+          >
             <Image
               src={Return}
               alt="Return arrow"
@@ -63,11 +58,16 @@ export default function ArtDetails({
             />
           </button>
         </div>
-        
-        <div className="flex flex-col md:flex-row w-full justify-center items-center mt-4 md:mt-6 relative flex-1">
+
+        <div className="flex flex-col md:flex-row w-full justify-center items-center mt-8 md:mt-10 relative flex-1">
           <div className="flex flex-row md:flex-col gap-2 md:absolute md:left-2 md:top-0 mb-3 md:mb-0">
-            <div className="cursor-pointer rounded overflow-hidden border-2 transition-all" 
-              style={{ borderColor: activeImage === "front" ? "#3b82f6" : "transparent" }}>
+            <div
+              className="cursor-pointer rounded overflow-hidden border-2 transition-all"
+              style={{
+                borderColor:
+                  activeImage === "front" ? "#3b82f6" : "transparent",
+              }}
+            >
               <Image
                 src={painting.imageUrlFront || "/errorImg.png"}
                 alt="front side"
@@ -77,8 +77,12 @@ export default function ArtDetails({
                 className="object-cover hover:opacity-90 transition-opacity"
               />
             </div>
-            <div className="cursor-pointer rounded overflow-hidden border-2 transition-all"
-              style={{ borderColor: activeImage === "back" ? "#3b82f6" : "transparent" }}>
+            <div
+              className="cursor-pointer rounded overflow-hidden border-2 transition-all"
+              style={{
+                borderColor: activeImage === "back" ? "#3b82f6" : "transparent",
+              }}
+            >
               <Image
                 src={painting.imageUrlBack || "/errorImg.png"}
                 alt="back side"
@@ -89,8 +93,12 @@ export default function ArtDetails({
               />
             </div>
           </div>
-          
-          <div className={`fixed-image-container ${painting.isVertical ? 'vertical' : ''} mx-auto`}>
+
+          <div
+            className={`fixed-image-container ${
+              painting.isVertical ? "vertical" : ""
+            } mx-auto`}
+          >
             <img
               src={
                 activeImage === "front"
@@ -104,12 +112,19 @@ export default function ArtDetails({
 
         <div className="mt-3 md:mt-4 px-2 md:px-4">
           <div className="mb-2">
-            <p className="text-gray-700 text-sm"><span className="font-medium">Medium:</span> {painting.medium}</p>
-            {painting.size && <p className="text-gray-700 text-sm mt-1"><span className="font-medium">Size:</span> {painting.size}</p>}
+            <p className="text-gray-700 text-sm">
+              <span className="font-medium">Medium:</span> {painting.medium}
+            </p>
+            {painting.size && (
+              <p className="text-gray-700 text-sm mt-1">
+                <span className="font-medium">Size:</span> {painting.size}
+              </p>
+            )}
           </div>
           <div className="mb-3">
             <p className="font-bold text-xs md:text-sm text-gray-800">
-              All paintings include a certificate of authenticity signed by the artist
+              All paintings include a certificate of authenticity signed by the
+              artist
             </p>
           </div>
         </div>
