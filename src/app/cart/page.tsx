@@ -36,9 +36,6 @@ function CartPageContent() {
   const imageUrlFront = searchParams.get("imageUrlFront");
   const imageUrlBack = searchParams.get("imageUrlBack");
 
-  const smallWidth = isVertical ? 45 : 35;
-  const smallHeight = isVertical ? 45 : 35;
-
   // Use consistent dimensions for container, images will scale to fit
   const containerWidth = isVertical ? 350 : 600;
   const containerHeight = isVertical ? 350 : 600;

@@ -14,7 +14,7 @@ export default function PackagingPage() {
               </h2>
               <p className="text-lg leading-relaxed mb-4">
                 We understand that each painting is a unique work of art that
-                requires careful handling and protection. That's why we use
+                requires careful handling and protection. That&apos;s why we use
                 professional-grade packaging materials and techniques to ensure
                 your artwork arrives in perfect condition, no matter where in
                 the world you are.
@@ -106,8 +106,8 @@ export default function PackagingPage() {
                   </h3>
                   <p className="text-gray-700">
                     The outer box is sealed with high-quality packing tape and
-                    clearly labeled with "Fragile" and "Handle with Care"
-                    markings to alert shipping handlers.
+                    clearly labeled with &quot;Fragile&quot; and &quot;Handle
+                    with Care&quot; markings to alert shipping handlers.
                   </p>
                 </div>
               </div>
@@ -127,8 +127,8 @@ export default function PackagingPage() {
                 >
                   support@sagecodes.tech
                 </a>
-                . We're committed to ensuring your artwork arrives safely and on
-                time.
+                . We&apos;re committed to ensuring your artwork arrives safely
+                and on time.
               </p>
             </section>
           </div>
