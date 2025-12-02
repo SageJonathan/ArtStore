@@ -157,40 +157,69 @@ export default function ArtDetails({
           </div>
         </div>
 
-        <div className="mt-auto pt-2 flex flex-col sm:flex-row justify-between gap-2 px-2 md:px-4 border-t border-gray-200 flex-shrink-0">
-          <button
-            className="w-full sm:w-auto border-2 border-gray-300 bg-white text-gray-700 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm hover:shadow-md"
-            onClick={() => {
-              onRequestClose();
-            }}
-          >
-            Return
-          </button>
-          <button
-            className="w-full sm:w-auto border-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg py-3 px-8 text-sm font-semibold hover:from-indigo-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-100"
-            onClick={() => {
-              const queryString = new URLSearchParams({
-                id: painting.id.toString(),
-                title: painting.title,
-                medium: painting.medium,
-                price: painting.price.toString(),
-                isVertical: painting.isVertical.toString(),
-                size: painting.size,
-                shippingWeight: painting.shippingWeight,
-                shippingLength: painting.shippingLength,
-                shippingHeight: painting.shippingHeight,
-                shippingWidth: painting.shippingWidth,
-                inStock: painting.inStock.toString(),
-                imageUrlFront: painting.imageUrlFront,
-                imageUrlBack: painting.imageUrlBack,
-                clientId: painting.clientId?.toString() || "",
-              }).toString();
-              router.push(`/cart?${queryString}`);
-              onRequestClose();
-            }}
-          >
-            Buy Now
-          </button>
+        <div className="mt-auto pt-2 flex flex-col gap-3 px-2 md:px-4 border-t border-gray-200 flex-shrink-0">
+          <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-rose-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="font-merriweather">Secure Payment</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-rose-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
+              </svg>
+              <span className="font-merriweather">Tracked Shipping</span>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between gap-2">
+            <button
+              className="w-full sm:w-auto border-2 border-gray-300 bg-white text-gray-700 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm hover:shadow-md"
+              onClick={() => {
+                onRequestClose();
+              }}
+            >
+              Return
+            </button>
+            <button
+              className="w-full sm:w-auto border-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg py-3 px-8 text-sm font-semibold hover:from-indigo-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-100"
+              onClick={() => {
+                const queryString = new URLSearchParams({
+                  id: painting.id.toString(),
+                  title: painting.title,
+                  medium: painting.medium,
+                  price: painting.price.toString(),
+                  isVertical: painting.isVertical.toString(),
+                  size: painting.size,
+                  shippingWeight: painting.shippingWeight,
+                  shippingLength: painting.shippingLength,
+                  shippingHeight: painting.shippingHeight,
+                  shippingWidth: painting.shippingWidth,
+                  inStock: painting.inStock.toString(),
+                  imageUrlFront: painting.imageUrlFront,
+                  imageUrlBack: painting.imageUrlBack,
+                  clientId: painting.clientId?.toString() || "",
+                }).toString();
+                router.push(`/cart?${queryString}`);
+                onRequestClose();
+              }}
+            >
+              Buy Now
+            </button>
+          </div>
         </div>
       </div>
     </Modal>
