@@ -117,7 +117,7 @@ export default function ArtDetails({
           <div className="mb-2 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="text-indigo-600 font-semibold text-xs uppercase tracking-wide">
+                <span className="text-amber-700 font-semibold text-xs uppercase tracking-wide">
                   Medium:
                 </span>
                 <p className="text-gray-800 text-xs font-medium">
@@ -126,7 +126,7 @@ export default function ArtDetails({
               </div>
               {painting.size && (
                 <div className="flex items-center gap-2">
-                  <span className="text-indigo-600 font-semibold text-xs uppercase tracking-wide">
+                  <span className="text-amber-700 font-semibold text-xs uppercase tracking-wide">
                     Size:
                   </span>
                   <p className="text-gray-800 text-xs font-medium">
@@ -136,10 +136,10 @@ export default function ArtDetails({
               )}
             </div>
           </div>
-          <div className="mb-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+          <div className="mb-2 bg-gradient-to-r from-rose-50 to-pink-50 rounded-lg p-3 border border-rose-200">
             <div className="flex items-start gap-2">
               <svg
-                className="w-4 h-4 text-indigo-600 mt-0.5 flex-shrink-0"
+                className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -161,7 +161,7 @@ export default function ArtDetails({
           <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
             <div className="flex items-center gap-1">
               <svg
-                className="w-3 h-3 text-rose-600"
+                className="w-3 h-3 text-amber-600"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -175,7 +175,7 @@ export default function ArtDetails({
             </div>
             <div className="flex items-center gap-1">
               <svg
-                className="w-3 h-3 text-rose-600"
+                className="w-3 h-3 text-amber-600"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -195,7 +195,7 @@ export default function ArtDetails({
               Return
             </button>
             <button
-              className="w-full sm:w-auto border-0 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg py-3 px-8 text-sm font-semibold hover:from-indigo-700 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-100"
+              className="w-full sm:w-auto border-0 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-lg py-3 px-8 text-sm font-semibold hover:from-amber-700 hover:to-amber-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-100"
               onClick={() => {
                 const queryString = new URLSearchParams({
                   id: painting.id.toString(),

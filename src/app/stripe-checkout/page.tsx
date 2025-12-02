@@ -18,10 +18,10 @@ function StripeCheckoutContent() {
   const id = parseInt(searchParams.get('id') || '0', 10);
 
   return (
-    <main className="max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-blue-500 to-purple-500">
+    <main className="max-w-6xl mx-auto p-10 text-center border m-10 rounded-md bg-gradient-to-r from-rose-50 via-pink-50/80 to-rose-50">
       <div className="mb-10">
-        <h1 className="text-4xl font-extrabold mb-2">Louise Guay</h1>
-        <h2 className="text-2xl">
+        <h1 className="text-4xl font-extrabold mb-2 text-rose-900">Louise Guay</h1>
+        <h2 className="text-2xl text-gray-800">
           has requested
           <span className="font-bold"> ${amount} CAD</span>
         </h2>

@@ -165,7 +165,7 @@ function CartPageContent() {
           <div className="absolute top-0 left-0 z-10 flex flex-col gap-3">
             <button
               type="button"
-              className="cursor-pointer rounded-lg overflow-hidden border-2 transition-all shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="cursor-pointer rounded-lg overflow-hidden border-2 transition-all shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
               style={{
                 borderColor:
                   activeImage === "front" ? "#3b82f6" : "rgba(0, 0, 0, 0.1)",
@@ -195,7 +195,7 @@ function CartPageContent() {
             </button>
             <button
               type="button"
-              className="cursor-pointer rounded-lg overflow-hidden border-2 transition-all shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              className="cursor-pointer rounded-lg overflow-hidden border-2 transition-all shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
               style={{
                 borderColor:
                   activeImage === "back" ? "#3b82f6" : "rgba(0, 0, 0, 0.1)",
@@ -252,7 +252,7 @@ function CartPageContent() {
 
         <div className="flex flex-col justify-center w-full md:w-1/2 lg:w-1/4 gap-4">
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-5 border border-gray-200 shadow-md">
-            <h1 className="font-bold text-indigo-600 text-xl font-playfair mb-4 pb-2 border-b border-gray-300">
+            <h1 className="font-bold text-amber-700 text-xl font-playfair mb-4 pb-2 border-b border-gray-300">
               Painting Details
             </h1>
             <div className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-2 mt-3">
@@ -296,7 +296,7 @@ function CartPageContent() {
               </div>
             )}
             <div className="mb-5 mt-5 leading-relaxed px-4">
-              <h1 className="font-bold text-indigo-600 text-xl font-playfair pb-3 border-b border-gray-200 mb-3">
+              <h1 className="font-bold text-amber-700 text-xl font-playfair pb-3 border-b border-gray-200 mb-3">
                 Cost Estimate
               </h1>
               <div className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-2">
@@ -313,7 +313,7 @@ function CartPageContent() {
                   {isLoadingShipping ? (
                     <>
                       <svg
-                        className="animate-spin h-4 w-4 text-indigo-600"
+                        className="animate-spin h-4 w-4 text-amber-600"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -345,7 +345,7 @@ function CartPageContent() {
                 <div className="col-span-2 border-t border-gray-300 pt-2 mt-2">
                   <div className="flex justify-between items-center">
                     <p className="text-lg font-bold text-gray-900">Total:</p>
-                    <p className="text-xl font-bold text-indigo-600">
+                    <p className="text-xl font-bold text-amber-700">
                       {isLoadingShipping ? (
                         <span className="text-gray-500 text-base">
                           Calculating...
@@ -368,7 +368,7 @@ function CartPageContent() {
                 <ul className="space-y-2 text-xs text-gray-700 font-merriweather">
                   <li className="flex items-start gap-2">
                     <svg
-                      className="w-4 h-4 text-rose-600 mt-0.5 flex-shrink-0"
+                      className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -382,7 +382,7 @@ function CartPageContent() {
                   </li>
                   <li className="flex items-start gap-2">
                     <svg
-                      className="w-4 h-4 text-rose-600 mt-0.5 flex-shrink-0"
+                      className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -396,7 +396,7 @@ function CartPageContent() {
                   </li>
                   <li className="flex items-start gap-2">
                     <svg
-                      className="w-4 h-4 text-rose-600 mt-0.5 flex-shrink-0"
+                      className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -410,7 +410,7 @@ function CartPageContent() {
                   </li>
                   <li className="flex items-start gap-2">
                     <svg
-                      className="w-4 h-4 text-rose-600 mt-0.5 flex-shrink-0"
+                      className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -427,14 +427,14 @@ function CartPageContent() {
             </div>
 
             <div className="px-4 pb-4">
-              <h1 className="font-bold text-indigo-600 text-xl font-playfair pb-3 border-b border-gray-200 mb-3">
+              <h1 className="font-bold text-amber-700 text-xl font-playfair pb-3 border-b border-gray-200 mb-3">
                 Secure Checkout
               </h1>
               <div className="block">
                 <button
                   className={`border-0 rounded-lg px-6 py-4 text-white font-semibold transition-all shadow-lg w-full flex items-center justify-center gap-3 ${
                     canProceedToPayment
-                      ? "bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 hover:shadow-xl transform hover:scale-[1.02] active:scale-100 cursor-pointer"
+                      ? "bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 hover:shadow-xl transform hover:scale-[1.02] active:scale-100 cursor-pointer"
                       : "bg-gray-300 cursor-not-allowed opacity-70"
                   }`}
                   id="stripe-payment"
@@ -493,11 +493,11 @@ function CartPageContent() {
         </div>
       </div>
 
-      <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg shadow-lg flex flex-col md:flex-row justify-between flex-wrap gap-6 font-merriweather">
+      <div className="mt-8 p-6 bg-gradient-to-r from-amber-50 to-amber-100/50 border border-amber-200 rounded-lg shadow-lg flex flex-col md:flex-row justify-between flex-wrap gap-6 font-merriweather">
         <div className="flex flex-col gap-3">
           <div className="flex items-start gap-2">
             <svg
-              className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0"
+              className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -513,7 +513,7 @@ function CartPageContent() {
           </div>
           <div className="flex items-start gap-2">
             <svg
-              className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0"
+              className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -531,7 +531,7 @@ function CartPageContent() {
         <div className="flex flex-col gap-3">
           <div className="flex items-start gap-2">
             <svg
-              className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0"
+              className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -544,7 +544,7 @@ function CartPageContent() {
           </div>
           <div className="flex items-start gap-2">
             <svg
-              className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0"
+              className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >

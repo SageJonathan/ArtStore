@@ -90,7 +90,7 @@ const Stripe = ({ amount, id }: StripeProps) => {
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
           <div
-            className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-indigo-600 border-e-transparent"
+            className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-rose-300 border-e-transparent"
             role="status"
           >
             <span className="sr-only">Loading...</span>
@@ -143,7 +143,7 @@ const Stripe = ({ amount, id }: StripeProps) => {
           value={email || ""}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your.email@example.com"
-          className="mt-1 block w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-all sm:text-sm"
+          className="mt-1 block w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 shadow-sm focus:border-rose-300 focus:ring-2 focus:ring-rose-300 focus:ring-opacity-50 transition-all sm:text-sm"
           required
         />
         <p className="mt-1 text-xs text-gray-500">
@@ -182,7 +182,7 @@ const Stripe = ({ amount, id }: StripeProps) => {
       <button
         type="submit"
         disabled={!stripe || loading}
-        className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-4 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-100 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+        className="w-full bg-gradient-to-r from-rose-300 via-pink-300/80 to-rose-300 hover:from-rose-400 hover:via-pink-400/80 hover:to-rose-400 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-4 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-100 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
       >
         {loading ? (
           <>

@@ -113,8 +113,8 @@ export default function PackagingPage() {
               </div>
             </section>
 
-            <section className="bg-rose-50/50 rounded-lg p-6 border border-rose-200">
-              <h2 className="text-2xl font-playfair font-bold text-rose-800 mb-4">
+            <section className="bg-amber-50/50 rounded-lg p-6 border border-amber-200">
+              <h2 className="text-2xl font-playfair font-bold text-amber-800 mb-4">
                 Questions About Shipping?
               </h2>
               <p className="text-lg leading-relaxed text-gray-700">
@@ -123,7 +123,7 @@ export default function PackagingPage() {
                 at{" "}
                 <a
                   href="mailto:support@sagecodes.tech"
-                  className="text-rose-700 hover:text-rose-900 underline"
+                  className="text-amber-700 hover:text-amber-900 underline"
                 >
                   support@sagecodes.tech
                 </a>

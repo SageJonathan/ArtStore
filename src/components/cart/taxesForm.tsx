@@ -58,7 +58,7 @@ export default function TaxesForm({
 
   return (
     <div className="flex flex-col space-y-4 px-4 pt-4">
-      <h1 className="font-bold text-indigo-600 text-xl font-playfair pb-3 border-b border-gray-200">
+      <h1 className="font-bold text-amber-700 text-xl font-playfair pb-3 border-b border-gray-200">
         Shipping Estimator
       </h1>
       <div className="space-y-3">
@@ -69,7 +69,7 @@ export default function TaxesForm({
           <select
             id="country"
             name="shippingAddress"
-            className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all ${
+            className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all ${
               isError ? "border-red-500 ring-2 ring-red-200" : "border-gray-300"
             }`}
             required
@@ -94,7 +94,7 @@ export default function TaxesForm({
             <select
               id="stateOrProvince"
               name="shippingAddress"
-              className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all ${
+              className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all ${
                 isError ? "border-red-500 ring-2 ring-red-200" : "border-gray-300"
               }`}
               required
@@ -121,7 +121,7 @@ export default function TaxesForm({
               type="text"
               id="postalCode"
               name="postalCode"
-              className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all ${
+              className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all ${
                 isError ? "border-red-500 ring-2 ring-red-200" : "border-gray-300"
               }`}
               placeholder="Enter Postal Code"
