@@ -24,6 +24,7 @@ export default function ArtDetails({
   const router = useRouter();
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
 
+
   return (
     <Modal
       isOpen={isOpen}
