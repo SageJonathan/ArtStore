@@ -156,10 +156,10 @@ function CartPageContent() {
     !isLoadingShipping;
 
   return (
-    <div className="flex flex-col p-6 md:p-10 min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="flex flex-col p-4 sm:p-6 md:p-10 min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 overflow-x-hidden">
       <div className="md:flex md:flex-row gap-6">
-        <div className="relative flex flex-row w-full md:w-3/4 justify-center items-start">
-          <div className="absolute top-0 left-0 z-10 flex flex-col gap-3">
+        <div className="relative flex flex-col sm:flex-row w-full md:w-3/4 justify-center items-center sm:items-start overflow-x-hidden">
+          <div className="absolute top-0 left-0 z-10 flex flex-col gap-3 sm:static sm:relative">
             <button
               type="button"
               className="cursor-pointer rounded-lg overflow-hidden border-2 transition-all shadow-md hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
@@ -222,12 +222,9 @@ function CartPageContent() {
             </button>
           </div>
           <div
-            className="rounded-xl p-6 shadow-lg border border-gray-300 flex items-center justify-center"
+            className="rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-gray-300 flex items-center justify-center mx-auto w-[85vw] max-w-[400px] sm:w-[400px] md:w-[600px]"
             style={{
-              width: `${containerWidth}px`,
-              height: `${containerHeight}px`,
-              minWidth: `${containerWidth}px`,
-              minHeight: `${containerHeight}px`,
+              aspectRatio: "1 / 1",
               background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
               boxShadow:
                 "0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
@@ -490,7 +487,7 @@ function CartPageContent() {
         </div>
       </div>
 
-      <div className="mt-8 p-6 bg-gradient-to-r from-amber-50 to-amber-100/50 border border-amber-200 rounded-lg shadow-lg flex flex-col md:flex-row justify-between flex-wrap gap-6 font-merriweather">
+      <div className="mt-8 p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-amber-100/50 border border-amber-200 rounded-lg shadow-lg flex flex-col md:flex-row justify-between flex-wrap gap-6 font-merriweather overflow-x-hidden">
         <div className="flex flex-col gap-3">
           <div className="flex items-start gap-2">
             <svg
