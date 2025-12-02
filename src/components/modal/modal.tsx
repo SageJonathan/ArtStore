@@ -62,7 +62,7 @@ export default function ArtDetails({
         <div className="flex flex-col md:flex-row w-full justify-center items-center mt-8 md:mt-10 relative flex-1">
           <div className="flex flex-row md:flex-col gap-2 md:absolute md:left-2 md:top-0 mb-3 md:mb-0">
             <div
-              className="cursor-pointer rounded overflow-hidden border-2 transition-all"
+              className="cursor-pointer rounded overflow-hidden border-2 transition-all w-[50px] h-[50px] flex-shrink-0"
               style={{
                 borderColor:
                   activeImage === "front" ? "#3b82f6" : "transparent",
@@ -74,11 +74,11 @@ export default function ArtDetails({
                 width={50}
                 height={50}
                 onClick={() => setActiveImage("front")}
-                className="object-cover hover:opacity-90 transition-opacity"
+                className="object-cover w-full h-full hover:opacity-90 transition-opacity"
               />
             </div>
             <div
-              className="cursor-pointer rounded overflow-hidden border-2 transition-all"
+              className="cursor-pointer rounded overflow-hidden border-2 transition-all w-[50px] h-[50px] flex-shrink-0"
               style={{
                 borderColor: activeImage === "back" ? "#3b82f6" : "transparent",
               }}
@@ -89,7 +89,7 @@ export default function ArtDetails({
                 width={50}
                 height={50}
                 onClick={() => setActiveImage("back")}
-                className="object-cover hover:opacity-90 transition-opacity"
+                className="object-cover w-full h-full hover:opacity-90 transition-opacity"
               />
             </div>
           </div>
