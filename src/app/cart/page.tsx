@@ -225,12 +225,15 @@ function CartPageContent() {
             </button>
           </div>
           <div
-            className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-6 shadow-lg border border-gray-300 flex items-center justify-center"
+            className="rounded-xl p-6 shadow-lg border border-gray-300 flex items-center justify-center"
             style={{
               width: `${containerWidth}px`,
               height: `${containerHeight}px`,
               minWidth: `${containerWidth}px`,
               minHeight: `${containerHeight}px`,
+              background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+              boxShadow:
+                "0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.6)",
             }}
           >
             <Image

@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
         <link rel="icon" href="/favicon.ico" />
       <body
-        className={`${merriweather} ${playfair} antialiased`}
+        className={`${merriweather} ${playfair} antialiased bg-gradient-to-b from-rose-50/30 via-white to-rose-50/20 min-h-screen`}
       >
         <Nav />
         <div id="__next">

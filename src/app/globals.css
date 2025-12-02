@@ -14,3 +14,21 @@
   .font-playfair {
     font-family: var(--font-playfair);
   }
+
+  /* Floral-inspired scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #fef2f2;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #f9a8d4;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f472b6;
+  }
