@@ -27,7 +27,6 @@
     "resend": "^4.0.1",
     "scss": "^0.2.4",
     "shippo": "^2.14.1",
-    "sqlite3": "^5.1.7",
     "stripe": "^17.5.0",
     "tailwind-scrollbar-hide": "^2.0.0"
   },
