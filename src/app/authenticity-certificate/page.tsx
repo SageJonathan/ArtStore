@@ -16,13 +16,13 @@ export default function AuthenticityCertificatePage() {
                 Every original painting purchased from Louise Guay comes with a signed 
                 Certificate of Authenticity, guaranteeing that the artwork is an original 
                 creation by the artist. This certificate serves as a permanent record of 
-                your artwork's provenance and authenticity.
+                your artwork&apos;s provenance and authenticity.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-playfair font-bold text-rose-800 mb-4">
-                What's Included
+                What&apos;s Included
               </h2>
               <div className="bg-white/50 rounded-lg p-4 border border-rose-100 mb-4">
                 <ul className="space-y-3 text-gray-700">
@@ -39,8 +39,8 @@ export default function AuthenticityCertificatePage() {
                       />
                     </svg>
                     <span>
-                      <strong>Artist's Signature:</strong> Each certificate is personally 
-                      signed by Louise Guay, confirming the artwork's authenticity
+                      <strong>Artist&apos;s Signature:</strong> Each certificate is personally 
+                      signed by Louise Guay, confirming the artwork&apos;s authenticity
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
@@ -117,13 +117,13 @@ export default function AuthenticityCertificatePage() {
                   <h3 className="font-semibold text-rose-800 mb-2">Investment Protection</h3>
                   <p className="text-gray-700">
                     Provides documented proof of authenticity, protecting your investment and 
-                    ensuring the artwork's value is recognized by appraisers and collectors.
+                    ensuring the artwork&apos;s value is recognized by appraisers and collectors.
                   </p>
                 </div>
                 <div className="bg-white/50 rounded-lg p-4 border border-rose-100">
                   <h3 className="font-semibold text-rose-800 mb-2">Peace of Mind</h3>
                   <p className="text-gray-700">
-                    Gives you confidence that you're purchasing a genuine, original work of art 
+                    Gives you confidence that you&apos;re purchasing a genuine, original work of art 
                     directly from the artist.
                   </p>
                 </div>

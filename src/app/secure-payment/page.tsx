@@ -14,7 +14,7 @@ export default function SecurePaymentPage() {
               </h2>
               <p className="text-lg leading-relaxed mb-4">
                 We understand that purchasing art online requires trust and confidence. 
-                That's why we've implemented industry-leading security measures to protect 
+                That&apos;s why we&apos;ve implemented industry-leading security measures to protect 
                 your personal and financial information.
               </p>
             </section>
@@ -24,7 +24,7 @@ export default function SecurePaymentPage() {
                 Powered by Stripe
               </h2>
               <p className="text-lg leading-relaxed mb-4">
-                All payments are processed securely through Stripe, one of the world's 
+                All payments are processed securely through Stripe, one of the world&apos;s 
                 most trusted payment processors. Stripe is used by millions of businesses 
                 worldwide and handles billions of dollars in transactions annually.
               </p>
@@ -122,7 +122,7 @@ export default function SecurePaymentPage() {
                 <div className="bg-white/50 rounded-lg p-4 border border-rose-100">
                   <h3 className="font-semibold text-rose-800 mb-2">Payment Confirmation</h3>
                   <p className="text-gray-700">
-                    You'll receive an immediate email confirmation once your payment is 
+                    You&apos;ll receive an immediate email confirmation once your payment is 
                     successfully processed, providing you with peace of mind.
                   </p>
                 </div>
@@ -142,14 +142,14 @@ export default function SecurePaymentPage() {
               </h2>
               <p className="text-lg leading-relaxed text-gray-700">
                 If you have any concerns or questions about our payment security measures, 
-                please don't hesitate to contact us at{" "}
+                please don&apos;t hesitate to contact us at{" "}
                 <a
                   href="mailto:support@sagecodes.tech"
                   className="text-amber-700 hover:text-amber-900 underline"
                 >
                   support@sagecodes.tech
                 </a>
-                . We're here to help ensure you feel completely confident in your purchase.
+                . We&apos;re here to help ensure you feel completely confident in your purchase.
               </p>
             </section>
           </div>

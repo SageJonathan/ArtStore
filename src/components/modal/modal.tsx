@@ -24,10 +24,6 @@ export default function ArtDetails({
   const router = useRouter();
   const [activeImage, setActiveImage] = useState<"front" | "back">("front");
 
-  const toggleImage = () => {
-    setActiveImage(activeImage === "front" ? "back" : "front");
-  };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -102,13 +98,16 @@ export default function ArtDetails({
           </div>
 
           <div className="fixed-image-container mx-auto">
-            <img
+            <Image
               src={
                 activeImage === "front"
                   ? painting.imageUrlFront || "/errorImg.png"
                   : painting.imageUrlBack || "/errorImg.png"
               }
               alt="Main Img"
+              width={500}
+              height={500}
+              className="w-full h-full object-contain"
             />
           </div>
         </div>

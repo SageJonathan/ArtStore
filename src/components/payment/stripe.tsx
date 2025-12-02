@@ -147,7 +147,7 @@ const Stripe = ({ amount, id }: StripeProps) => {
           required
         />
         <p className="mt-1 text-xs text-gray-500">
-          We'll send your receipt to this email
+          We&apos;ll send your receipt to this email
         </p>
       </div>
 
