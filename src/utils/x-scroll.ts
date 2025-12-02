@@ -3,41 +3,34 @@ import { RefObject, useEffect } from "react";
 export const useHorizontalScroll = (
   galleryRef: RefObject<HTMLDivElement | null>
 ) => {
-  const handleScroll = (direction: "left" | "right") => {
-    if (galleryRef.current) {
-      const { clientWidth } = galleryRef.current;
-
-      const firstItem = galleryRef.current.querySelector(".painting-item");
-      const itemWidth = firstItem ? firstItem.clientWidth : 0;
-      const scrollAmount = itemWidth > 0 ? itemWidth : clientWidth / 3;
-
-      galleryRef.current.scrollBy({
-        left: direction === "right" ? scrollAmount : -scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const handleWheel = (event: WheelEvent) => {
-    if (galleryRef.current) {
-      const direction = event.deltaY > 0 ? "left" : "right";
-      handleScroll(direction);
-      event.preventDefault();
-    }
-  };
-
   useEffect(() => {
     const currentGallery = galleryRef.current;
-    if (currentGallery) {
-      currentGallery.addEventListener("wheel", handleWheel);
-    }
+    if (!currentGallery) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      if (!currentGallery) return;
+
+      // Convert vertical scroll delta directly to horizontal scroll
+      // This makes scrolling proportional and responsive to user input
+      const scrollDelta = event.deltaY;
+
+      // Apply scroll immediately for smooth, proportional scrolling
+      // Modern browsers handle this efficiently
+      currentGallery.scrollLeft += scrollDelta;
+
+      // Prevent default vertical scrolling
+      event.preventDefault();
+    };
+
+    // Add wheel event listener with passive: false to allow preventDefault
+    currentGallery.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
       if (currentGallery) {
         currentGallery.removeEventListener("wheel", handleWheel);
       }
     };
-  });
+  }, [galleryRef]);
 
-  return { handleScroll };
+  return {};
 };

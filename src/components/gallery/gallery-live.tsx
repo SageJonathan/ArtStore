@@ -47,6 +47,9 @@ export default function GalleryLive({ paintings }: GalleryGridProps) {
           style={{
             scrollbarWidth: "none", // Firefox
             msOverflowStyle: "none", // Internet Explorer 10+
+            WebkitOverflowScrolling: "touch", // iOS momentum scrolling
+            scrollBehavior: "auto", // Use auto for immediate response, browser handles smoothness
+            willChange: "scroll-position", // Optimize for scrolling performance
           }}
         >
           <div className="w-full h-full flex-shrink-0">
