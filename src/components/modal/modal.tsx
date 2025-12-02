@@ -34,125 +34,192 @@ export default function ArtDetails({
       overlayClassName="modal-overlay"
     >
       <div className="w-full h-full flex flex-col">
-        <div className="relative w-full">
+        <div className="relative w-full mb-2">
           <button
-            className="absolute left-0 top-0 cursor-pointer p-2 z-10 hover:opacity-80 transition-opacity"
+            className="absolute left-0 top-0 cursor-pointer p-2 z-10 hover:opacity-80 transition-all hover:scale-110 rounded-full hover:bg-gray-100"
             aria-label="Close modal"
           >
             <Image
               src={Return}
               alt="Return arrow"
-              height={20}
-              width={20}
+              height={24}
+              width={24}
               onClick={onRequestClose}
             />
           </button>
+          <h2 className="text-xl md:text-2xl font-bold text-center font-playfair text-gray-900 mt-1">
+            {painting.title}
+          </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row w-full justify-center items-center mt-8 md:mt-10 relative flex-1">
-          <div className="flex flex-row md:flex-col gap-2 md:absolute md:left-2 md:top-0 mb-3 md:mb-0">
+        <div className="flex flex-col md:flex-row w-full justify-center items-center mt-4 md:mt-6 relative flex-1 min-h-0">
+          <div className="flex flex-row md:flex-col gap-2 md:absolute md:left-2 md:top-0 mb-2 md:mb-0">
             <div
-              className="cursor-pointer rounded overflow-hidden border-2 transition-all"
+              className="cursor-pointer rounded-lg overflow-hidden border-3 transition-all w-[60px] h-[60px] flex-shrink-0 shadow-md hover:shadow-lg hover:scale-105"
               style={{
                 borderColor:
-                  activeImage === "front" ? "#3b82f6" : "transparent",
+                  activeImage === "front" ? "#3b82f6" : "rgba(0, 0, 0, 0.1)",
+                borderWidth: activeImage === "front" ? "3px" : "2px",
+                boxShadow:
+                  activeImage === "front"
+                    ? "0 0 0 2px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(59, 130, 246, 0.3)"
+                    : "0 2px 8px rgba(0, 0, 0, 0.1)",
               }}
             >
               <Image
                 src={painting.imageUrlFront || "/errorImg.png"}
                 alt="front side"
-                width={50}
-                height={50}
+                width={60}
+                height={60}
                 onClick={() => setActiveImage("front")}
-                className="object-cover hover:opacity-90 transition-opacity"
+                className="object-cover w-full h-full hover:opacity-90 transition-opacity"
               />
             </div>
             <div
-              className="cursor-pointer rounded overflow-hidden border-2 transition-all"
+              className="cursor-pointer rounded-lg overflow-hidden border-3 transition-all w-[60px] h-[60px] flex-shrink-0 shadow-md hover:shadow-lg hover:scale-105"
               style={{
-                borderColor: activeImage === "back" ? "#3b82f6" : "transparent",
+                borderColor:
+                  activeImage === "back" ? "#3b82f6" : "rgba(0, 0, 0, 0.1)",
+                borderWidth: activeImage === "back" ? "3px" : "2px",
+                boxShadow:
+                  activeImage === "back"
+                    ? "0 0 0 2px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(59, 130, 246, 0.3)"
+                    : "0 2px 8px rgba(0, 0, 0, 0.1)",
               }}
             >
               <Image
                 src={painting.imageUrlBack || "/errorImg.png"}
                 alt="back side"
-                width={50}
-                height={50}
+                width={60}
+                height={60}
                 onClick={() => setActiveImage("back")}
-                className="object-cover hover:opacity-90 transition-opacity"
+                className="object-cover w-full h-full hover:opacity-90 transition-opacity"
               />
             </div>
           </div>
 
-          <div
-            className={`fixed-image-container ${
-              painting.isVertical ? "vertical" : ""
-            } mx-auto`}
-          >
-            <img
+          <div className="fixed-image-container mx-auto">
+            <Image
               src={
                 activeImage === "front"
                   ? painting.imageUrlFront || "/errorImg.png"
                   : painting.imageUrlBack || "/errorImg.png"
               }
               alt="Main Img"
+              width={500}
+              height={500}
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
 
-        <div className="mt-3 md:mt-4 px-2 md:px-4">
-          <div className="mb-2">
-            <p className="text-gray-700 text-sm">
-              <span className="font-medium">Medium:</span> {painting.medium}
-            </p>
-            {painting.size && (
-              <p className="text-gray-700 text-sm mt-1">
-                <span className="font-medium">Size:</span> {painting.size}
-              </p>
-            )}
+        <div className="mt-2 md:mt-3 px-2 md:px-4 flex-shrink-0">
+          <div className="mb-2 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 border border-gray-200">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="text-amber-700 font-semibold text-xs uppercase tracking-wide">
+                  Medium:
+                </span>
+                <p className="text-gray-800 text-xs font-medium">
+                  {painting.medium}
+                </p>
+              </div>
+              {painting.size && (
+                <div className="flex items-center gap-2">
+                  <span className="text-amber-700 font-semibold text-xs uppercase tracking-wide">
+                    Size:
+                  </span>
+                  <p className="text-gray-800 text-xs font-medium">
+                    {painting.size}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="mb-3">
-            <p className="font-bold text-xs md:text-sm text-gray-800">
-              All paintings include a certificate of authenticity signed by the
-              artist
-            </p>
+          <div className="mb-2 bg-gradient-to-r from-rose-50 to-pink-50 rounded-lg p-3 border border-rose-200">
+            <div className="flex items-start gap-2">
+              <svg
+                className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <p className="font-semibold text-xs text-gray-800 leading-tight">
+                All paintings include a certificate of authenticity signed by
+                the artist
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="mt-auto pt-2 flex flex-col sm:flex-row justify-between gap-2 px-2 md:px-4">
-          <button
-            className="w-full sm:w-auto border border-gray-300 bg-white text-blue-800 rounded py-1 px-3 text-sm hover:bg-gray-50 transition-colors"
-            onClick={() => {
-              onRequestClose();
-            }}
-          >
-            Return
-          </button>
-          <button
-            className="w-full sm:w-auto border-0 bg-blue-500 text-white rounded py-1 px-3 text-sm hover:bg-blue-600 transition-colors"
-            onClick={() => {
-              const queryString = new URLSearchParams({
-                id: painting.id.toString(),
-                title: painting.title,
-                medium: painting.medium,
-                price: painting.price.toString(),
-                isVertical: painting.isVertical.toString(),
-                size: painting.size,
-                shippingWeight: painting.shippingWeight,
-                shippingLength: painting.shippingLength,
-                shippingHeight: painting.shippingHeight,
-                shippingWidth: painting.shippingWidth,
-                inStock: painting.inStock.toString(),
-                imageUrlFront: painting.imageUrlFront,
-                imageUrlBack: painting.imageUrlBack,
-                clientId: painting.clientId?.toString() || "",
-              }).toString();
-              router.push(`/cart?${queryString}`);
-              onRequestClose();
-            }}
-          >
-            Buy Now
-          </button>
+        <div className="mt-auto pt-2 flex flex-col gap-3 px-2 md:px-4 border-t border-gray-200 flex-shrink-0">
+          <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-amber-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="font-merriweather">Secure Payment</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <svg
+                className="w-3 h-3 text-amber-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
+              </svg>
+              <span className="font-merriweather">Tracked Shipping</span>
+            </div>
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between gap-2">
+            <button
+              className="w-full sm:w-auto border-2 border-gray-300 bg-white text-gray-700 rounded-lg py-3 px-6 text-sm font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all shadow-sm hover:shadow-md"
+              onClick={() => {
+                onRequestClose();
+              }}
+            >
+              Return
+            </button>
+            <button
+              className="w-full sm:w-auto border-0 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-lg py-3 px-8 text-sm font-semibold hover:from-amber-700 hover:to-amber-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-100"
+              onClick={() => {
+                const queryString = new URLSearchParams({
+                  id: painting.id.toString(),
+                  title: painting.title,
+                  medium: painting.medium,
+                  price: painting.price.toString(),
+                  isVertical: painting.isVertical.toString(),
+                  size: painting.size,
+                  shippingWeight: painting.shippingWeight,
+                  shippingLength: painting.shippingLength,
+                  shippingHeight: painting.shippingHeight,
+                  shippingWidth: painting.shippingWidth,
+                  inStock: painting.inStock.toString(),
+                  imageUrlFront: painting.imageUrlFront,
+                  imageUrlBack: painting.imageUrlBack,
+                  clientId: painting.clientId?.toString() || "",
+                }).toString();
+                router.push(`/cart?${queryString}`);
+                onRequestClose();
+              }}
+            >
+              Buy Now
+            </button>
+          </div>
         </div>
       </div>
     </Modal>
