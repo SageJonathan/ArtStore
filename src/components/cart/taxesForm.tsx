@@ -57,64 +57,81 @@ export default function TaxesForm({
     country === "Canada" ? Object.keys(Canada) : Object.keys(USA);
 
   return (
-    <div className="flex flex-col space-y-4 p-4">
-      <h1 className="font-bold text-blue-600 text-xl font-playfair ">
+    <div className="flex flex-col space-y-4 px-4 pt-4">
+      <h1 className="font-bold text-indigo-600 text-xl font-playfair pb-3 border-b border-gray-200">
         Shipping Estimator
       </h1>
-      <select
-        id="country"
-        name="shippingAddress"
-        className={`p-2 border rounded-md ${
-          isError ? "border-red-500" : "border-gray-300"
-        }`}
-        required
-        value={country}
-        onChange={handleCountryChange}
-      >
-        <option value="" disabled>
-          Select Country
-        </option>
-        {["Canada", "USA"].map((country) => (
-          <option key={country} value={country}>
-            {country}
-          </option>
-        ))}
-      </select>
-      {country && (
-        <select
-          id="stateOrProvince"
-          name="shippingAddress"
-          className={`p-2 border rounded-md ${
-            isError ? "border-red-500" : "border-gray-300"
-          }`}
-          required
-          value={stateOrProvince}
-          onChange={handleStateOrProvinceChange}
-        >
-          <option value="" disabled>
-            Select State/Province
-          </option>
-          {provincesOrStates.map((stateOrProvince) => (
-            <option key={stateOrProvince} value={stateOrProvince}>
-              {stateOrProvince}
+      <div className="space-y-3">
+        <div>
+          <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
+            Country
+          </label>
+          <select
+            id="country"
+            name="shippingAddress"
+            className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all ${
+              isError ? "border-red-500 ring-2 ring-red-200" : "border-gray-300"
+            }`}
+            required
+            value={country}
+            onChange={handleCountryChange}
+          >
+            <option value="" disabled>
+              Select Country
             </option>
-          ))}
-        </select>
-      )}
-      {country && stateOrProvince && (
-        <input
-          type="text"
-          id="postalCode"
-          name="postalCode"
-          className={`p-2 border rounded-md ${
-            isError ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter Postal Code"
-          value={postalCode}
-          onChange={handlePostalCodeChange}
-          required
-        />
-      )}
+            {["Canada", "USA"].map((country) => (
+              <option key={country} value={country}>
+                {country}
+              </option>
+            ))}
+          </select>
+        </div>
+        {country && (
+          <div>
+            <label htmlFor="stateOrProvince" className="block text-sm font-medium text-gray-700 mb-1">
+              State/Province
+            </label>
+            <select
+              id="stateOrProvince"
+              name="shippingAddress"
+              className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all ${
+                isError ? "border-red-500 ring-2 ring-red-200" : "border-gray-300"
+              }`}
+              required
+              value={stateOrProvince}
+              onChange={handleStateOrProvinceChange}
+            >
+              <option value="" disabled>
+                Select State/Province
+              </option>
+              {provincesOrStates.map((stateOrProvince) => (
+                <option key={stateOrProvince} value={stateOrProvince}>
+                  {stateOrProvince}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+        {country && stateOrProvince && (
+          <div>
+            <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700 mb-1">
+              Postal Code
+            </label>
+            <input
+              type="text"
+              id="postalCode"
+              name="postalCode"
+              className={`w-full p-3 border rounded-lg bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all ${
+                isError ? "border-red-500 ring-2 ring-red-200" : "border-gray-300"
+              }`}
+              placeholder="Enter Postal Code"
+              value={postalCode}
+              onChange={handlePostalCodeChange}
+              required
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

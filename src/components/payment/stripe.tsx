@@ -7,23 +7,23 @@ import {
   useStripe,
   useElements,
   PaymentElement,
-  AddressElement
+  AddressElement,
 } from "@stripe/react-stripe-js";
 import convertToSubcurrency from "@/utils/convertToSubcurrency";
 
 interface StripeProps {
   amount: number;
-  id: number; 
+  id: number;
 }
 
-const Stripe = ({ amount,id }: StripeProps) => {
+const Stripe = ({ amount, id }: StripeProps) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState<string | null>();
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
   const [address, setAddress] = useState<any | null>(null);
-  const [email, setEmail] = useState<string | null>(null); 
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/create-payment-intent", {
@@ -31,15 +31,14 @@ const Stripe = ({ amount,id }: StripeProps) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         amount: convertToSubcurrency(amount),
         id: id,
       }),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [amount,address,email, id]);
-
+  }, [amount, address, email, id]);
 
   const validateEmail = (email: string) => {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -51,7 +50,9 @@ const Stripe = ({ amount,id }: StripeProps) => {
     setLoading(true);
 
     if (!stripe || !elements || !address || !email || !validateEmail(email)) {
-      setErrorMessage("Please provide a valid email address and shipping information.");
+      setErrorMessage(
+        "Please provide a valid email address and shipping information."
+      );
       setLoading(false);
       return;
     }
@@ -73,7 +74,7 @@ const Stripe = ({ amount,id }: StripeProps) => {
           name: address.name,
           address: address,
         },
-        receipt_email: email, 
+        receipt_email: email,
       },
     });
 
@@ -113,13 +114,16 @@ const Stripe = ({ amount,id }: StripeProps) => {
           if (event.complete) {
             const addressData = event.value.address;
             console.log("Updated Address Data:", addressData);
-            setAddress(addressData); 
+            setAddress(addressData);
           }
         }}
       />
 
       <div className="mt-4 mb-4 ">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 flex ">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700 flex "
+        >
           Email
         </label>
         <input
@@ -147,5 +151,3 @@ const Stripe = ({ amount,id }: StripeProps) => {
 };
 
 export default Stripe;
-
-
