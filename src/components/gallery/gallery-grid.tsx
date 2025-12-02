@@ -32,7 +32,7 @@ export default function GalleryGrid({ paintings }: GalleryGridProps) {
   }
   const sortedPaintings = paintings.sort((a, b) => a.id - b.id);
   return (
-    <div className="w-full min-h-screen bg-center bg-gray-200">
+    <div className="w-full min-h-screen bg-gradient-to-b from-rose-50/40 via-white to-rose-50/30">
       <Tag />
       <div className="relative min-h-screen flex flex-col justify-start gap-0 px-4 py-0 mt-10">
         {/* Gallery Grid */}
@@ -40,7 +40,7 @@ export default function GalleryGrid({ paintings }: GalleryGridProps) {
           {sortedPaintings.map((painting, index) => (
             <div
               key={index}
-              className="w-full h-full overflow-hidden flex flex-col justify-center items-center"
+              className="w-full h-full overflow-hidden flex flex-col justify-center items-center cursor-pointer group transition-transform hover:scale-[1.02]"
               onClick={() => openModal(painting)}
             >
               <Image
@@ -53,21 +53,20 @@ export default function GalleryGrid({ paintings }: GalleryGridProps) {
                 }`}
                 priority
               />
-              <div className="mt-5 text-left pb-20 md:pb-40">
-                <div className="bg-white shadow-lg p-2 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg">
-                  <h3 className="text-sm font-semibold mb-1 pb-1 pl-1 pr-2 pr-20 font-merriweather">
+              <div className="mt-5 text-left pb-40">
+                <div className="bg-gradient-to-br from-gray-50 via-white to-rose-50/50 shadow-lg border border-rose-300/60 rounded-lg p-4 mx-auto w-full max-w-xs sm:max-w-md lg:max-w-lg hover:shadow-xl transition-all hover:border-rose-400/70">
+                  <h3 className="text-base font-semibold mb-2 text-rose-900 font-playfair leading-tight">
                     {painting.title}
                   </h3>
-                  <div className="flex justify-between">
-                    <p className="text-s font-medium text-gray-800 pl-1 font-merriweather">
+                  <div className="flex justify-between items-center gap-4">
+                    <p className="text-sm font-medium text-gray-800 font-merriweather">
                       {painting.size}
                     </p>
-                    <p
-                      className={`text-s font-medium text-red-800 bg-red-100 pr-1 pl-1 font-merriweather 
-                        ${!painting.inStock ? "inline" : "hidden"}`}
-                    >
-                      Sold
-                    </p>
+                    {!painting.inStock && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold text-rose-800 bg-rose-100 border border-rose-200 ml-auto">
+                        Sold
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
